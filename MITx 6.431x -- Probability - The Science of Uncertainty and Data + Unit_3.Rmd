@@ -1,0 +1,704 @@
+---
+title: "MITx 6.431x -- Probability - The Science of Uncertainty and Data + Unit_3.Rmd"
+author: "John HHU"
+date: "2022-11-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+
+
+
+# Course  /  Unit 3: Counting  /  Solved problems
+
+# 1. The birthday problem
+
+The birthday problem. Consider n people who are attending a party. We assume that every person has an equal probability of being born on any day during the year, independently of everyone else, and ignore the additional complication presented by leap years (i.e., nobody is born on February 29). What is the probability that each person has a distinct birthday?
+
+Teaching assistant: Kuang Xu
+
+
+![](C:/Users/qp/Pictures/Screenshots/1. The birthday problem - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/1. The birthday problem - 2.png)
+In this exercise, we'll be looking at a problem,
+so-called the birthday paradox, where we have n
+people and each person has a random birthday
+out of the 365 days.
+And the probability we want to measure is the probability of
+the event that no two birthdays coincide.
+To set up the problem, we'll define the sample space omega
+as a set of all possible birthday combinations.
+Let's see how big that is.
+Well, we have a collection of n people.
+And each person has 365 choices.
+And therefore, the total number choices for all
+possible birthday combinations will be this number raised to
+the power n.
+So this will be the size of our sample space omega.
+Now, out of the sample space we'll look at all choices, all
+combinations where no two people have
+exactly the same birthday.
+To count that, we can start from the first person, person
+number one.
+Well, this person has 365 choices because so far there
+has not been any other birthdays to
+be conflicting with.
+However, for the second person we know that whatever the
+first person chose, we cannot choose the
+same birthday again.
+And so we're left with 364 choices.
+Keep going like this, we get 363, and so on and so forth.
+Until we reach the last person, which will give us 365
+minus n plus 1.
+Since we've repeated this process n times.
+Now, looking at these two numbers we know that the
+probability of no two birthdays coincide is equal to
+the size of the event, which is this problem here--
+365 times 364, so on and so forth, times 365 minus n plus
+1, divided by the size of the sample space, 365 raised to
+the nth power.
+Now, you might wonder how big really is this probability?
+Well, if we were to plot the probability of having no two
+birthdays coincide as a function of the size of the
+group n, where n goes from 0 all the way to 80, we see that
+the probability drops very quickly.
+In particular, if we were to draw a line right here from
+having 50 [percent]
+chance of seeing no two birthdays coincide.
+We see that roughly around 23 we're already are seeing a
+chance smaller than half.
+If the group size is about 40 and the chance of having a
+unique birthday for everyone is only about 10%.
+Now, here on the right we are plotting the same probability
+but with a different scaling.
+So on the y-axis we're plotting with respect to a
+logarithmic scaling, showing a finer granularity of
+the value near zero.
+Now we can see right here beyond 60 and the plot on the
+left that we solved before, you can barely
+tell the value p-n.
+So here if we were to track 60 around right here, we see that
+the values start dipping below 1% and all the way to 10 to
+the negative tenth.
+So that's a tiny number, even though we only have a
+group of size 120.
+
+
+
+
+
+
+
+# 2. Rooks on a chessboard
+
+Rooks on a chessboard. Eight rooks are placed in distinct squares of an 8 x 8 chessboard, with all possible placements being equally likely. Find the probability that all the rooks are safe from one another, i.e., that there is no row or column with more than one rook.
+
+Teaching assistant: Katie Szeto
+
+
+![](C:/Users/qp/Pictures/Screenshots/2. Rooks on a chessboard - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Rooks on a chessboard - 2.png)
+![](C:/Users/qp/Pictures/20220918_184735.jpg)
+Today, we're going to do a fun problem called rooks on a
+chessboard.
+And rooks on a chessboard is a problem that's going to test
+your ability on counting.
+So hopefully by now in class, you've learned a few tricks to
+approach counting problems.
+You've learned about permutations, you've learned
+about k-permutations, you've learned about combinations,
+and you've learned about partitions.
+And historically for students that we've taught in the past
+and many people, counting can be a tricky topic.
+So this is just one drill problem to help you get those
+skills under your belt.
+So what does the rooks on a chessboard problem ask you?
+Well, you're given an 8-by-8 chessboard, which I've tried
+to draw here.
+It's not very symmetrical.
+Sorry about that.
+And you're told that you have eight rooks.
+I'm sure most of you guys are familiar with chess.
+But if any of you aren't, chess is a
+sophisticated board game.
+And one of the types of pieces you have in this game is
+called a rook.
+And in this particular problem,
+there are eight rooks.
+And your job is to place all eight rooks onto this 8-by-8
+chessboard.
+Now, you're told in the problem statement that all
+placements of rooks are equally likely.
+And you are tasked with finding the probability that
+you get a safe arrangement.
+So that is to say, you place your eight rooks on the board.
+What is the probability that the way you
+placed them is safe?
+So what do I mean by "safe"?
+Well, if you're familiar with the way chess works, so if you
+place a rook here, it can move vertically or it can move
+horizontally.
+Those are the only two legal positions.
+So if you place a rook here and you have another piece
+here, then this is not a safe arrangement, because the rook
+can move this way and kill you.
+Similarly, if you have a rook here and another piece here,
+the rook can move horizontally and kill you that way.
+So two rooks on this board are only safe from each other if
+they are neither in the same column nor in the same row.
+And that's going to be key for us to solve this problem.
+So let's see-- where did my marker go?
+I've been talking a lot, and I haven't really
+been writing anything.
+So our job is again, to find the probability that you get a
+safe arrangement.
+So I'm just going to do "arrange" for short.
+Now, I talked about this previously, and you guys have
+heard it in lecture.
+Hopefully you remember something called the discrete
+uniform law.
+So the discrete uniform law is applicable when your sample
+space is discrete and all outcomes are equally likely.
+So let's do a quick check here.
+What is our sample space for this problem?
+Well, a logical choice would be that the set of all
+possible outcomes is the set of all possible spatial
+arrangements of rooks.
+And hopefully it's clear to you that that is discrete.
+And the problem statement furthermore gives us that
+they're equally likely.
+So the discrete uniform law is in fact
+applicable in our setting.
+So I'm going to go ahead and write what this means.
+So when your sample space is discrete and all outcomes are
+equally likely, then you can compute the probability of any
+event, A, simply by counting the number of outcomes in A
+and then dividing it by the total number of outcomes in
+your sample space.
+So here we just have to find the number of total safe
+arrangements and then divide it by the total number of
+arrangements.
+So again, as you've seen in other problems, the discrete
+uniform law is really nice, because you reduce the problem
+of computing probabilities to the problem of counting.
+And so here's where we're going to exercise those
+counting skills, as I promised earlier.
+Now, I would like to start with computing the
+denominator, or the total number of arrangements,
+because I think it's a slightly easier computation.
+So we don't care about the arrangements being safe.
+We just care about how many possible
+arrangements are there.
+Now, again, we have eight rooks, and we need to place
+all of them.
+And we have this 8-by-8 board.
+So pretty quickly, you guys could probably tell me that
+the total number of square is 64, because this is
+just 8 times 8.
+Now, I like to approach problems sequentially.
+That sort of really helps me think clearly about them.
+So I want you to imagine a sequential process during
+which we place each rook one at a time.
+So pick a rook.
+The chessboard is currently empty.
+So how many squares can you place that rook in?
+Well, nobody's on the board.
+You can place it in 64 spots.
+So for the first rook that you pick, there are 64 spots.
+Now, once you place this rook, you need to place the second
+rook, because again, we're not done until
+all eight are placed.
+So how many possible spots are left.
+Well, I claim that there are 63, because one rule of chess
+is that if you put a piece in a particular square, you can
+no longer put anything else on that square.
+You can't put two or more things.
+So the first rook is occupying one spot, so there's only 63
+spots left.
+So the second rook has 63 spots that it could go in.
+Similarly, the third rook has 62 spots.
+Hopefully you see the pattern.
+You can continue this down.
+And remember, we have to place all eight rooks.
+So you could do it out yourself or just
+do the simple math.
+You'll figure out that the eighth rook only has 57 spots
+that it could be in.
+So this is a good start.
+We've sort of figured out if we sequentially place each
+rook, how many options do we have.
+But we haven't combined these numbers in any useful way yet.
+We haven't counted the number of total arrangements.
+And this may already be obvious to some, but it wasn't
+obvious to me when I was first learning this material, so I
+want to go through this slowly.
+You have probably heard in lecture by now about the
+counting principle.
+And what the counting principle tells you is that
+whenever you have a process that is done in stages and in
+each stage, you have a particular number of choices,
+to get the total number of choices available at the end
+of the process, you simply multiply the number of choices
+at each stage.
+This might be clear to you, again, simply from the
+statement, for some of you.
+But for others, it might still not be clear.
+So let's just take a simple example.
+Forget about the rook problem for a second.
+Let's say you're at a deli, and you
+want to make a sandwich.
+And to make a sandwich, you need a choice of bread and you
+need a choice of meat.
+So we have a sandwich-building process,
+and there's two stages.
+First, you have to pick the bread, and then you have to
+pick the meat.
+So let's say for the choice of bread, you can
+choose wheat or rye.
+So again, you can always use a little decision tree--
+wheat or rye.
+And then let's say that for the meats,
+you have three options.
+You have ham, turkey, and salami.
+So you can have ham, turkey, or salami--
+ham, turkey, or salami.
+How many total possible sandwiches can you make?
+Well, six.
+And I got to that by 2 times 3.
+And hopefully this makes sense for you, because there's two
+options in the first stage.
+Freeze an option.
+Given this choice, there's three options
+at the second stage.
+But you have to also realize that for every other option
+you have at the first stage, you have to add an additional
+three options for the second stage.
+And this is the definition of multiplication.
+If you add three two times, you know that's 3 times 2.
+So if you extrapolate this example to a larger, more
+general picture, you will have derived for yourself the
+counting principle.
+And we're going to use the counting principle here to
+determine what the total number of arrangements are.
+So we have a sequential process, because we're placing
+the first rook and then the second rook, et cetera.
+So at the first stage, we have 64 choices.
+At the second stage, we have 63 choices.
+At the third stage, we have 62 choices, et cetera.
+And so I'm just multiplying these numbers together,
+because the counting principle says I can do this.
+So my claim is that this product is equal to the total
+number of arrangements.
+And we could stop here, but I'm going to actually write
+this in a more useful way.
+You guys should have been introduced to
+the factorial function.
+So you can express this equivalently as 64 factorial
+divided by 56 factorial.
+And this is not necessary for your problem solution, but
+sometimes it's helpful to express these types of
+products in factorials, because you can see
+cancellations more easily.
+So if it's OK with everybody, I'm going to erase this work
+to give myself more room.
+So we'll just put our answer for the denominator up here,
+and then we're going to get started on the numerator.
+So for the numerator, thanks to the discrete uniform law,
+we only need to count the number of safe arrangements.
+But this is a little bit more tricky, because now, we have
+to apply our definition of what "safe" means.
+But we're going to use the same higher-level strategy,
+which is realizing that we can place rooks sequentially.
+So we can think of it as a sequential process.
+And then if we figure out how many choices you have in each
+stage that sort of maintain the "safeness" of the setup,
+then you can use the counting principle to multiply all
+those numbers together and get your answer.
+So we have to place eight rooks.
+Starting the same way we did last time, how many spots are
+there for the first rook that are safe?
+Nobody is on the board yet, so nobody can harm the first rook
+we put down.
+So I claim that it's just our total of 64.
+Now, let's see what happens.
+Let's pick a random square in here.
+Let's say we put our first rook here.
+Now, I claim a bunch of spots get invalidated because of the
+rules of chess.
+So before, I told you a rook can kill anything in the same
+column or in the same row.
+So you can't put a rook here, because they'll kill each
+other, and you can't put a rook here.
+So by extension, you can see that everything in the column
+and the row that I'm highlighting in blue, it's no
+longer an option.
+You can't place a rook in there.
+Otherwise, we will have violated
+our "safety" principle.
+So where can our second rook go?
+Well, our second rook can go in any of the blank spots, any
+of the spots that are not highlighted by blue.
+And let's stare at this a little bit.
+Imagine that you were to take scissors to your chessboard
+and cut along this line and this line and this
+line and this line.
+So you essentially sawed off this cross that we created.
+Then you would have four free-floating chessboard
+pieces-- this one, this one, this one, and this one.
+So this is a 3-by-4 piece, this is 3-by-3, this is
+4-by-3, and this is 4-by-4.
+Well, because you cut this part out, you can now slide
+those pieces back together.
+And hopefully you can convince yourself that that would leave
+you with a 7-by-7 chessboard.
+And you can see that the dimensions match up here.
+So essentially, the second rook can be placed anywhere in
+the remaining 7-by-7 chessboard.
+And of course, there are 49 spots in a 7-by-7 chessboard.
+So you get 49.
+So let's do this experiment again.
+Let me rewrite the reduced 7-by-7 chessboard.
+You're going to have to forgive me if the lines are
+not perfect--
+one, two, three, four, five, six, seven; one, two, three,
+four, five, six, seven.
+Yep, I did that right.
+And then we have one, two, three, four, five, six, seven.
+That's not too bad for my first attempt.
+So again, how did I get this chessboard from this one?
+Well, I took scissors and I cut off of the blue strips,
+and then I just merged the remaining four pieces.
+So now, I'm placing my second rook.
+So I know that I can place my second rook in any of these
+squares, and it'll be safe from this rook.
+Of course, in reality, you wouldn't really cut up your
+chessboard.
+I'm just using this as a visual aid to help you guys
+see why there are 49 spots.
+Another way you could see 49 spots is literally just by
+counting all the white squares, but I think it takes
+time to count 49 squares.
+And this is a faster way of seeing it.
+So you can put your second rook anywhere here.
+Let's actually put in the corner, because the corner is
+a nice case.
+If you put your rook in the corner, immediately, all the
+spots in here and all the spots in here become invalid
+for the third rook, because otherwise, the rooks can hurt
+each other.
+So again, you'll see that if you take scissors and cut off
+the blue part, you will have reduced the dimension of the
+chessboard again.
+And you can see pretty quickly that what you're left with is
+a 6-by-6 chessboard.
+So for the third rook, you get a 6-by-6 chessboard, which has
+36 free spots.
+And I'm not going to insult your intelligence.
+You guys can see the pattern--
+64, 49, 36.
+These are just perfect squares decreasing.
+So you know that the fourth rook will have 25 spots.
+I'm going to come over here because I'm out of room.
+The fifth rook will have 16 spots.
+The sixth rook will have nine spots.
+The seventh rook will have four spots.
+And the eighth rook will just have one spot.
+And now, here we're going to invoke the
+counting principle again.
+Remember the thing that I just defined to you by talking
+about sandwiches.
+And we'll see that to get the total number of safe
+arrangements, we can just multiply
+these numbers together.
+So I'm going to go ahead and put that up here.
+You get 64 times 49 times 36 times 25 times 16
+times 9 times 4.
+And in fact, this is our answer.
+So we're all done.
+So I really like this problem, because we don't normally ask
+you to think about different spatial arrangements.
+So it's a nice exercise, because it lets you practice
+your counting skills in a new and creative way.
+And in particular, the thing that we've been using for a
+while now is the discrete uniform law.
+But now, I also introduced the counting principle.
+And we used the counting principle twice--
+once to compute the numerator and once to compute the
+denominator.
+Counting can take a long time for you to absorb it.
+So if you still don't totally buy the counting
+principle, that's OK.
+I just recommend you do some more examples and try to
+convince yourself that it's really counting the right
+number of things.
+So counting principle is the second takeaway.
+And then the other thing that is just worth mentioning is,
+you guys should get really comfortable with these
+factorials, because they will just show up again and again.
+So that's the end of the problem, and I'll
+see you next time.
+
+
+A written solution to this problem can be found here. It includes a second approach, different than the one in the video. 
+https://courses.edx.org/assets/courseware/v1/a7e46484586f3ea79bd6d5845dee3418/asset-v1:MITx+6.431x+2T2022+type@asset+block/recitation_U03-rooks_on_a_chessboard-sol2.pdf
+
+
+
+
+
+
+
+
+
+
+# 3. Hypergeometric probabilities
+
+Hypergeometric probabilities. An urn contains n balls, out of which exactly m are red. We select k of the balls at random, without replacement (i.e., selected balls are not put back into the urn before the next selection). What is the probability that i of the selected balls are red?
+
+Teaching assistant: Kuang Xu
+
+
+![](C:/Users/qp/Pictures/Screenshots/3. Hypergeometric probabilities - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Hypergeometric probabilities - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Hypergeometric probabilities - 3.png)
+In this problem, we're given an urn with n balls in it, out
+of which m balls are red balls.
+To visualize it, we can draw a box that represents the set of
+all n balls.
+Somewhere in the middle or somewhere else we have a cut,
+such that to the left we have all the red balls (there are
+m), and non-red balls.
+Let's for now call it black balls.
+That is n minus m.
+Now, from this box, we are to draw k balls, and we'd like to
+know the probability that i out of those k
+balls are red balls.
+For the rest of the problem, we'll refer to this
+probability as p-r, where r stands for the red balls.
+So from this picture, we know that we're going to draw a
+subset of the balls, such that i of them are red, and the
+remaining k minus i are black.
+And we'll like to know what is the probability that this
+event would occur.
+To start, we define our sample space, omega, as the set of
+all ways to draw k balls out of n balls.
+We found a simple counting argument -- we know that size
+of our sample space has n-choose-k, which is the total
+number of ways to draw k balls out of n balls.
+Next, we'd like to know how many of those samples
+correspond to the event that we're interested in.
+In particular, we would like to know c, which is equal to
+the number of ways to get i red balls after
+we draw the k balls.
+To do so, we'll break c into a product of two numbers --
+let's call it a times b --
+where a is the total number of ways to select i red balls out
+of m red balls.
+So the number of ways to get i out of m red balls.
+Going back to the picture, this corresponds to the total
+number of ways to get these balls.
+And similarly, we define b as the total number of ways to
+get the remaining k minus i balls out of the set n minus m
+black balls.
+This corresponds to the total number of ways to select the
+subset right here in the right side of the box.
+Now as you can see, once we have a and b, we multiply them
+together, and this yields the total number of ways
+to get i red balls.
+To compute what these numbers are, we see that a is equal to
+m-choose-i number of ways to get i red balls, and b is n
+minus m, the total number of black balls, choose k minus i,
+the balls that are not red within those k balls.
+Now putting everything back, we have p-r, the probability
+we set out to compute, is equal to c, the size of the
+event, divided by the size of the entire sample space.
+From the previous calculations, we know that c
+is equal to a times b, which is then equal to m-choose-i
+times (n minus m)-choose-(k minus i).
+And on the denominator, we have the entire sample space
+is a size n-choose-k.
+And that completes our derivation.
+Now let's look at a numerical example of this problem.
+Here, let's say we have a deck of 52 cards.
+And we draw a box with n equals 52, out of which we
+know that there are 4 aces.
+So we'll call these the left side of the box, which is we
+have m equals 4 aces.
+Now if we were to draw seven cards--
+call it k equal to 7--
+and we'd like to know what is the probability that out of
+the 7 cards, we have 3 aces.
+Using the notation we did earlier, if we were to draw a
+circle representing the seven cards, we want to know what is
+the probability that we have 3 aces in the left side of the
+box and 4 non-aces for the remainder of the deck.
+In particular, we'll call i equal to 3.
+So by this point, we've cast the problem of drawing cards
+from the deck in the same way as we did earlier of drawing
+balls from an urn.
+And from the expression right here, which we computed
+earlier, we can readily compute the probability of
+having 3 aces.
+In particular, we just have to substitute into the expression
+right here the value of m equal to 4, n equal to 52, k
+equal to 7, finally, i equal to 3.
+So we have 4-choose-3 times n minus m, in this case would be
+48, choose k minus i, will be 4, and on the denominator, we
+have 52 total number of cards, choosing 7 cards.
+That gives us [the]
+numerical answer [for]
+the probability of getting 3 aces when we draw 7 cards.
+
+
+
+
+
+
+
+
+
+
+
+# 4. Multinomial probabilities
+
+![](C:/Users/qp/Pictures/Screenshots/4. Multinomial probabilities - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Multinomial probabilities - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Multinomial probabilities - 3.png)
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 3: Counting  /  Problem Set 3
+
+# 1. Customers arriving at a restaurant
+
+![](C:/Users/qp/Pictures/Screenshots/1. Customers arriving at a restaurant.png)
+![](C:/Users/qp/Pictures/20220919_230518.jpg)
+
+
+
+
+
+
+
+
+
+
+
+# 2. A three-sided die
+
+![](C:/Users/qp/Pictures/Screenshots/2. A three-sided die - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. A three-sided die - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/2. A three-sided die - 3.png)
+![use your brain is enough](C:/Users/qp/Pictures/Screenshots/2. A three-sided die - 4.png)
+![](C:/Users/qp/Pictures/20220921_210906.jpg)
+![](C:/Users/qp/Pictures/20220921_213536.jpg)
+
+
+
+
+
+
+
+
+
+
+
+# 3. Forming a committee
+
+![](C:/Users/qp/Pictures/Screenshots/3. Forming a committee - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Forming a committee - 2.png)
+![](C:/Users/qp/Pictures/20220921_213915.jpg)
+![](C:/Users/qp/Pictures/20220921_215009.jpg)
+![](C:/Users/qp/Pictures/20220921_215321.jpg)
+
+
+
+
+
+
+
+
+
+
+# 4. Proving binomial identities via counting
+
+![](C:/Users/qp/Pictures/Screenshots/4. Proving binomial identities via counting - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Proving binomial identities via counting - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Proving binomial identities via counting - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Proving binomial identities via counting - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Proving binomial identities via counting - 5.png)
+[][Use your brain, above question can be solved in your brain]
+
+
+
+
+
+
+
+
+
+
+
+# 5. Hats in a box
+
+![](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 3.png)
+![what is the correct answer to this question](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/5. Hats in a box - 7.png)
+![](C:/Users/qp/Pictures/20220921_002542.jpg)
+![](C:/Users/qp/Pictures/20220921_002557.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 4: Discrete random variables  /  Unit overview

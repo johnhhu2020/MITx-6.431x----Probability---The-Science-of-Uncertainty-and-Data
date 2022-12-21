@@ -1,0 +1,4050 @@
+---
+title: "MITx 6.431x -- Probability - The Science of Uncertainty and Data + Unit_2.Rmd"
+author: "John HHU"
+date: "2022-11-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 2: Conditioning and independence  /  Unit overview  
+
+# 1. Motivation
+
+You build a local communication network consisting
+of routers, computers, and some hard-wired links
+that connect them.
+However, its link has a small probability
+of being nonfunctional because of a hardware failure.
+Assuming that failures at different lengths
+happen independently, how likely is it
+that the message from router A will still
+be able to reach your computer?
+Suppose now that you received notice that one of the routers
+is down.
+Given this information, how would you
+update the probability that the message from router A
+will still be able to reach your computer?
+By the end of this unit, you will
+be able to answer questions of this type
+by using the concept of conditional probability
+and by giving a precise meaning to the concept
+of independent failures.
+
+
+
+
+
+
+# 2. Unit 2 overview
+
+In this unit we introduce the concepts of conditioning and independence. Conditioning leads to revised (“conditional") probabilities that take into account partial information on the outcome of a probabilistic experiment. Conditioning is a very useful tool that allows us to “divide and conquer" complex problems. Independence is used to model situations involving non-interacting probabilistic phenomena and also plays an important role in building complex models from more elementary ones. 
+
+In the first lecture, we introduced probabilities as a
+way of describing our beliefs about the likelihood that a
+given event will occur.
+But our beliefs will in general depend on the
+information that we have.
+Taking into account new information leads us to
+consider so-called conditional probabilities.
+These are revised probabilities that take into
+account the new information.
+Conditional probabilities are very useful whenever we want
+to break up a model into simpler pieces using a divide
+and conquer strategy.
+This is done using certain tools that we will develop and
+which we will keep applying throughout this course in
+different guises.
+They are also the foundation of the field of inference.
+And we will see how they arise in that context.
+Then, in the second lecture of this unit, we will consider a
+special case where one event does not convey useful
+information about another, a situation that we call
+independence.
+Independence usually describes a situation where the
+occurrence or non-occurrence of different events is
+determined by factors that are completely unrelated.
+Independence is what allows us to build complex models out of
+simple ones.
+This is because it is often the case that a complex system
+is made up of several components that are affected
+by unrelated, that is, independent sources of
+randomness.
+And so with the tools to be developed in this unit, we
+will be ready to calculate probabilities in fairly
+complex probabilistic models.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 2: Conditioning and independence  /  Lec. 2: Conditioning and Bayes' rule
+
+# 1. Lecture 2 overview and slides
+
+This lecture sequence introduces conditional probabilities and three basic tools: the multiplication rule, the total probability theorem, and Bayes' rule. 
+
+Suppose I look at the registry of residents of my town and
+pick a person at random.
+What is the probability that this person is
+under 18 years of age?
+The answer is about 25%.
+Suppose now that I tell you that this person is married.
+Will you give the same answer?
+Of course not.
+The probability of being less than 18 years
+old is now much smaller.
+What happened here?
+We started with some initial probabilities that reflect
+what we know or believe about the world.
+But we then acquired some additional
+knowledge, some new evidence--
+for example, about this person's family situation.
+This new knowledge should cause our beliefs to change,
+and the original probabilities must be replaced with new
+probabilities that take into account the new information.
+These revised probabilities are what we call conditional
+probabilities.
+And this is the subject of this lecture.
+We will start with a formal definition of conditional
+probabilities together with the motivation behind this
+particular definition.
+We will then proceed to develop three tools that rely
+on conditional probabilities, including the Bayes rule,
+which provides a systematic way for incorporating new
+evidence into a probability model.
+The three tools that we introduce in this lecture
+involve very simple and elementary mathematical
+formulas, yet they encapsulate some very powerful ideas.
+It is not an exaggeration to say that much of this class
+will revolve around the repeated application of
+variations of these three tools to increasingly
+complicated situations.
+In particular, the Bayes rule is the foundation for the
+field of inference.
+It is a guide on how to process data and make
+inferences about unobserved quantities or phenomena.
+As such, it is a tool that is used all the time, all over
+science and engineering.
+
+
+
+
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/d967d5ec3112ed1d5f2c25ef76b2e0e9/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_L02-Overview.pdf
+
+Lecture slides: [clean] [annotated]
+https://courses.edx.org/assets/courseware/v1/fbd43b5de350748c166d3590b6ab2806/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L02Cleanslides.pdf
+https://courses.edx.org/assets/courseware/v1/7e33e8ca9cfaf01b34ebcfd3e463735a/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L02annotatedslides.pdf
+
+The same material, in live lecture hall format, can be found here and here.
+http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/video-lectures/lecture-2-conditioning-and-bayes-rule/
+http://www.youtube.com/watch?v=TluTv5V0RmE
+
+More information is given in the text:
+Conditional probability: Section 1.3
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/5
+Total probability theorem and Bayes' rule: Section 1.4
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/5
+
+
+
+
+
+
+
+
+
+# 2. Conditional probabilities
+
+![](C:/Users/qp/Pictures/Screenshots/Conditional probabilities introduction.png)
+![Read and Think](C:/Users/qp/Pictures/Screenshots/Conditional probabilities Definition.png)
+![Watch the lec 3 video on OCW at 25:25, he mintioned this concern](C:/Users/qp/Pictures/20220912_110902.jpg)
+Conditional probabilities are probabilities associated with
+a revised model that takes into account some additional
+information about the outcome of a probabilistic experiment.
+The question is how to carry out this
+revision of our model.
+We will give a mathematical definition of conditional
+probabilities, but first let us motivate this definition by
+examining a simple concrete example.
+Consider a probability model with 12 equally likely
+possible outcomes, and so each one of them has probability
+equal to 1/12.
+We will focus on two particular events, event A and
+B, two subsets of the sample space.
+Event A has five elements, so its probability is 5/12, and
+event B has six elements, so it has probability 6/12.
+Suppose now that someone tells you that event B has occurred,
+but tells you nothing more about the outcome.
+How should the model change?
+First, those outcomes that are outside event B
+are no longer possible.
+So we can either eliminate them, as was done in this
+picture, or we might keep them in the picture but assign them
+0 probability, so that they cannot occur.
+How about the outcomes inside the event B?
+So we're told that one of these has occurred.
+Now these 6 outcomes inside the event B were equally
+likely in the original model, and there is no reason to
+change their relative probabilities.
+So they should remain equally likely in revised model as
+well, so each one of them should have now probability
+1/6 since there's 6 of them.
+And this is our revised model, the
+conditional probability law.
+0 probability to outcomes outside B, and probability 1/6
+to each one of the outcomes that is inside the event B.
+Let us write now this down mathematically.
+We will use this notation to describe the conditional
+probability of an event A given that some other event B
+is known to have occurred.
+We read this expression as probability of A given B. So
+what are these conditional probabilities in our example?
+So in the new model, where these outcomes are equally
+likely, we know that event A can occur in
+two different ways.
+Each one of them has probability 1/6.
+So the probability of event A is 2/6 which
+is the same as 1/3.
+How about event B. Well, B consists of 6 possible
+outcomes each with probability 1/6.
+So event B in this revised model should have probability
+equal to 1.
+Of course, this is just saying the obvious.
+Given that we already know that B has occurred, the
+probability that B occurs in this new model
+should be equal to 1.
+How about now, if the sample space does not consist of
+equally likely outcomes, but instead we're given the
+probabilities of different pieces of the sample space, as
+in this example.
+Notice here that the probabilities are consistent
+with what was used in the original example.
+So this part of A that lies outside B has probability
+3/12, but in this case I'm not telling you how that
+probability is made up.
+I'm not telling you that it consists of 3
+equally likely outcomes.
+So all I'm telling you is that the collective probability in
+this region is 3/12.
+The total probability of A is, again, 5/12 as before.
+The total probability of B is 2 plus 4 equals
+6/12, exactly as before.
+So it's a sort of similar situation as before.
+How should we revise our probabilities and create--
+construct--
+conditional probabilities once we are told
+that event B has occurred?
+First, this relation should remain true.
+Once we are told that B has occurred, then B is certain to
+occur, so it should have conditional
+probability equal to 1.
+How about the conditional probability of A given that B
+has occurred?
+Well, we can reason as follows.
+In the original model, and if we just look inside event B,
+those outcomes that make event A happen had a collective
+probability which was 1/3 of the total probability assigned
+to B. So out of the overall probability assigned to B, 1/3
+of that probability corresponds to outcomes in
+which event A is happening.
+So therefore, if I tell you that B has occurred, I should
+assign probability equal to 1/3 that event A is
+also going to happen.
+So that, given that B happened, the conditional
+probability of A given B should be equal to 1/3.
+By now, we should be satisfied that this approach is a
+reasonable way of constructing conditional probabilities.
+But now let us translate our reasoning into a formula.
+So we wish to come up with a formula that gives us the
+conditional probability of an event given another event.
+The particular formula that captures our way of thinking,
+as motivated before, is the following.
+Out of the total probability assigned to B--
+which is this--
+we ask the question, which fraction of that probability
+is assigned to outcomes under which event A also happens?
+So we are living inside event B, but within that event, we
+look at those outcomes for which event A also happens.
+So this is the intersection of A and B. And we ask, out of
+the total probability of B, what fraction of that
+probability is allocated to that intersection of A with B?
+So this formula, this definition, captures our
+intuition of what we did before to construct
+conditional probabilities in our particular example.
+Let us check that the definition indeed does what
+it's supposed to do.
+In this example, the probability of the
+intersection was 2/12 and the total probability of B was
+6/12, which gives us 1/3, which is the answer that we
+had gotten intuitively a little earlier.
+At this point, let me also make a comment that this
+definition of conditional probabilities makes sense only
+if we do not attempt to divide by zero.
+That this, only if the event B on which we're conditioning,
+has positive probability.
+If B, if an event B has 0 probability, then conditional
+probabilities given B will be left undefined.
+And one final comment.
+This is a definition.
+It's not a theorem.
+What does that mean?
+It means that there is no question whether this equality
+is correct or not.
+It's just a definition.
+There's no issue of correctness.
+The earlier argument that we gave was just a motivation of
+the definition.
+We tried to figure out what the definition should be if we
+want to have a certain intuitive and meaningful
+interpretation of the conditional probabilities.
+Let us now continue with a simple example.
+
+
+
+
+
+
+
+
+
+# 3. Exercise: Conditional probabilities
+
+![](C:/Users/qp/Pictures/Screenshots/3. Exercise Conditional probabilities - QUestion answered with one shoot, need to recall what does the instructor told in him words.png)
+
+
+Discussion
+Topic: Unit 2: Conditioning and independence:Lec. 2: Conditioning and Bayes' rule / 3. Exercise: Conditional probabilities
+
+Not quite understand the difference between these two questions
+
+question posted 8 days ago by hjiangfighting
+
+what is the difference between "conditional probability law on B" and "conditional probability law on Omega"? Can anyone explain? Thank you!
+This post is visible to everyone.
+2 responses
+
+    Abolfazl66
+
+    8 days ago
+
+Conditional probability law on B is defined for all events inside B given B already happened; whereas conditional probability law on Omega is defined for all events that are either inside B or B_complement given that fact that B already happened.
+
+    OK! I see, so that means the probability of the conditional probability law on omega, given that B occurred is 1. I think I know what is going on! Thank you!!
+
+posted 7 days ago by hjiangfighting
+
+you are right that P(omiga|B) = 1. however probability law on omiga and probability of the set, the sample space omiga are two different things. the latter is always 1 because that is the definition of sample space.
+
+the probability law on any set (including a universal set like sample space) specifies how the probability is distributed within the elements of that particular set. we are not talking about the overall probability of as set here, we are talking about the relationships between probabilities of different elements inside that set
+
+posted 7 days ago by lockedarte
+
+thank you lockedarte for clarify! this is very important and useful to me!
+
+probability law on any set (including a universal set like sample space) specifies how the probability is distributed within the elements of that particular set
+
+    posted 7 days ago by hjiangfighting
+    Add a comment
+    Your question or idea (required)
+
+mueed27
+
+about an hour ago
+
+Dear Abolfazl66, Your comment helped me answer the question correctly in 1st attempt. Otherwise I was going to get carried away....
+
+So Thank you.
+
+Man this Professors course is very tricky. 
+
+
+
+[][discrete uniform probability]
+In probability theory and statistics, the discrete uniform distribution is a symmetric probability distribution wherein a finite number of values are equally likely to be observed; every one of n values has equal probability 1/n. Wikipedia
+
+
+
+
+
+
+
+
+
+
+# 4. A die roll example
+
+This is a simple example where we want to just apply the
+formula for conditional probabilities
+and see what we get.
+The example involves a four-sided die, if you can
+imagine such an object, which we roll twice, and we record
+the first roll, and the second roll.
+So there are 16 possible outcomes.
+We assume to keep things simple, that each one of those
+16 possible outcomes, each one of them has the same
+probability, so each outcome has the probability 1/16.
+Let us consider now a particular event B on which
+we're going to condition.
+This is the event under which the smaller of the two die
+rolls is equal to 2, which means that one of the dice
+must have resulted in two, and the other die has resulted in
+something which is 2 or larger.
+So this can happen in multiple ways.
+And here are the different ways that it can happen.
+So at 2, 2, or 2, 3, or 2, 4; then a 3, 2 and a 4, 2.
+All of these are outcomes in which one of the dice has a
+value equal to 2, and the other die
+is at least as large.
+So we condition on this event.
+This results in a conditional model where each one of those
+five outcomes are equally likely since they used to be
+equally likely in the original model.
+Now let's look at this quantity.
+The maximum of the two die rolls--
+that is, the largest of the results.
+And let us try to calculate the following quantity--
+the conditional probability that the maximum is equal to 1
+given that the minimum is equal to 2.
+So this is the conditional probability of
+this particular outcome.
+Well, this particular outcome cannot happen.
+If I tell you that the smaller number is 2, then the larger
+number cannot be equal to 1, so this outcome is impossible,
+and therefore this conditional probability is equal to 0.
+Let's do something a little more interesting.
+Let us now look at the conditional probability that
+the maximum is equal to 3 given the information that
+event B has occurred.
+It's best to draw a picture and see what that event
+corresponds to.
+M is equal to 3--
+the maximum is equal to 3--
+if one of the dice resulted in a 3, and the other die
+resulted in something that's 3 or less.
+So this event here corresponds to the blue
+region in this diagram.
+Now let us try to calculate the conditional probability by
+just following the definition.
+The conditional probability of one event given another is the
+probability that both of them--
+both of the two events--
+occur, divided by the probability of the
+conditioning event.
+That is, out of the total probability in the
+conditioning event, we ask, what fraction of that
+probability is assigned to outcomes in which the event of
+interest is also happening?
+So what is this event?
+The maximum is equal to 3, which is the blue event.
+And simultaneously, the red event is happening.
+These two events intersect only in two places.
+This is the intersection of the two events.
+And the probability of that intersection is 2 out of 16,
+since there's 16 outcomes and that event happens only with
+two particular outcomes.
+So this gives us 2/16 in the numerator.
+How about the denominator?
+Event B consists of a total of five possible outcomes.
+Each one has probability 1/16, so this is 5/16, so the final
+answer is 2/5.
+We could have gotten that same answer in a simple and perhaps
+more intuitive way.
+In the original model, all outcomes were equally likely.
+Therefore, in the conditional model, the five outcomes that
+belong to B should also be equally likely.
+Out of those five, there's two of them that make the event of
+interest to occur.
+So given that we live in B, there's two ways out of five
+that the event of interest will materialize.
+So the event of interest has
+conditional probability [equal to]
+2/5.
+
+
+
+
+
+
+# 5. Exercise: Conditional probabilities in a continuous model
+
+![](C:/Users/qp/Pictures/Screenshots/5. Exercise Conditional probabilities in a continuous model Anwere with one shoot.png)
+![](C:/Users/qp/Pictures/20220912_124140.jpg)
+
+
+
+
+
+
+
+
+# 6. Conditional probabilities obey the same axioms
+
+![Read and think](C:/Users/qp/Pictures/Screenshots/Conditional probabilities obey the same axioms.png)
+I now want to emphasize an important point.
+Conditional probabilities are just the same as ordinary
+probabilities applied to a different situation.
+They do not taste or smell or behave any differently than
+ordinary probabilities.
+What do I mean by that?
+I mean that they satisfy the usual probability axioms.
+For example, ordinary probabilities must also be
+non-negative.
+Is this true for conditional probabilities?
+Of course it is true, because conditional probabilities are
+defined as a ratio of two probabilities.
+Probabilities are non-negative.
+So the ratio will also be non-negative, of course as
+long as it is well-defined.
+And here we need to remember that we only talk about
+conditional probabilities when we condition on an event that
+itself has positive probability.
+How about another axiom?
+What is the probability of the entire sample space,
+given the event B?
+Let's check it out.
+By definition, the conditional probability is the probability
+of the intersection of the two events involved divided by the
+probability of the conditioning event.
+Now, what is the intersection of omega with B?
+B is a subset of omega.
+So when we intersect the two sets, we're
+left just with B itself.
+So the numerator becomes the probability of B. We're
+dividing by the probability of B, and so the
+answer is equal to 1.
+So indeed, the sample space has unit probability, even
+under the conditional model.
+Now, remember that when we condition on an event B, we
+could still work with the original sample space.
+However, possible outcomes that do not belong to B are
+considered impossible, so we might as well think of B
+itself as being our sample space.
+If we proceed like that and think now of B as being our
+new sample space, what is the probability of this new sample
+space in the conditional model?
+Let's apply the definition once more.
+It's the probability of the intersection of the two events
+involved, B intersection B, divided by the probability of
+the conditioning event.
+What is the numerator?
+The intersection of B with itself is just B, so the
+numerator is the probability of B. We're dividing by the
+probability of B. So the answer is, again, 1.
+Finally, we need to check the additivity axiom.
+Recall what the additivity axiom says.
+If we have two events, two subsets of the sample space
+that are disjoint, then the probability of their union is
+equal to the sum of their individual probabilities.
+Is this going to be the case if we now condition on a
+certain event?
+What we want to prove is the following statement.
+If we take two events that are disjoint, they have empty
+intersection, then the probability of the union is
+the sum of their individual probabilities, but where now
+the probabilities that we're employing are the conditional
+probabilities, given the event B. So let us verify whether
+this relation, this fact is correct or not.
+Let us take this quantity and use the
+definition to write it out.
+By definition, this conditional probability is the
+probability of the intersection of the first
+event of interest, the one that appears on this side of
+the conditioning, intersection with the event on which we are
+conditioning.
+And then we divide by the probability of the
+conditioning event, B. Now, let's look at this quantity,
+what is it?
+We're taking the union of A with C, and then intersect it
+with B. This union consists of these two pieces.
+When we intersect with B, what is left is
+these two pieces here.
+So A union C intersected with B is the union of two pieces.
+One piece is A intersection B, this piece here.
+And another piece, which is C intersection B, this is the
+second piece here.
+So here we basically used a set theoretic identity.
+And now we divide by the same [denominator]
+as before.
+And now let us continue.
+Here's an interesting observation.
+The events A and C are disjoint.
+The piece of A that also belongs in B, therefore, is
+disjoint from the piece of C that also belongs to B.
+Therefore, this set here and that set here are disjoint.
+Since they are disjoint, the probability of their union has
+to be equal to the sum of their individual
+probabilities.
+So here we're using the additivity axiom on the
+original probabilities to break this probability up into
+two pieces.
+And now we observe that here we have the ratio of an
+intersection by the probability of B. This is just
+the conditional probability of A given B using the definition
+of conditional probabilities.
+And the second part is the conditional probability of C
+given B, where, again, we're using the definition of
+conditional probabilities.
+So we have indeed checked that this additivity property is
+true for the case of conditional probabilities when
+we consider two disjoint events.
+Now, we could repeat the same derivation and verify that it
+is also true for the case of a disjoint union, of finitely
+many events, or even for countably
+many disjoint events.
+So we do have finite and countable additivity.
+We're not proving it, but the argument is exactly the same
+as for the case of two events.
+So conditional probabilities do satisfy all of the standard
+axioms of probability theory.
+So conditional probabilities are just like ordinary
+probabilities.
+This actually has a very important implication.
+Since conditional probabilities satisfy all of
+the probability axioms, any formula or theorem that we
+ever derive for ordinary probabilities will remain true
+for conditional probabilities as well.
+
+
+
+
+
+
+
+
+
+
+# 7. A radar example: models based on conditional probabilities and three basic tools
+
+![](C:/Users/qp/Pictures/Screenshots/A radar example models based on conditional probabilities and three basic tools.png)
+Let us now examine what conditional
+probabilities are good for.
+We have already discussed that they are used to revise a
+model when we get new information, but there is
+another way in which they arise.
+We can use conditional probabilities to build a
+multi-stage model of a probabilistic experiment.
+We will illustrate this through an example involving
+the detection of an object up in the sky by a radar.
+We will keep our example very simple.
+On the other hand, it turns out to have all the basic
+elements of a real-world model.
+So, we are looking up in the sky, and either there's an
+airplane flying up there or not.
+Let us call Event A the event that an airplane is indeed
+flying up there, and we have two possibilities.
+Either Event A occurs, or the complement of A occurs, in
+which case nothing is flying up there.
+At this point, we can also assign some probabilities to
+these two possibilities.
+Let us say that through prior experience, perhaps, or some
+other knowledge, we know that the probability that something
+is indeed flying up there is 5% and with probability 95%
+nothing is flying.
+Now, we also have a radar that looks up there, and there are
+two things that can happen.
+Either something registers on the radar
+screen or nothing registers.
+Of course, if it's a good radar, probably Event B will
+tend to go together with Event A. But it's also possible that
+the radar will make some mistakes.
+And so we have various possibilities.
+If there's a plane up there, it's possible that the radar
+will detect it, in which case Event B will also happen.
+But it's also conceivable that the radar will not detect it,
+in which case we have a so-called miss.
+And so a plane is flying up there, but the radar missed
+it, did not detect it.
+Another possibility is that nothing is flying up there,
+but the radar does detect something, and this is a
+situation that's called a false alarm.
+Finally, there's the possibility that nothing is
+flying up there, and the radar did not see anything either.
+Now, let us focus on this particular situation.
+Suppose that Event A has occurred.
+So we are living inside this particular universe.
+In this universe, there are two possibilities, and we can
+assign probabilities to these two possibilities.
+So let's say that if something is flying up there, our radar
+will find it with probability 99%, but will also miss it
+with probability 1%.
+What's the meaning of this number, 99%?
+Well, this is a probability that applies to a situation
+where an airplane is up there.
+So it is really a conditional probability.
+It's the conditional probability that we will
+detect something, the radar will detect the plane, given
+that the plane is already flying up there.
+And similarly, this 1% can be thought of as the conditional
+probability that the complement of B occurs, so the
+radar doesn't see anything, given that there is a plane up
+in the sky.
+We can assign similar probabilities
+under the other scenario.
+If there is no plane, there is a probability that there will
+be a false alarm, and there is a probability that the radar
+will not see anything.
+Those four numbers here are, in essence, the
+specs of our radar.
+They describe how the radar behaves in a world in which an
+airplane has been placed in the sky, and some other
+numbers that describe how the radar behaves in a world where
+nothing is flying up in the sky.
+So we have described various probabilistic properties of
+our model, but is it a complete model?
+Can we calculate anything that we might wish to calculate?
+Let us look at this question.
+Can we calculate the probability that
+both A and B occur?
+It's this particular scenario here.
+How can we calculate it?
+Well, let us remember the definition of conditional
+probabilities.
+The conditional probability of an event given another event
+is the probability of their intersection divided by the
+probability of the conditioning event.
+But this doesn't quite help us because if we try to calculate
+the numerator, we do not have the value of the probability
+of A given B. We have the value of the probability of B
+given A. What can we do?
+Well, we notice that we can use this definition of
+conditional probabilities, but use it in the reverse
+direction, interchanging the roles of A and B. If we
+interchange the roles of A and B, our definition leads to the
+following expression.
+The conditional probability of B given A is the probability
+that both events occur divided by the probability, again, of
+the conditioning event.
+Therefore, the probability that A and B occur is equal to
+the probability that A occurs times the conditional
+probability that B occurs given that A occurred.
+And in our example, this is 0.05 times the conditional
+probability that B occurs, which is 0.99.
+So we can calculate the probability of this particular
+event by multiplying probabilities and conditional
+probabilities along the path in this tree diagram that
+leads us here.
+And we can do the same for any other leaf in this diagram.
+So for example, the probability that this happens
+is going to be the probability of this event times the
+conditional probability of B complement given that A
+complement has occurred.
+How about a different question?
+What is the probability, the total probability, that the
+radar sees something?
+Let us try to identify this event.
+The radar can see something under two scenarios.
+There's the scenario where there is a plane up in the sky
+and the radar sees it.
+And there's another scenario where nothing is up in the
+sky, but the radar thinks that it sees something.
+So these two possibilities together make up the event B.
+And so to calculate the probability of B, we need to
+add the probabilities of these two events.
+For the first event, we already calculated it.
+It's 0.05 times 0.90.
+For the second possibility, we need to do a similar
+calculation.
+The probability that this occurs is equal to 0.95 times
+the conditional probability of B occurring under the scenario
+where A complement has occurred, and this is 0.1.
+If we add those two numbers together, the answer turns out
+to be 0.1445.
+Finally, a last question, which is perhaps the most
+interesting one.
+Suppose that the radar registered something.
+What is the probability that there is an
+airplane out there?
+How do we do this calculation?
+Well, we can start from the definition of the conditional
+probability of A given B, and note that we already have in
+our hands both the numerator and the denominator.
+So the numerator is this number, 0.05 times 0.99, and
+the denominator is 0.1445, and we can use our calculators to
+see that the answer is approximately 0.34.
+So there is a 34% probability that an airplane is there
+given that the radar has seen or thinks
+that it sees something.
+So the numerical value of this answer is somewhat interesting
+because it's pretty small.
+Even though we have a very good radar that tells us the
+right thing 99% of the time under one scenario and 90%
+under the other scenario.
+Despite that, given that the radar has seen something, this
+is not really convincing or compelling evidence that there
+is an airplane up there.
+The probability that there's an airplane up there is only
+34% in a situation where the radar thinks
+that it has seen something.
+So in the next few segments, we are going to revisit these
+three calculations and see how they can generalize.
+In fact, a large part of what is to happen in the remainder
+of this class will be elaboration
+on these three ideas.
+They are three types of calculations that will show up
+over and over, of course, in more complicated forms, but
+the basic ideas are essentially captured in this
+simple example.
+
+
+
+
+
+
+
+
+
+# 8. The multiplication rule
+
+![](C:/Users/qp/Pictures/Screenshots/generalized 8. The multiplication rule.png)
+As promised, we will now start developing generalizations of
+the different calculations that we carried out in the
+context of the radar example.
+The first kind of calculation that we carried out goes under
+the name of the multiplication rule.
+And it goes as follows.
+Our starting point is the definition of conditional
+probabilities.
+The conditional probability of A given another event, B, is
+the probability that both events have occurred divided
+by the probability of the conditioning event.
+We now take the denominator term and send it to the other
+side of this equality to obtain this relation, which we
+can interpret as follows.
+The probability that two events occur is equal to the
+probability that a first event occurs, event B in this case,
+times the conditional probability that the second
+event, event A, occurs, given that event B has occurred.
+Now, out of the two events, A and B, we're of course free to
+choose which one we call the first event and which one we
+call the second event.
+So the probability of the two events happening is also equal
+to an expression of this form, the probability that A occurs
+times the conditional probability that B occurs,
+given that A has occurred.
+We used this formula in the context of a tree diagram.
+And we used it to calculate the probability of a leaf of
+this tree by multiplying the probability of taking this
+branch, the probability that A occurs, times the conditional
+probability of taking this branch, the probability that
+event B also occurs given that event A has occurred.
+How do we generalize this calculation?
+Consider a situation in which the experiment has an
+additional third stage that has to do with another event,
+C, that may or may not occur.
+For example, if we have arrived here, A and B have
+both occurred.
+And then C also occurs, then we reach this particular leaf
+of the tree.
+Or there could be other scenarios.
+For example, it could be the case that A did not occur.
+Then event B occurred, and finally, event C did not
+occur, in which case we end up at this particular leaf.
+What is the probability of this scenario happening?
+Let us try to do a calculation similar to the one that we
+used for the case of two events.
+However, we need to deal here with three events.
+What should we do?
+Well, we look at the intersection of these three
+events and think of it as the intersection of a composite
+event, A complement intersection B, then
+intersected with the event C complement.
+Clearly, you can form the intersection of three events
+by first taking the intersection of two of them
+and then intersecting with a third.
+After we group things this way, we're dealing with the
+probability of two events happening, this composite
+event and this ordinary event.
+And the probability of two events happening is equal to
+the probability that the first event happens, and then the
+probability that the second event happens, given that the
+first one has happened.
+Can we simplify this even further?
+Yes.
+The first term is the probability
+of two events happening.
+So it can be simplified further as the probability
+that A complement occurs times the conditional probability
+that B occurs, given that A complement has occurred.
+And then we carry over the last term
+exactly the way it is.
+The conclusion is that we can calculate the probability of
+this leaf by multiplying the probability of the first
+branch times the conditional probability of the second
+branch, given that the first branch was taken, and then
+finally multiply with the probability of the third
+branch, which is the probability that C complement
+occurs, given that A complement and B
+have already occurred.
+In other words, we can calculate the probability of a
+leaf by just multiplying the probabilities of the different
+branches involved and where we use conditional probabilities
+for the intermediate branches.
+At this point, you can use your imagination to see that
+such a formula should also be valid for the case of more
+than three events.
+The probability that a bunch of events all occur should be
+the probability of the first event times a number of
+factors, each corresponding to a branch in a
+tree of this kind.
+In particular, the probability that events A1, A2, up to An
+all occur is going to be the probability that the first
+event occurs times a product of conditional probabilities
+that the i-th event occurs, given that all of the previous
+events have already occurred.
+And we obtain a term of this kind for every event, Ai,
+after the first one, so this product ranges from 2 up to n.
+And this is the most general version of the multiplication
+rule and allows you to calculate the probability of
+several events happening by multiplying probabilities and
+conditional probabilities.
+
+
+
+
+
+
+
+
+
+# 9. Exercise: The multiplication rule
+
+![](C:/Users/qp/Pictures/Screenshots/9. Exercise The multiplication rule Question.png)
+![](C:/Users/qp/Pictures/Screenshots/9. Exercise The multiplication rule Solution.png)
+![](C:/Users/qp/Pictures/20220912_133124.jpg)
+![](C:/Users/qp/Pictures/20220912_133134.jpg)
+
+
+
+
+
+
+
+
+
+# 10. Total probability theorem
+
+![](C:/Users/qp/Pictures/Screenshots/10. Total probability theorem.png)
+Let us now revisit the second calculation that we carried
+out in the context of our earlier example.
+In that example, we calculated the total probability of an
+event that can occur under different scenarios.
+And it involves the powerful idea of divide and conquer
+where we break up complex situations
+into simpler pieces.
+Here is what is involved.
+We have our sample space.
+And our sample space is partitioned into a number of
+subsets or events.
+In this picture we take that number to be 3, so we'll have
+it partitioned into three possible scenarios.
+It is a partition which means that these events cover the
+entire sample, space and they're
+disjoint from each other.
+For each one of the scenarios we're given their
+probabilities.
+If you prefer, you can also draw this situation
+in terms of a tree.
+There are three different scenarios that can happen.
+We're interested in a particular event, B. That
+event B can happen in three different ways.
+It can happen under scenario one, under scenario two, or
+under scenario three.
+And this corresponds to these particular sub-events.
+So for example, this is the event
+where scenario A1 happens.
+And then event B happens as well.
+In terms of a tree diagram, the
+picture becomes as follows.
+If scenario A1 materializes, event B may occur or event B
+might not occur.
+Finally, we are given conditional probabilities that
+event B will materialize under each one of the different
+possible scenarios.
+Under those circumstances, can we calculate the probability
+of event B?
+Of course we can.
+And here's how we do it.
+First we realize that event B consists of a number of
+disjoint pieces.
+One piece is when event B occurs together with event A1.
+Another piece is when event B occurs together with A2.
+Another piece is when event B occurs together with A3.
+These three sets are disjoint from each other, as we see in
+this picture.
+And together they form the event B. Therefore, the
+probability of B is going to be, by the additivity axiom of
+probabilities, equal to the sum of the probabilities of
+these sub-events.
+Furthermore, for each one of these sub-events we can use
+the multiplication rule and write their
+probabilities as follows.
+The probability that B and A1 both occur is the probability
+that scenario one materializes times the conditional
+probability that B occurs given that A1 occurred.
+And then we're going to have similar terms under the second
+scenario and a similar term under the third scenario.
+So putting everything together, we have arrived at a
+formula of this form.
+The total probability of event B is the sum of the
+probabilities of the different ways that B may occur, that
+is, B occurring under the different scenarios.
+And those particular probabilities are the product
+of the probability of the scenario times the conditional
+probability of B given that scenario.
+Now, note that the sum of the probabilities of the different
+scenarios is of course equal to 1.
+And this is because the scenarios form a partition of
+our sample space.
+So if we look at this formula here, we realize that it is a
+weighted average of the conditional probabilities of
+event B, weighted average of the conditional probabilities
+where these probabilities of the individual scenarios are
+the weights.
+In words, the probability that an event occurs is a weighted
+average of the probability that it has under each
+possible scenario, where the weights are the probabilities
+of the different scenarios.
+One final comment--
+our derivation was for the case of three events.
+But you can certainly see that the same derivation would go
+through if we had any finite number of events.
+But even more, if we had a partition of our sample space
+into an infinite sequence of events, the same derivation
+would still go through, except that in this place in the
+derivation, instead of using the ordinary additivity axiom
+we would have to use the countable additivity axiom.
+But other than that, all the steps would be the same.
+And we would end up with the same formula, except that now
+this would be an infinite sum over the
+infinite set of scenarios.
+
+
+
+
+
+
+
+
+
+
+# 11. Exercise: Total probability theorem
+
+![](C:/Users/qp/Pictures/Screenshots/11. Exercise Total probability theorem Interesting Question.png)
+![think about it](C:/Users/qp/Pictures/20220912_102910.jpg)
+
+
+
+
+
+
+
+
+# 12. Bayes' rule
+
+![](C:/Users/qp/Pictures/Screenshots/12. Bayes' rule slide 1.png)
+![](C:/Users/qp/Pictures/Screenshots/12. Bayes' rule slide 2.png)
+We now come to the third and final kind of calculation out
+of the calculations that we carried out
+in our earlier example.
+The setting is exactly the same as in our discussion of
+the total probability theorem.
+We have a sample space which is partitioned into a number
+of disjoint subsets or events which
+we think of as scenarios.
+We're given the probability of each scenario.
+And we think of these probabilities as being some
+kind of initial beliefs.
+They capture how likely we believe each scenario to be.
+Now, under each scenario, we also have the probability that
+an event of interest, event B, will occur.
+Then the probabilistic experiment is carried out.
+And perhaps we observe that event B did indeed occur.
+Once that happens, maybe this should cause us to revise our
+beliefs about the likelihood of the different scenarios.
+Having observed that B occurred, perhaps certain
+scenarios are more likely than others.
+How do we revise our beliefs?
+By calculating conditional probabilities.
+And how do we calculate conditional probabilities?
+We start from the definition of conditional probabilities.
+The probability of one event given another is the
+probability that both events occur divided by the
+probability of the conditioning event.
+How do we continue?
+We simply realize that the numerator is what we can
+calculate using the multiplication rule.
+And the denominator is exactly what we calculate using the
+total probability theorem.
+So we have everything we need to calculate those revised
+beliefs, or conditional probabilities.
+And this all there is in the Bayes rule.
+It is actually a very simple calculation.
+It's a very simple calculation.
+However, it is a quite important one.
+Its history goes way back.
+In the middle of the 18th century, a Presbyterian
+minister, Thomas Bayes, worked it out.
+It was published a few years after his death.
+And it was quickly reorganized for its significance.
+It's a systematic way for incorporating new evidence.
+It's a systematic way for learning from experience.
+And it forms the foundation of a major branch of mathematics,
+so-called Bayesian inference, which we will study in some
+detail later in this course.
+The general idea is that we start with a probabilistic
+model, which involves a number of possible scenarios.
+And we have some initial beliefs on the likelihood of
+each possible scenario.
+There's also some particular event that may occur under
+each scenario.
+And we know how likely it is to occur under each scenario.
+This is our model of the situation.
+Under each particular situation, the model tells us
+how likely event B is to occur.
+If we actually observe that B occurred, then we use that
+information to draw conclusions about the possible
+causes of B, or conclusions about the more likely or less
+likely scenarios that may have caused this events to occur.
+That's what inference is.
+Having observed b, we make inferences as to how likely a
+particular scenario, Ai, is going to be.
+And that likelihood is captured by this conditional
+probabilities of Ai, given the event B. So that's what the
+Bayes rule is doing.
+Starting from conditional probabilities going in one
+direction, it allows us to calculate conditional
+probabilities going in the opposite direction.
+It allows us to revise the probabilities of the different
+scenarios, taking into account the new information.
+And that's exactly what inference is all about, as
+we're going to see later in this class.
+
+
+
+
+
+
+# 13. Exercise: Bayes' rule and the false-positive puzzle
+
+![](C:/Users/qp/Pictures/Screenshots/13. Exercise Bayes' rule and the false-positive puzzle Question.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Exercise Bayes' rule and the false-positive puzzle Solution.png)
+![](C:/Users/qp/Pictures/20220912_103442.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 2: Conditioning and independence  /  Lec. 3: Independence
+
+# 1. Lecture 3 overview and slides
+
+This lecture sequence introduces the concepts of independence of two events, independence of multiple events, and pairwise independence, together with examples related to coin tossing and system reliability. 
+
+In this lecture, we introduce and develop the concept of
+independence between events.
+The general idea is the following.
+If I tell you that a certain event A has occurred, this
+will generally change the probability of some other
+event B. Probabilities will have to be replaced by
+conditional probabilities.
+But if the conditional probability turns out to be
+the same as the unconditional probability, then the
+occurrence of event A does not carry any useful information
+on whether event B will occur.
+In such a case, we say that events A and B are
+independent.
+We will develop some intuition about the meaning of
+independence of two events and introduce an extension, the
+concept of conditional independence.
+We will then proceed to define the independence of a
+collection of more than two events.
+If, for any two of the events in the collection we have
+independence between them, we will say that we have pairwise
+independence.
+But we will see that independence of the entire
+collection is something different.
+It involves additional conditions.
+Finally, we will close with an application in reliability
+analysis and with a nice puzzle that will serve as a
+word of caution about putting together probabilistic models.
+
+
+
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/000a7f9f3cad115eb74608629aad3df8/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_L03-Overview.pdf
+
+Lecture slides: [clean] [annotated]
+https://courses.edx.org/assets/courseware/v1/456d688990bda0b8bfda65e13bde027f/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L03cleanslides.pdf
+https://courses.edx.org/assets/courseware/v1/16bf5e8322efff0c0ccc8ad6c6239334/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L03annotatedslides.pdf
+
+Similar material, in live lecture hall format, can be found here and here.
+http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/video-lectures/lecture-3-independence/
+http://www.youtube.com/watch?v=19Ql_Q3l0GA
+
+More information is given in the text:
+Independence: Section 1.5
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/6
+
+
+
+
+
+
+
+
+
+
+# 2. A coin tossing example
+
+![](C:/Users/qp/Pictures/Screenshots/2. A coin tossing example.png)
+As an introduction to the main topic of this lecture
+sequence, let us go through a simple example and on the way,
+review what we have learned so far.
+The example that we're going to consider involves three
+tosses of a biased coin.
+It's a coin that results in heads with probability p.
+We're going to make this a little more precise.
+And the coin is biased in the sense that this number p is
+not necessarily the same as one half.
+We represent this particular probabilistic experiment in
+terms a tree that shows us the different stages of the
+experiment.
+Each particular branch corresponds to a sequence of
+possible results in the different stages, and the
+leaves of this tree correspond to the possible outcomes.
+The branches of this tree are annotated by certain numbers,
+and these numbers are to be interpreted appropriately as
+probabilities or conditional probabilities.
+So for example, this number here is interpreted as the
+probability of heads in the first toss, an event that we
+denote as H1.
+This number here is to be interpreted as a conditional
+probability.
+It's the conditional probability of obtaining heads
+in the second toss given that the first
+toss resulted in heads.
+And finally, this number here is to be interpreted as the
+conditional probability of heads in the third toss, given
+that the first toss resulted in heads and the second toss
+also resulted in heads.
+Let us now continue with some calculations.
+First, we're going to practice the multiplication rule, which
+allows us to calculate the probability
+of a certain outcome.
+In this case, the outcome of interest is tails followed by
+heads followed by tails.
+So we're talking about this particular outcome here.
+According to the multiplication rule, to find
+the probability of a particular final outcome, we
+multiply probabilities and conditional probabilities
+along the path that leads to this particular outcome.
+So in this case, it's (1 minus p) times p times (1 minus p).
+Let us now calculate the probability
+of a certain event.
+The event of interest is the event that we obtain exactly
+one head in the three tosses.
+This is an event that can happen in multiple ways.
+Here is one possibility where we have a single head.
+Here's another possibility.
+And here's a third one.
+These are the three possible ways that we can have exactly
+one head, depending on where exactly
+that single head appears.
+Is it in the first toss, in the second, or in the third.
+To find the total probability of this event, we need to add
+the probability of the different outcomes that
+correspond to this event.
+The probability of this outcome is p times (1 minus p)
+squared, the probability of this outcome is what we
+calculated.
+It's, again, p times (1 minus p) squared.
+And the probability of the third one is also p times 1
+minus p squared.
+So the answer is 3p times (1 minus p) squared.
+Notice that each one of the 3 different ways that this event
+can happen have the same probability.
+So these 3 outcomes are equally likely.
+Finally, let us calculate a conditional probability.
+And this is essentially the Bayes rule.
+Suppose that we were told that there was exactly one head.
+So in particular, the blue event has occurred.
+And we're interested in the probability that the first
+toss is heads, which corresponds
+to this event here.
+These are all the outcomes in which the first
+toss is equal to heads.
+So given that the blue event happened, what is the
+probability that the green event happens?
+You can guess the answer, that it should be 1/3.
+Why is that?
+Each one of these blue outcomes has the same
+probability.
+So when you condition on the blue outcome having happened,
+the conditional probability of each one of
+these should be 1/3.
+So given that the blue outcome happened, there's probability
+1/3 that this particular one has happened.
+And this is the only one that makes the green event happen.
+But let us see if we can derive this
+answer in a formal manner.
+Let's see if we're going to get 1/3.
+We use the definition of conditional probabilities.
+The conditional probability is the ratio, first, of the
+probability that both events happen, divided by the
+probability of the conditioning event, which is
+the probability of 1 head.
+Now, the probability of both events happening.
+That we have exactly one head and the first toss is heads.
+This is the intersection of the blue event and the green
+event which can happen only in this particular outcome,
+namely the sequence heads, tails, tails.
+And has probability p times (1 minus p) squared.
+The denominator is something that we have already
+calculated.
+It's 3p times (1 minus p) squared.
+And so the final answer is 1/3 as we had guessed.
+Let me now make a few comments about this particular example.
+This particular example is pretty special in the
+following respect.
+We have that of the probability of H2, heads in
+the second toss, given that the first one was heads, is
+equal to p.
+And the same is true for the conditional probability of
+heads in the second toss given that the first one was tails.
+In other words, our beliefs about what may happen in the
+second toss remain the same.
+There's a probability, p, of obtaining heads no matter what
+happened in the first toss.
+Telling you the result of the first toss doesn't change your
+beliefs about what may happen, and with what probability, in
+the second toss.
+And if you were to calculate the unconditional probability
+of heads in the second toss, what you would get using the
+total probability theorem would be the following.
+It's probability of heads in the first toss times the
+probability of heads in the second, given heads in the
+first, plus the probability of tails in the first toss times
+the probability of heads in the second toss, given tails
+in the first.
+And if you do the algebra, this turns out to
+be equal to p again.
+So the unconditional probability of heads in the
+second toss turns out to be the same as the conditional
+probabilities.
+Again, knowing what happened in the first toss doesn't
+change your beliefs about the second toss, which were
+associated with this particular probability, p.
+So what we're going to do next is to generalize this special
+situation by giving a definition of independence of
+events, and then discuss various properties and
+concepts associated with independence.
+
+
+
+
+
+
+
+
+
+
+# 3. Independence of two events
+
+![](C:/Users/qp/Pictures/Screenshots/3. Independence of two events.png)
+In the previous example, we had a model where the result of the first coin toss did not affect the probabilities of what might happen in the second toss.  This is a phenomenon that we call independence and which we now proceed to define.  Let us start with a first attempt at the definition.  We have an event, B, that has a certain probability of occurring.  We are then told that event A occurred, but suppose that this knowledge does not affect our beliefs about B in the sense that the conditional probability remains the same as the original unconditional probability.  Thus, the occurrence of A provides no new information about B. In such a case, we may say that event B is independent from event A.  
+
+If this is indeed the case, notice that the probability
+that both A and B occur, which is always equal by the
+multiplication rule to the probability of A times the
+conditional probability of B given A. So this is a relation
+that's always true.
+But if we also have this additional condition, then
+this simplifies to the probability of A times the
+probability of B.
+So we can find the probability of both events happening by
+just multiplying their individual probabilities.
+It turns out that this relation is a cleaner way of
+the defining formally the notion of independence.
+So we will say that two events, A and B, are
+independent if this relation holds.
+Why do we use this definition rather than the original one?
+This formal definition has several advantages.
+First, it is consistent with the earlier definition.
+If this equality is true, then the conditional probability of
+event B given A, which is the ratio of this divided by that,
+will be equal to the probability of B. So if this
+relation holds, then this relation will also hold, and
+so this more formal definition is consistent with our earlier
+intuitive definition.
+A more important reason is that this formal definition is
+symmetric with respect to the roles of A and B. So instead
+of saying that B is independent from A, based on
+this definition we can now say that events A and B are
+independent of each other.
+And in addition, since this definition is symmetric and
+since it implies this condition, it must also imply
+the symmetrical relation.
+Namely, that the conditional probability of A given B is
+the same as the unconditional probability of A.
+Finally, on the technical side, conditional
+probabilities are only defined when the conditioning event
+has non-zero probability.
+So this original definition would only make sense in those
+cases where the probability of the event A would be non-zero.
+In contrast, this new definition makes sense even
+when we're dealing with zero probability events.
+So this definition is indeed more general, and this also
+makes it more elegant.
+Let us now build some understanding of what
+independence really is.
+
+Suppose that we have two events, A and B, both of which have positive probability.  And furthermore, these two events are disjoint.  They do not have any common elements.  Are these two events independent?  Let us check the definition.  The probability that both A and B occur is zero because the two events are disjoint.  They cannot happen together.  On the other hand, the probability of A times the probability of B is positive, since each one of the two terms is positive.  And therefore, these two expressions are different from each other, and therefore this equality that's required by the definition of independence does not hold.  The conclusion is that these two events are not independent.  
+
+In fact, intuitively, these two events are as dependent as Siamese twins.  If you know that A occurred, then you are sure that B did not occur.  So the occurrence of A tells you a lot about the occurrence or non-occurrence of B.  [][So we see that being independent is something completely different from being disjoint].  Independence is a relation about information.  It is important to always keep in mind the intuitive meaning of independence.  *Two events are independent if the occurrence of one event does not change our beliefs about the other*.  It does not affect the probability that the other event also occurs.  
+
+When do we have independence in the real world?  The typical case is when the occurrence or non-occurrence of each of the two events A and B is determined by two physically distinct and non-interacting processes.  For example, whether my coin results in heads and whether it will be snowing on New Year's Day are two events that should be modeled as independent.  But I should also say that there are some cases where independence is less obvious and where it happens through a numerical accident.  You can now move on to answer some simple questions where you will have to check for independence using either the mathematical or intuitive definition.  
+
+
+
+
+
+
+
+
+
+# 4. Exercise: Independence of two events - I
+
+![](C:/Users/qp/Pictures/Screenshots/4. Exercise Independence of two events - I.png)
+
+
+What is P(B)?
+
+discussion posted 5 days ago by s-gering
+
+I am struggling a big with what P(B) would be since it is a secondary event. I answered the question based on intuition, but I want to make sure I understand it numerically as well. If this would give the answer away too much for others, please wait until deadline. But if not, I would love to discuss.
+This post is visible to everyone.
+2 responses
+
+    mgrym
+
+    5 days ago
+
+I found it instructive to draw out the probability tree of the two event. Hope that helps. :)
+
+    how could you draw the tree diagram? its just a [ shape, with hh on top and tt on the bottom. SO how can you prove the P(AnB) != P(A) * P(B)
+
+    or we can say that P(AnB) = 1???
+
+    posted less than a minute ago by john_hhu2020
+    Add a comment
+    Your question or idea (required)
+
+hitesh_shetty
+
+4 days ago
+
+Consider the case with tails in the first toss T_1 and heads in the second H_2. (Hint : Use the total probability theorem)
+
+
+
+
+
+
+
+
+
+# 5. Exercise: Independence of two events - II
+
+![](C:/Users/qp/Pictures/Screenshots/5. Exercise Independence of two events - II.png)
+
+Sorry I'm lazy 
+
+
+Confused in this example
+
+question posted 5 days ago by zhuyuqicheng
+
+Intuitively, if we know that Omega occurred, we can guarantee that A occurs, doesn't it?
+This post is visible to everyone.
+5 responses
+
+    mgrym
+
+    5 days ago
+
+That is not true, because A is only a subset of Omega. There may be other possibilities in Omega that are not in A.
+
+    But, on the other hand, if we are told that A has occurred ,we know that Omega has occurred... That confused me.
+
+posted 4 days ago by albertogreino
+
+because of two things
+
+    if A has occurred, any superset of A would have occurred too, Omiga is one such superset
+    if the experiment is conducted, Omiga will always occur, as it is the sample space. P(Omiga) = 1. sample space covers all possible outcomes of an experiment so it has to occur whenever the experiment is conducted
+
+    posted 4 days ago by lockedarte
+    Add a comment
+    Your question or idea (required)
+
+varshavenkataramu
+
+3 days ago
+
+There could be a lot of events associated with a given sample space. For any event to occur, the outcome of the experiment must be an element of the set of event E.
+
+    Add a comment
+    Your question or idea (required)
+
+curiouser_alice
+
+2 days ago
+
+Does our assessment of the probability of omega change if we know A did or did not occur?
+
+    No, Omega happens irrespective of whether A happens or not
+
+posted 2 days ago by varshavenkataramu
+
+The probability of the sample space Omega doesn't change if we know A has occurred (it is always 100% by definition - see explanation by lockedarte above). If you are following the intuitive definition, then in order to find out if Omega and A are independent you need to also establish whether the probability of the event A changes if we know Omega has occurred. But I think the formal definition of independence, as perfectly explained in the video by prof. Tsitsiklis (establish if P(A and Omega) = P(A) x P(Omega)?) better elucidates the correct answer. Hint: drawing a quick Venn diagram helps.
+
+    posted 2 days ago by r-ascan
+    Add a comment
+    Your question or idea (required)
+
+r-ascan
+
+2 days ago
+
+"Intuitively, if we know that Omega occurred, we can guarantee that A occurs, doesn't it?" - I think it is a wrong/confusing way of thinking about it. In the way you put it you are basically saying that P(A|Omega) = 100% (which is not true - see explanation by mgrym above). The correct question to ask yourself (if you are following the intuitive definition) is: Does P(A|Omega) = P(A)? Putting it in words: Does knowing that Omega happened change the probability of the event A (i.e. does it add any new information)?
+
+    Add a comment
+    Your question or idea (required)
+
+jpan21
+
+a day ago
+
+=================================================================================================
+In my opinion, "if we know that Omega occurred, we can guarantee that A occurs" is not the right question to ask in assessing independence. That only assesses the overlapping/intersection/inclusion relations. To determine whether A and omega are independent, we ask both: 1) whether the new information of omega changes the probability of A 2) whether the new information of A changes the probability of omega [removed by staff]
+=================================================================================================
+
+    Hi jpan21,
+
+    Nice answering! The hints you provide are perfect and it means you understand them very well. I remove the rest part of your statement because it is almost the direct answer, which is not allowed until the deadline. I will recover your answer here after the due.  
+
+posted about 10 hours ago by difeizhang (Staff) 
+
+
+
+
+
+
+
+
+
+
+
+
+# 6. Exercise: Independence of two events - III
+
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Independence of two events - III - Question.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Independence of two events - III - Solution.png)
+![](C:/Users/qp/Pictures/20220911_163206.jpg)
+
+
+
+
+
+
+
+
+
+# 7. Independence of event complements
+
+![](C:/Users/qp/Pictures/Screenshots/7. Independence of event complements.png)
+Let us now discuss an interesting fact about 
+independence that should enhance our understanding.
+Suppose that events A and B are independent.
+Intuitively, if I tell you that A occurred, this does not
+change your beliefs as to the likelihood that B will occur.
+But in that case, this should not change your beliefs as to
+the likelihood that B will not occur.
+So A should be independent of B complement.
+In other words, the occurrence of A tells you nothing about
+B, and therefore tells you nothing about
+B complement either.
+This was an intuitive argument that if A and B are
+independent, then A and B complement are also
+independent.
+But let us now verify this intuition
+through a formal proof.
+The formal proof goes as follows.
+We have the two events, A and B. And event A can be broken
+down into two pieces.
+One piece is the intersection of A with B. So that's the
+first piece.
+And the second piece is the part of A which is outside B.
+And that piece is A intersection with the
+complement of B. So these are the two pieces that together
+comprise event A.
+Now, these two pieces are disjoint from each other.
+And therefore, by the additivity axiom, the
+probability of A is equal to the probability of A
+intersection B plus the probability of A intersection
+with B complement.
+Using independence, the first term becomes probability of A
+times probability of B. And we leave the second term as is.
+Now let us move this term to the other side.
+And we obtain that the probability of A intersection
+with B complement is the probability of A minus the
+probability of A times the probability of B. We factor
+out the term probability of A, and we are left with 1 minus
+probability of B. And then we recognize that 1 minus the
+probability of B is the same as the probability of B
+complement.
+So we proved that the probability of A and B
+complement occurring together is the product of their
+individual probabilities.
+And that's exactly the definition of A being
+independent from B complement.
+And this concludes the formal proof.
+
+
+
+
+Why you can replace P(AnB) with P(A)*P(B)? Please Help
+
+question posted 36 minutes ago by john_hhu2020
+
+And the Diagram can only represent the multi-current events (In which you have Sigma, event_A and event_B, and Others), whereas the Independent is different story I suppose. How can you apply the P(AnB) with P(A)*P(B)??? Please Help
+This post is visible to everyone.
+0 responses
+
+    john_hhu2020
+
+    6 minutes ago
+
+I know its based on Independent event definition, but when you draw a diagram with Sigma, A and B, it doesn't make sense
+
+    How can I convince myself
+
+posted 5 minutes ago by john_hhu2020
+
+I suppose you have to use Tree diagram to represent the Independent events, as the Independent occurs with sequence, whereas the diagram represent multi events occurring at one time.
+
+posted less than a minute ago by john_hhu2020 
+
+
+
+
+
+
+
+
+
+
+# 8. Exercise: Independence of event complements
+
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Independence of event complements - Question.png)
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Independence of event complements - Solution.png)
+![](C:/Users/qp/Pictures/20220911_180403.jpg)
+![](C:/Users/qp/Pictures/20220911_180421.jpg)
+
+
+
+
+
+
+
+
+
+# 9. Conditional independence
+
+![](C:/Users/qp/Pictures/Screenshots/9. Conditional independence.png)
+Conditional probabilities are like ordinary probabilities,
+except that they apply to a new situation where some
+additional information is available.
+For this reason, any concept relevant to probability models
+has a counterpart that applies to
+conditional probability models.
+In this spirit, we can define a notion of conditional
+independence, which is nothing but the notion of independence
+applied to a conditional model.
+Let us be more specific.
+Suppose that we have a probability model and two
+events, A and B. We are then told that event C occurred,
+and we construct a conditional model.
+Conditional independence is defined as ordinary
+independence but with respect to the conditional
+probabilities.
+To be more precise, remember that independence is defined
+in terms of this relation, that the probability of two
+events happening is the product of the probabilities
+that one of them is happening times the probability that the
+other one is happening.
+This is the definition of independence in the original
+unconditional model.
+Now, in the conditional model we just use the same relation,
+but with conditional probabilities instead of
+ordinary probabilities.
+So this is the definition of conditional independence.
+We may now ask, is there a relation between independence
+and conditional independence?
+Does one imply the other?
+Let us look at an example.
+Suppose that we have two events and these two events
+are independent.
+We then condition on another event, C. And suppose that the
+picture is like the one shown here.
+Are A and B conditionally independent?
+Well, in the new universe where C has happened, events A
+and B have no intersection.
+As we discussed earlier this means that events A and B are
+extremely dependent.
+Within G, if A occurs, this tells us that B did not occur.
+The conclusion from this example is that independence
+does not imply conditional independence.
+So in this particular example, we saw that the
+answer here is no.
+Given C, A and B are not independent.
+
+
+
+
+
+
+
+
+# 10. Exercise: Conditional independence
+
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Conditional independence.png)
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Conditional independence - Silly question.png)
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Conditional independence - Answering my Silly question.png)
+![Real diagram under this Question](C:/Users/qp/Pictures/20220912_105949.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 11. Independence versus conditional independence
+
+![Think](C:/Users/qp/Pictures/Screenshots/11. Independence versus conditional independence.png)
+![](C:/Users/qp/Pictures/20220912_154145.jpg)
+We have already seen an example in which we
+have two events that are independent
+but become dependent in a conditional model.
+So that [independence] and conditional independence
+is not the same.
+We will now see another example in which a similar situation is
+obtained.
+The example is as follows.
+We have two possible coins, coin A and coin B.
+This is the model of the world given
+that coin A has been chosen.
+So this is a conditional model given
+that we have in our hands coin A.
+In this conditional model, the probability of heads is 0.9.
+And, moreover, the probability of heads
+is 0.9 in the second toss no matter
+what happened in the first toss and so on as we continue.
+So given a particular coin, we assume
+that we have independent tosses.
+This is another way of saying that we're
+assuming conditional independence.
+Within this conditional model, coin flips are independent.
+And the same assumption is made in
+the other possible conditional universe.
+This is a universe in which we're dealing with coin B.
+Once more, we have, conditionally
+independent tosses.
+And this time, the probability of heads at each toss is 0.1.
+Suppose now that we choose one of the two coins.
+Each coin is chosen with the same probability, 0.5.
+So we're equally likely to obtain this coin--
+and then start flipping it over and over--
+or that coin-- and start flipping it over and over.
+The question we will try to answer
+is whether the coin tosses are independent.
+And by this, we mean a question that
+refers to the overall model.
+In this general model, are the different coin tosses
+independent?
+Where you do not know ahead of time which coin is going to be.
+We can approach this question by trying
+to compare conditional and unconditional probabilities.
+That's what independence is about.
+Independence is about certain conditional probabilities
+being the same as the unconditional probabilities.
+So this here, this comparison here
+is essentially the question of whether the 11th coin
+toss is dependent or independent from what
+happened in the first 10 coin tosses.
+Let us calculate these probabilities.
+For this one, we use the total probability theorem.
+There's a certain probability that we have coin A,
+and then we have the probability of heads in the 11th toss given
+that it was coin A. There's also a certain probablility
+that it's coin B and then a conditional probability
+that we obtain heads given that it was coin B.
+We use the numbers that are given in this example.
+We have 0.5 probability of obtaining a particular coin,
+0.9 probability of heads for coin A, 0.5 probability
+that it's coin B, and 0.1 probability of heads
+if it is indeed coin B.
+We do the arithmetic, and we find
+that the answer is 0.5, which makes perfect sense.
+We have coins with different biases,
+but the average bias is 0.5.
+If we do not know which coin it's going to be,
+the average bias is going to be 0.5.
+So the probability of heads in any particular toss
+is 0.5 if we do not know which coin it is.
+Suppose now that someone told you
+that the first 10 tosses were heads.
+Will this affect your beliefs about what's
+going to happen in the 11th toss?
+We can calculate this quantity using
+the definition of conditional probabilities,
+or the Bayes' rule, but let us instead think intuitively.
+If it is coin B, the events of 10 heads in a row
+is extremely unlikely.
+So if I see 10 heads in a row, then
+I should conclude that there is almost certainty that I'm
+dealing with coin A.
+So the information that I'm given
+tells me that I'm extremely likely to be dealing with coin
+A. So we might as well condition on this equivalent information
+that it is coin A that I'm dealing with.
+But if it is coin A, then the probability of heads
+is going to be equal to 0.9.
+So the conditional probability is
+quite different from the unconditional probability.
+And therefore, information on the first 10 tosses
+affects my beliefs about what's going
+to happen in the [11th] toss.
+And therefore, we do not have independence
+between the different tosses.
+
+
+
+
+
+
+
+
+# 12. Independence of a collection of events
+
+![](C:/Users/qp/Pictures/Screenshots/12. Independence of a collection of events.png)
+Suppose I have a fair coin which I toss multiple times.
+I want to model a situation where the results of previous
+flips do not affect my beliefs about the likelihood of heads
+in the next flip.
+And I would like to describe this situation by saying that
+the coin tosses are independent.
+You may say, we already defined the notion of
+independent events.
+Doesn't this notion apply?
+Well not quite.
+We defined independence of two events.
+But here, we want to talk about independence of a
+collection of events.
+For example, we would like to say that the events, heads in
+the first toss, heads in the second toss, heads in the
+third toss, and so on, are all independent.
+What is the right definition?
+Let us start with intuition.
+We will say that a family of events are independent if
+knowledge about some of the events doesn't change my
+beliefs, my probability model, for the remaining events.
+For example, if I want to say that events A1, A2 and so on
+are independent, I would like relations such as the
+following to be true.
+The probability that event A3 happened and A4 does not
+happen remains the same even if I condition on some
+information about some other events.
+Let's say if I tell you that A1 happens or that both A2
+happened and A5 did not happen.
+The important thing to notice here is that the indices
+involved in the event of interest are distinct from the
+indices associated with the events on which I'm given some
+information.
+I'm given some information about the events A1, A2, and
+A5, what happened to them.
+And this information does not affect my beliefs about
+something that has to do with events A3 and A4.
+I would like all relations of this kind to be true.
+This could be one possible definition, just saying that
+the family of events are independent if and only if any
+relation of this type is true.
+But such a definition would not be aesthetically pleasing.
+Instead, we introduce the following definition, which
+mimics or parallels our earlier definition of
+independence of two events.
+We will say that a collection of events are independent if
+you can calculate probabilities of intersections
+of these events by multiplying individual probabilities.
+And this should be possible for all choices of indices
+involved and for any number or events involved.
+Let us translate this into something concrete.
+Consider the case of three events, A1, A2, and A3.
+Our definition requires that we can calculate the
+probability of the intersection of two events by
+multiplying individual probabilities.
+And we would like all of these three relations to be true,
+because this property should be true for any
+choice of the indices.
+What do we have here?
+This relation tells us that A1 and A2 are independent.
+This relation tells us that A1 and A3 are independent.
+This relation tells us that A2 and A3 are independent.
+We call this situation pairwise independence.
+But the definition requires something more.
+It requires that the probability of three-way
+intersections can also be calculated the same way by
+multiplying individual probabilities.
+And this additional condition does make a difference, as
+we're going to see in a later example.
+Is this the right definition?
+Yes.
+One can prove formally that if the conditions in this
+definition are satisfied, then any formula of
+this kind is true.
+In particular, we also have
+relations such as the following.
+The probability of event A3 is the same as the probability of
+event A3, given that A1 and A2 occurred.
+Or the probability of A3, given that A1
+occurred but A2 didn't.
+Or we can continue this similarly, the probability of
+A3 given that A1 did not occur, and A2
+occurred, and so on.
+So any kind of information that I might give you about
+events A1 and A2--
+which one of them occurred and which one didn't--
+is not going to affect my beliefs about the event A3.
+The conditional probabilities are going to be the same as
+the unconditional probabilities.
+I told you that this definition implies that all
+relations of this kind [are]
+true.
+This can be proved.
+The proof is a bit tedious.
+And we will not go through it.
+
+
+
+
+
+
+
+
+
+# 13. Exercise: Independence of multiple events
+
+![](C:/Users/qp/Pictures/Screenshots/13. Exercise Independence of multiple events.png)
+![](C:/Users/qp/Pictures/20220912_161900.jpg)
+![](C:/Users/qp/Pictures/20220912_164349.jpg)
+
+
+
+
+
+
+
+
+
+# 14. Independence versus pairwise independence
+
+![](C:/Users/qp/Pictures/Screenshots/14. Independence versus pairwise independence.png)
+We will now consider an example that illustrates the
+difference between the notion of independence of a
+collection of events and the notion of pairwise
+independence within that collection.
+The model is simple.
+We have a fair coin which we flip twice.
+So at each flip, there is probability 1/2
+of obtaining heads.
+Furthermore, we assume that the two flips are independent
+of each other.
+Let H1 be the event that the first coin toss resulted in
+heads, which corresponds to this event in this diagram.
+Let H2 be the event that the second toss resulted in heads,
+which is this event in the diagram--
+the two ways that we can have the second toss being heads.
+Now, we're assuming that the tosses are independent.
+So the event heads-heads has a probability which is equal to
+the probability that the first toss resulted in heads--
+that's 1/2--
+times the probability that the second toss resulted in heads,
+which is 1/2.
+So the product is 1/4.
+We have probability 1/4 for this outcome.
+Now, the total probability of event H1 is 1/2, which means
+that the probability of what remains should be 1/4, so that
+the sum of these two numbers is 1/2.
+By the same argument, the probability of this outcome,
+tails-heads , should be 1/4.
+We have a total of 3/4.
+So what's left is 1/4.
+And that's going to be the probability of the outcome
+tails-tails .
+Let us now introduce a new event, namely the event that
+the two tosses had the same result.
+So this is the event that we obtain either heads heads or
+tails-tails.
+Schematically, event C corresponds to this blue
+region in the diagram.
+Is this event C independent from the events H1 and H2?
+Let us first look for pairwise independence.
+Let's look at the probability that H1 occurs
+and C occurs as well.
+So the first toss resulted in heads.
+And the two tosses had the same result.
+So this is the same as the probability of obtaining heads
+followed by heads.
+And this corresponds to just this outcome that has
+probability 1/4.
+How about the product of the probabilities of H1 and of C?
+Is it the same?
+Well, the probability of H1 is 1/2.
+And the probability of C--
+what is it?
+Event C consists of two outcomes.
+Each one of these outcomes has probability 1/4.
+So the total is, again, 1/2.
+And therefore, the product of these probabilities is 1/4.
+So we notice that the probability of the two events
+happening is the same as the product of their individual
+probabilities, and therefore, H1 and C
+are independent events.
+By the same argument, H2 and C are going to be independent.
+It's a symmetrical situation.
+H1 and H2 are also independent from each other.
+So we have all of the conditions for pairwise
+independence.
+Let us now check whether we have independence.
+To check for independence, we need to also look into the
+probability of all three events happening and see
+whether it is equal to the product of the individual
+probabilities.
+So the probability of all three events happening--
+this is the probability that H1 occurs and H2
+occurs and C occurs.
+What is this event?
+Heads in the first toss, heads in the second toss, and the
+two tosses are the same--
+this happens if and only if the outcome is
+heads followed by heads.
+And this has probability 1/4.
+On the other hand, if we calculate the probability of
+H1 times the probability of H2 times the probability of C, we
+get 1/2 times 1/2 times 1/2, which is 1/8.
+These two numbers are different.
+And therefore, one of the conditions that we had for
+independence is violated.
+So in this example, H1, H2, and C are pairwise
+independent, but they're not independent in the sense of an
+independent collection of events.
+How are we to understand this intuitively?
+If I tell you that event H1 occurred and I ask you for the
+conditional probability of C given that H1
+[occurred], what is this?
+This is the probability that we obtain, given that the
+first event is heads, the first result is heads, the
+only way that you can have the two tosses having the same
+result is going to be in the second toss also
+resulting in heads.
+And since H2 and H1 are independent, this is just the
+probability that we have heads in the second toss.
+And this number is 1/2.
+And 1/2 is also the same as the probability of C. That's
+another way of understanding the independence of H1 and C.
+Given that the first toss resulted in heads, this does
+not help you in any way in guessing whether the two
+tosses will have the same result or not.
+The first one was heads, but the second one could be either
+heads or tails with equal probability.
+So event H1 does not carry any useful information about the
+occurrence or non-occurrence of event C. On the other hand,
+if I were to tell you that both events, H1 and H2,
+happened, what would the conditional
+probability of C be?
+If both H1 and H2 occurred, then the results of the two
+coin tosses were identical, so you know that C also occurred.
+So this probability is equal to 1.
+And this number, 1, is different from the
+unconditional probability of C, which is 1/2.
+So we have here a situation where knowledge of H1 having
+occurred does not help you in making a better guess on
+whether C is going to occur.
+H1 by itself does not carry any useful information.
+But the two events together, H1 and H2, do carry useful
+information about C.
+Once you know that H1 and H2 occurred, then C
+is certain to occur.
+So your original probability for C, which was 1/2, now gets
+revised to a value of 1.
+So H1 and H2 carry information relevant to C. And therefore,
+C is not independent from these two events collectively.
+And we say that events H1.
+H2, and C are not independent.
+
+
+
+
+
+
+
+# 15. Reliability
+
+![](C:/Users/qp/Pictures/Screenshots/15. Reliability - Applying Morgan's law.png)
+Independence is a very useful property.
+Whenever it is true, we can break up complicated
+situations into simpler ones.
+In particular, we can do separate calculations for each
+piece of a given model and then combine the results.
+We're going to look at an application of this idea into
+the analysis of reliability of a system that consists of
+independent units.
+So we have a system that consists of a number, let's
+say, n, of units.
+And each one of the units can be "up" or "down".
+And it's going to be "up" with a certain probability pi.
+Furthermore, we will assume that unit failures are
+independent.
+Intuitively, what we mean is that failure of some of the
+units does not the affect the probability that some of the
+other units will fail.
+If we want to be more formal, we might proceed as follows.
+We could define an event Ui to be the event that
+the ith unit is "up".
+And then make the assumption that the events U1, U2, and so
+on up to Un, if we have n units, are independent.
+Alternatively, we could define events Fi, where event Fi is
+the event that the ith unit is down, or that it has failed.
+And we could assume that the events Fi are independent, but
+we do not really need a separate assumption.
+As a consequence of the assumption that the Ui's are
+independent, one can argue that the Fi's are also
+independent.
+How do we know that this is the case?
+If we were dealing with just two units, then this is a fact
+that we have already proved a little earlier.
+We did prove that if two events are independent, then
+their complements are also independent.
+Now that we're dealing with multiple events here, a
+general number n, how do we argue?
+One approach would be to be formal and start from the
+definition of independence of the U events.
+And that definition gives us a number of formulas.
+Then manipulate those formulas to prove the conditions that
+are required in order to check that the events Fi are
+independent.
+This is certainly possible, although it is a bit tedious.
+However, the approach we will be taking in situations like
+this one is that we will use the intuitive understanding
+that we have of what independence means.
+So independence in this context means that whether
+some units are "up" or down, does not change the
+probabilities that some of the other units
+will be "up" or down.
+And by taking that interpretation, independence
+of the events that units are "up" is essentially the same
+as independence of the units [having]
+failed.
+So we take this implication for granted and now we move to
+do some calculations for specific systems.
+Consider a particular system that consists of three
+components.
+And we will say that the system is "up", if there
+exists a path from the left to the right that consists of
+units that are "up".
+So in this case, for the system to be "up", we need all
+three components to be "up" and we proceed as follows.
+The probability that the system is "up"--
+this is the event that the first unit is "up", and the
+second unit is "up", and the third unit is "up".
+And now we use independence to argue that this is equal to
+the probability that the first unit is "up" times the
+probability that the second unit is "up" times the
+probability that the third unit is "up".
+And in the notation that we have introduced this is just
+p1 times p2 times p3.
+Now, let us consider a different system.
+In this system, we will say that the system is "up",
+again, if there exists a path from the left to the right
+that consists of units that are "up".
+In this particular case the system will be "up", as long
+as at least one of those three components are "up".
+We would like again to calculate the probability that
+the system is "up".
+And the system will be "up", as long as either unit 1 is
+"up", or unit 2 is "up", or unit 3 is "up".
+How do we continue from here?
+We cannot use independence readily, because independence
+refers to probabilities of intersections of events,
+whereas here we have a union.
+How do we turn a union into an intersection?
+This is what De Morgan's Laws allow us to do, and involves
+taking complements.
+Instead of using formally De Morgan's Laws, let's just
+argue directly.
+Let us look at this event.
+That unit 1 fails, and unit 2 fails, and unit 3 fails.
+What is the relation between this event and the event that
+we have here.
+They're complements.
+Why is that?
+Either all units fail, which is this event, or there exists
+at least one unit, which is "up".
+So since this event is the complement of that event, this
+means that their probabilities must add to 1, and therefore
+we have this relation.
+And now we're in better shape, because we can use the
+independence of the events F to write this as 1 minus the
+product of the probabilities that each one
+of the units fails.
+And with the notation that we have introduced using the
+pi's, this is as follows.
+The probability that unit 1 fails is 1 minus the
+probability that it is "up".
+Similarly, for the second unit, 1 minus the probability
+that it is "up".
+And the same for the third unit.
+So we have derived a formula that tells us the reliability,
+the probability that a system of this kind is "up" in terms
+of the probabilities of its individual components.
+You will have an opportunity to deal with more examples of
+this kind, a little more complicated, in the problem
+that follows.
+And even more complicated, in one of the problem-solving
+videos that we will have available for you.
+
+
+
+
+
+
+
+
+# 16. Exercise: Reliability
+
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Reliability - Question 1.png)
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Reliability - Question 2.png)
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Reliability - Solution.png)
+![](C:/Users/qp/Pictures/20220912_201005.jpg)
+![](C:/Users/qp/Pictures/20220912_201021.jpg)
+
+
+
+
+
+
+
+
+
+
+
+# 17. The King's sibling
+
+![](C:/Users/qp/Pictures/Screenshots/17. The King's sibling.png)
+Let us now conclude with a fun problem, which is also a
+little bit of a puzzle.
+We are told that the king comes from a
+family of two children.
+What is the probability that his sibling is female?
+Well, the problem is too loosely stated, so we need to
+start by making some assumptions.
+First, let's assume that we're dealing with an anachronistic
+kingdom where boys have precedence.
+In other words, if the royal family has two children, one
+of which is a boy and one is a girl, it is always the boy who
+becomes king, even if the girl was born first.
+Let us also assume that when a child is born, it has 50%
+probability of being a boy and 50%
+probability of being a girl.
+And in addition, let's assume that different children are
+independent as far as their gender is concerned.
+Given these assumptions, perhaps we
+can argue as follows.
+The king's sibling is a child which is
+independent from the king.
+Its gender is independent from the king's gender, so it's
+going to be a girl with probability 1/2.
+And so this is one possible answer to this problem.
+Is this a correct answer?
+Well, let's see.
+We have to make a more precise model, so let's
+go ahead with it.
+We have two children, so there are four possible outcomes--
+boy, boy; boy, girl; girl, boy; and girl, girl.
+Each one of these outcomes has probability 1/4 according to
+our assumptions.
+For example, the probability of a boy followed by a boy is
+1/2 times 1/2, where we're also using independence.
+So each one of these four outcomes has the same
+probability, 1/4.
+Now, we know that there is a king, so there must be at
+least one boy.
+Given this information, one of the outcomes becomes
+impossible, namely the outcome girl, girl.
+And we're restricted to a smaller universe with only
+three possible outcomes.
+Our new universe is this green universe, which includes all
+outcomes that have at least one boy, so that
+we can get a king.
+We should, therefore, use the conditional probabilities that
+are appropriate to this new universe.
+Since these three outcomes inside the green set have
+equal unconditional probabilities, they should
+also have equal conditional probabilities.
+So each one of these three outcomes should have a
+conditional probability equal to 1/3.
+In two of these outcomes the sibling is a girl and
+therefore, the conditional probability given that there
+is a king and therefore given that there is a boy, the
+conditional probability is going to be 2/3.
+So this is actually the official answer to this
+problem, and this answer is incorrect.
+Are we satisfied with this answer?
+Maybe yes, maybe no.
+Actually, some more assumptions are needed in
+order to say that 2/3 is the correct answer.
+Let me state what these assumptions are.
+We assume that the royal family decided to have exactly
+two children.
+So the number two that we have here is not random.
+It was something that was predetermined.
+Once they decided to have the two children, they had them.
+At least one turned out to be a boy and that
+boy became a king.
+Under this situation, indeed, the probability that the
+sibling of the king is female is 2/3.
+But these assumptions that I just stated are not the only
+possible ones.
+Let's consider some alternative assumptions.
+For example, suppose that the royal
+family operated as follows.
+They decided to have children until they get one boy.
+What does this tell us?
+Well, since they had two children, this tells us
+something--
+that the first child was a girl.
+So in this case, the probability that the king's
+sibling is a girl is equal to 1.
+The only reason why they had two children was because the
+first was a girl and then the second was a boy.
+Suppose that the royal family made some different choices.
+They decided to have children until they would get two boys,
+just to be sure that the line of succession was secured.
+In this case, if we are told that there are only two
+children, this means that there were exactly two boys,
+because if one of the two children was a girl, the royal
+family would have continued.
+So in this particular case, the probability that the
+sibling is a girl is equal to zero.
+And you can think of other scenarios, as well, that might
+give you different answers.
+So 2/3 is the official answer, as long as we make the precise
+assumptions that the number of children, the number two, was
+predetermined before anything else happened.
+The general moral from this story is that when we deal
+with situations that are described in words somewhat
+vaguely, we must be very careful to state whatever
+assumptions are being made.
+And that needs to be done before we are able to fix a
+particular probabilistic model.
+This process of modeling will always be something of an art
+in which judgment calls will have to be made.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Course  /  Unit 2: Conditioning and independence  /  Solved problems
+
+# 1. Conditional probability example
+
+
+
+Conditional probability example. We roll two fair 6-sided dice. Each one of the 36 possible outcomes is assumed to be equally likely.
+
+(a) Find the probability that doubles are rolled (i.e., both dice have the same number).
+
+(b) Given that the roll results in a sum of 4 or less, find the conditional probability that doubles are rolled.
+
+(c) Find the probability that at least one die roll is a 6.
+
+(d) Given that the two dice land on different numbers, find the conditional probability that at least one die roll is a 6.
+
+Teaching Assistant: Katie Szeto
+
+
+
+![](C:/Users/qp/Pictures/Screenshots/1. Conditional probability example.png)
+Hi.
+Today we're going to do another fun problem that
+involves rolling [of]
+two dice.
+So if you guys happen to frequent casinos, this problem
+might be really useful for you.
+I'm just kidding.
+But in all seriousness, this problem is a good problem,
+because it's going to remind us how and when to use the
+discrete uniform law.
+Don't worry, I'll review what that says.
+And it's also going to exercise your understanding of
+conditional probability.
+So quick recap.
+The discrete uniform law says that when your sample space is
+discrete, and when the outcomes in your sample space
+are equally likely, then to compute the probability of any
+event A, you can simply count the number of outcomes in A
+and divide it by the total number of possible outcomes.
+OK, so coming back to our problem.
+The problem statement tells us that we roll two fair
+six-sided [dice].
+And it also tells us that each one of the 36 possible
+outcomes is assumed to be equally likely.
+So you know alarm bell should be going off in your head.
+Our sample space is clearly discrete.
+And it says explicitly that all
+outcomes are equally likely.
+So clearly, we can use the discrete uniform law.
+And again, this is helpful because it reduces a problem
+of computing probabilities to a problem of counting.
+OK, and before we go any further, I just want to review
+what this graph is plotting.
+You've seen it a few times, but just to clarify, on one
+axis, we're plotting the outcome of the first die roll,
+and on the second axis, we're plotting [the]
+outcome of the second die roll.
+So if you got a 4 on your first die, and you get a 1 on
+your second die, that corresponds to this point over
+4 and up 1.
+OK, so part (a) asks us to find the probability that
+doubles are rolled.
+So let's use some shorthand.
+We're going to let D be the event that doubles are rolled.
+And we want to compute the probability of D.
+I argue before we can use the discrete uniform law.
+So if we apply that, we just get the number of outcomes
+that comprise the event "doubles rolled", divided by
+36, because there are 36 possible outcomes, which you
+can see just by counting the dots in this graph.
+Six possible outcomes for the first die, six possible
+outcomes for the second die.
+That's how you--
+6 times 6 is 36.
+So I've been assuming this entire time that you know what
+doubles are.
+For those of you who don't know, doubles is essentially
+when that number on the first die matches the number on the
+second die.
+So this outcome here 1-1 is part of the event "doubles
+rolled." Similarly, 2-2, 3-3, 4-4, 5-5, and 6-6--
+these six points comprise the event "doubles rolled."
+So we can go ahead and put 6 over 36,
+which is equal to 1/6.
+So we're done with part (a).
+We haven't seen any conditioning yet.
+The conditioning comes in part (b).
+So in part (b) we're still interested in the event D, in
+the event that "doubles are rolled." But now we want to
+compute this probability conditioned on the event that
+the sum of the results is less than or equal to 4.
+So I'm going to use this shorthand "sum less than or
+equal to 4" to denote the event that the role results in
+the sum of 4 or smaller.
+So there's two ways we're going to go about
+solving part (b).
+Let's just jump right into the first way.
+The first way is applying the definition of conditional
+probability.
+So hopefully you remember that this is just probability of D
+intersect "sum less than or equal to 4", divided by
+probability of "sum less than or equal to 4".
+Now, "sum less than or equal to 4" and D intersect "sum
+less than or equal to 4" are just two events.
+And so we can apply the discrete uniform law to
+calculate both the numerator and the denominator.
+So let's start with the denominator first because it
+seems a little bit easier.
+So "sum less than or equal to 4", let's figure this out.
+Well, 1-1 gives us a sum of 2, that's less
+than or equal to 4.
+2-1 gives us 3.
+3-1 gives us 4.
+4-1 gives us 5, so we don't want to include this or this,
+or this point.
+And you can sort of convince yourself that the next point
+we want to include is this one.
+That corresponds to 2-2, which is 4, so it makes sense that
+these guys should form the boundary, because all dots
+sort of up and to the right will have a bigger sum.
+3-1 gives us 4.
+And 1-2 gives us 3.
+So these six points--
+1, 2, 3, 4, 5, 6--
+are the outcomes that comprise the event "sum less than or
+equal to 4".
+So we can go ahead and write in the denominator, 6 over 36,
+because we just counted the outcomes in "sum less than or
+equal to 4" and divided it by the number
+of outcomes in omega.
+Now, let's compute the numerator.
+D intersect "sum less than or equal to 4".
+So we already found the blue check marks.
+Those correspond to "sum less than or equal to 4".
+Out of the points that have blue check marks, which ones
+correspond to doubles?
+Well, they're actually already circled.
+It's just these two points.
+So we don't even need to circle those, so we get 2 over
+36, using the discrete uniform law.
+And you see that these two 36s cancel each other.
+So you just get 2/6 or 1/3.
+So that is one way of solving part (b), but I want to take
+you, guys, through a different way, which I think is
+important, and that make sure you really understand what
+conditioning means.
+So another way that you can solve part (b) is to say, OK,
+we are now in the universe, we are in the conditional
+universe, where we know the sum of our
+results is 4 or smaller.
+And so that means our new sample space is really just
+this set of six points.
+And one thing that it's worth noting is that conditioning
+never changes the relative frequencies or relative
+likelihoods of the different outcomes.
+So because all outcomes were equally likely in our original
+sample space omega, in the conditional world, the
+outcomes are also equally likely.
+So using that argument, we could say that in our sort of
+blue conditional universe all of the
+outcomes are equally likely.
+And therefore, we can apply a conditional version of the
+discrete uniform law.
+So namely, to compute the probability of some event in
+that conditional world.
+So the conditional probability that "doubles are rolled", we
+need only count the number of outcomes in that event and
+divide it by the total number of outcomes.
+So in the conditional world, there's only two outcomes that
+comprise the event "doubles rolled." These are the only
+two circles in the blue region.
+So applying the conditional version of our
+law, we have two.
+And then we need to divide by the size of omega.
+So our conditional universe, we've already said, has six
+possible dots.
+So we just divide by 6, and you see that we get the same
+answer of 1/3.
+And so again, we used two different strategies.
+I happen to prefer the second one, because it's slightly
+faster and it makes you think about what does conditioning
+really mean.
+Conditioning means you're now restricting your attention to
+a conditional universe.
+And given that you're in this conditional universe where the
+sum was less than or equal to 4, what is then the
+probability that doubles also happened?
+OK, hopefully you, guys, are following.
+Let's move on to part (c).
+So part (c) asks for the probability that at least one
+die roll is a 6.
+So I'm going to use the letter S to denote this, the [event]
+that at least one die roll is a 6.
+So let's go back to our picture and
+we'll use a green marker.
+So hopefully you agree that anything in this column
+corresponds to at least one 6.
+So this point, this point, this point, this point, this
+point, and this point your first die landed on a 6, so at
+least one 6 is satisfied.
+Similarly, if your second die has a 6, then we're also OK.
+So I claim we want to look at these 11 points.
+Let me just check that, yeah, 6 plus 5--
+11.
+So using the discrete uniform law again, we get
+11 divided by 36.
+OK, last problem, we're almost done.
+So again, we're interested in the event S again, so the
+event that at least one die roll is a 6.
+But now we want to compute the probability of that event in
+the conditional world where the two dice land
+on different numbers.
+So I'm going to call this probability of S. Let's see,
+I'm running out of letters.
+Let's for lack of a better letter, my name is Katie, so
+we'll just use a K. We want to compute the probability of S
+given K. And instead of using the definition of conditional
+probability, like we did back in part b, we're going to use
+the faster route.
+So essentially, we're going to find the number of outcomes in
+the conditional world.
+And then we're also going to compute the number of outcomes
+that comprise S in the conditional world.
+So let's take a look at this.
+We are conditioning on the event that the two dice land
+on different numbers.
+So hopefully you agree with me that every single dot that is
+not on the diagonal, so every single dot that doesn't
+correspond to doubles, is a dot that we care about.
+So our conditional universe of that the two dice land on
+"different numbers", that corresponds to these dots.
+And it corresponds to these dots.
+I don't want to get this one.
+OK, that's good.
+So let's see, how many outcomes do we have in our
+conditional world?
+And I'm sorry I don't know why I didn't include this.
+This is absolutely included.
+I'm just testing to see if you,
+guys, are paying attention.
+So we counted before that there are six dots on the
+diagonal, and we know that there are 36 dots total.
+So the number of dots, or outcomes to use the proper
+word, in our conditional world is 36 minus 6, or 30.
+So we get a 30 on the denominator.
+And now we're sort of using a conditional version of our
+discrete uniform law, again.
+And the reason why we can do this is, as I argued before,
+that conditioning doesn't change the relative frequency
+of the outcomes.
+So in this conditional world, all of the outcomes are still
+equally likely, hence we can apply this law again.
+So now we need to count the number of outcomes that are in
+the orange conditional world, but that also satisfy at least
+one die roll is a 6.
+So you can see--
+1-- we just need to count the green circles that are also in
+the orange.
+So that's 1, 2, 3, 4, 5, 6, 7, 8, 9, 10.
+So we get a 10, so our answer is 10 over 30, or 1/3.
+So now we're done with this problem.
+As you see, hopefully, it wasn't too painful.
+And what are the important takeaways
+here for this problem?
+Well, one is that whenever you have a discrete sample space,
+in which all of outcomes are equally likely, you should
+think about using the discrete uniform law, because this law
+lets you reduce the problem from computing probabilities
+to just counting outcomes within events.
+And the second takeaway is the way we thought about
+conditioning.
+So we talked about one thing, which is that in your
+conditional world, when you condition, the relative
+likelihoods of the various outcomes don't change.
+So in our original universe, all of the outcomes were
+equally likely.
+So in our conditional universe, all of the outcomes
+are equally likely.
+And we saw it was much faster to apply a conditional version
+of the discrete uniform law.
+So that's it for today.
+And we'll do more problems next time.
+
+
+
+
+
+
+# 2. A chess tournament problem
+
+![](C:/Users/qp/Pictures/Screenshots/2. A chess tournament problem - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. A chess tournament problem - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/2. A chess tournament problem - 3.png)
+![](C:/Users/qp/Pictures/20220913_230152.jpg)
+![](C:/Users/qp/Pictures/20220913_230214.jpg)
+![](C:/Users/qp/Pictures/20220913_230307.jpg)
+![](C:/Users/qp/Pictures/20220913_230330.jpg)
+A chess tournament problem. This year's Belmont chess champion is to be selected by the following procedure. Bo and Ci, the leading challengers, first play a two-game match. If one of them wins both games, he gets to play a two-game second round with Al, the current champion. Al retains his championship unless a second round is required and the challenger beats Al in both games. If Al wins the initial game of the second round, no more games are played.
+
+Furthermore, we know the following:
+The probability that Bo will beat Ci in any particular game is 0.6.
+The probability that Al will beat Bo in any particular game is 0.5.
+
+The probability that Al will beat Ci in any particular game is 0.7.
+
+Assume no tie games are possible and all games are independent.
+
+1. Determine the a priori probabilities that
+(a) the second round will be required.
+(b) Bo will win the first round.
+(c) Al will retain his championship this year.
+
+2. Given that the second round is required, determine the conditional probabilities that
+(a) Bo is the surviving challenger.
+(b) Al retains his championship.
+
+3. Given that the second round was required and that it comprised only one game, what is the conditional probability that it was Bo who won the first round?
+
+Teaching Assistant: Katie Szeto 
+
+
+
+
+About part c
+
+discussion posted 8 days ago by FermatX
+
+Hello I am somewhat confused with part 3 a Second Round was required, and it was only one game that would be events BBB, BBA, CCA and CCC in my opinion the W should be made up of those four events not just BBA or CCA why take for W just the events where A won. The new conditional universe should include BBB and CCC or not, if not why thanks or maybe I am missing something. ¨?
+This post is visible to everyone.
+2 responses
+
+    FermatX
+
+    8 days ago
+
+For the new conditional universe should include the events BBB and CCC. if it is a universe?
+
+    The problems states that the second round comprised only one game, which means the tournament is over after three games. If we had BBB or CCC there would be a fourth game to settle the tournament. A likely misunderstanding of the phrasing is to think that there may still be one more game to be played.
+
+posted 7 days ago by AndersElfving
+
+sketching a tree diagram is very illuminating in such problems
+
+    posted 6 days ago by lockedarte
+    Add a comment
+    Your question or idea (required)
+
+marshallsmith4
+
+about 12 hours ago
+
+BBB and CCC both trigger a second game in the second round. so they fail the second requirement of the event.
+
+    Add a comment
+    Your question or idea (required)
+
+john_hhu2020
+
+about a minute ago
+
+Looking at the tree diagram, its 0, as "Given that the second round was required and that it comprised only one game" which means the outcome is BBA or CCA, in both condition A won
+
+
+
+
+
+
+
+
+
+
+# 3. A coin tossing puzzle
+
+
+
+A coin tossing puzzle. A coin is tossed twice. Alice claims that the event of getting two Heads is at least as likely if we know that the first toss is Heads than if we know that at least one of the tosses is Heads. Is she right? Does it make a difference if the coin is fair or unfair? How can we generalize Alice's reasoning?
+
+Teaching Assistant: Kuang Xu
+
+![](C:/Users/qp/Pictures/Screenshots/3. A coin tossing puzzle - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/3. A coin tossing puzzle - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/3. A coin tossing puzzle - 3.png)
+
+Hi.
+In this problem, we'll be going over practice with the
+calculation of conditional probabilities.
+We'll start with a game where our friend Alice will be
+tossing a coin with certain bias of having a head, and
+tosses this coin twice.
+And we're interested in knowing, what's the
+probability that both coin tosses will
+end up being a head?
+The first step we're going to do is to convert the problem
+into a mathematical form by defining two
+events as the following.
+Event A is where the first coin toss is a head.
+And similarly, event B will be having the second coin toss
+also being a head.
+Having these two events will allow us to say, well, the
+event that A intersection B will be the event that both
+coin tosses are a head.
+And we'd like to know the probability of such an event.
+In particular, the probability of A and B will be calculated
+under two types of information.
+In the first case, we'll be conditioning on that we know
+the first coin toss is a head.
+I'd like to know what the probability of A and B is.
+In the second case, we know that at least one of the two
+coin tosses is a head expressed in the form A union
+B.
+And under this conditioning, what is the probability of A
+and B, A intersection B?
+So Alice, in this problem, says-- well, her guess will be
+that the first quantity is no smaller
+than the second quantity.
+Namely, knowing that the first coin toss is a head somehow
+more strongly implies that both coin tosses will be a
+head, compared to the case that we only know at least one
+of the two coin tosses is a head.
+And we'd like to verify if this
+inequality is indeed true.
+To do so, let's just use the basic calculation of
+conditional probability.
+Now, from the lectures, you've already learned that to
+calculate this quantity, we'll write out a fraction where the
+numerator is the probability of the intersection of these
+two events.
+So we have A intersection B intersection A, divided by the
+probability of the event that we're conditioning on, which
+is A.
+Now, the top quantity, since we know that A and B is a
+subset of event A, then taking the intersection of these two
+quantities will just give us the first event.
+So we have A and B. And the bottom is still probability of
+A.
+Let's do the same thing for the second quantity here.
+We have the top probability of A and B intersection the event
+A union B, and on the bottom, probability of the event A and
+B. Again, we see the event A and B is a subset of the event
+A union B. So the top will be A and B. And the bottom--
+A union B.
+OK, now let's stop for a little bit.
+We've computed the probability for each expression in the
+following fractional form.
+And we observed that for both fractions, the
+numerator is the same.
+So the numerator is a probability of A and B. And
+the denominator in the first case is probably of A, and the
+second case, probably of A union B.
+Since we know that A is a subset of the event A union B,
+and by the monotonicity of probabilities, we know that
+the probability of A is hence no greater than the
+probability of A union B. Substituting this back into
+these expressions, we know that because they lie in the
+denominators, the first expression is indeed no
+smaller than the second expression.
+So our friend Alice was correct.
+So throughout this problem, we never used the fact that the
+probability of a particular coin toss results, let's say,
+in a head is a certain number.
+Actually, this bias for the coin is irrelevant.
+Whether the coin is fair or unfair, this
+fact is always true.
+So indeed, it does not depend on the
+probability of the coin.
+But if you're really curious what happens when the coin is
+fair, we can plug in the numbers.
+And here, we're assuming the coin is fair, which means
+probability of having a head is 1/2.
+Then, we'll see after going through the calculations that
+the first probability is 1/2, whereas the second probability
+is 1/3, which means, in this case, the
+dominance actually is strict.
+So the first one is strictly greater than
+the second one, OK?
+So this completes the first part of the problem.
+How do we generalize this into more general settings?
+There are multiple ways, but we'll go over
+one particular form.
+And to do so, we'll be defining three events somewhat
+more abstractly.
+Let's say we have three events--
+C, D, and E. Imagine any event, but all three events
+have to satisfy the following condition.
+First, event D will be a subset of E. And second, the
+intersection of C and D is equal to the
+intersection of C and E, OK?
+So this will be our choice events.
+And let's see a particular example.
+Let's say you have a sample space here and some event E.
+Now, by the first condition, D will have to lie somewhere in
+E. For the second condition, we'll pick some event C such
+that this is true.
+And one way to do so is simply picking C that lies within
+both D and E. And you can see C intersection D will be C.
+And C intersection E will still be C. Hence, the second
+equality is true.
+So if both equalities are true, we have the following
+relationship, that the probability of C conditioned
+on D will be no smaller than the probability of C
+conditioned on event E. And this will be the more general
+form of the inequality that we saw before.
+So first of all, the way to prove this
+is in fact the same.
+We simply write out the value of this using
+the fractional form.
+And based on these two facts, we can arrive at this
+equation, which I shall now go over.
+But just to see why this form is more general, in fact, if
+we, say, we let C be the event A intersection B, D be the
+event A, and E be the event A [union]
+B where A and B are the events that we defined earlier.
+We can verify that, indeed, these conditions are true,
+namely D is a subset of E. Because A is a subset of A
+union B, and C is a subset of both D and E. And hence,
+condition two is also true.
+And if that's the case, we will actually recover the
+result we got earlier for events A and B. And hence,
+this equation here is a more general form.
+So that's the end of the problem.
+See you next time.
+
+
+
+
+
+
+
+
+
+
+# 4. The Monty Hall problem
+
+
+
+The Monty Hall problem. This is a much discussed puzzle, based on an old American game show. You are told that a prize is equally likely to be found behind any one of three closed doors in front of you. You point to one of the doors. A friend opens for you one of the remaining two doors, after making sure that the prize is not behind it. At this point, you can stick to your initial choice, or switch to the other unopened door. You win the prize if it lies behind your final choice of a door. Consider the following strategies:
+
+    Stick to your initial choice.
+
+    Switch to the other unopened door.
+
+    You first point to door 1. If door 2 is opened, you do not switch. If door 3 is opened, you switch. 
+
+Which is the best strategy?
+
+Teaching Assistant: Jimmy Li
+
+
+![](C:/Users/qp/Pictures/Screenshots/4. The Monty Hall problem - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. The Monty Hall problem - 2.png)
+![](C:/Users/qp/Pictures/20220913_225637.jpg)
+![](C:/Users/qp/Pictures/20220913_225659.jpg)
+Hi.
+In the session, we'll be solving
+the Monty Hall problem.
+And this problem is based on an old game show that was
+called "Let's Make a Deal." And the host of this game
+show, his name was Monty Hall, which is why this problem is
+now known as the Monty Hall problem.
+And this problem is actually pretty well-known, because
+there was some disagreement at the time over what the right
+answer to this problem should be.
+Even some really smart people didn't agree on what the right
+answer should be.
+And part of what might explain that disagreement is that they
+probably were considering slightly different variations
+of the problem, because as in all probability problems, the
+assumptions that you're working with are very
+important, because otherwise you may be solving an actually
+different problem.
+And so what we'll do first is really layout concretely what
+all the assumptions are, what the rules of the game are.
+And then we'll go through the methodology to solve for the
+actual answer.
+So the game is actually relatively simple.
+So you're on a game show and you're
+presented with three doors.
+These doors are closed.
+And behind one of these doors is a prize, let's say, a car.
+And behind the other two doors, there's nothing.
+You don't know which one it is.
+And the rules of the game are that, first, you get to choose
+any one of these three.
+So you pick one of the doors that you want.
+They don't show you what's behind that door, but your
+friend, who actually knows which door has the prize
+behind it, will look at the remaining doors.
+So let's, just for example, let's say you chose door one.
+Your friend will look at the other two doors
+and open one of them.
+And you will make sure that the one
+that he opens is empty.
+That is the prize not behind that one.
+And at this point, one of the doors is open and its empty,
+you have your original door plus another unopened door.
+And you're given an option-- you could either stay with
+your initial choice or you can switch to the
+other unopened door.
+And whichever one is your final choice, they
+will open that door.
+And if there's a price behind it, you win, and if there is
+not, then you don't win.
+So the question that we're trying to answer is what is
+the better strategy here?
+Is the better strategy to stay with your initial choice or is
+it better to switch to the other unopened door?
+OK, so it turns out that the specific rules here actually
+are very important.
+Specifically, the rule about how your friend chooses to
+open doors.
+And the fact that he will always open one of the two
+other door that you haven't picked and he will make sure
+that that door doesn't have a prize behind it.
+And let's see how that actually
+plays out in this problem.
+So the simplest way, I think, of thinking about this problem
+is just to think about under what circumstances does
+staying with your initial choice win?
+So if you think about it, the only way that you can win by
+staying with your initial choice is if your initial
+choice happened to be the door that has a prize behind it.
+And because you're sticking with the initial choice, you
+can actually kind of forget about the rest of the game,
+about opening of the other door and about switching.
+It's as if you're playing a simpler game, which is just
+you have three doors, one of them has a prize behind it,
+and you choose one of them.
+And if you guessed right, then you win.
+If you didn't, then you don't win.
+And because the another important assumption is that
+the prize has an equal probability of being behind
+any one of three doors so one third, one third, one third.
+Because of that, then if you stay with your first choice,
+you win only if your first choice happened
+to the right one.
+And that is the case with probablility one third.
+So with that simple argument you can convince yourself that
+the probability of winning, given the strategy of staying
+with your first choice, is one third.
+Now, let's think about the other
+strategy, which is to switch.
+So under what circumstances does switching win for you?
+Well, if your first choice happens to be the right door,
+then switching away from that door will always lose.
+But let's say, that happens with probably one third.
+But the rest of the time with probably 2/3, your first
+choice would be wrong.
+So let's give an example here.
+Let's say, the prize, which I'll denote by happy face, is
+behind door two.
+And your first choice was door one.
+So your first choice was wrong.
+Now, your friend can open door two, because door two has the
+prize behind it.
+He also doesn't open the door that you initially picked.
+So he has to open door three.
+So door three is open, and now you have an option of sticking
+with your first choice-- door one--
+or switching to door two.
+So in this case, it's obvious to see that
+switching wins for you.
+And now, if instead, you picked door one first, and the
+prize was behind door three, again, you are wrong.
+And again, your friend is forced to open door two.
+And switching, again, wins for you.
+And so if you think about it, switching will win for you, as
+long as your initial pick was wrong.
+If your initial pick was wrong, then the prize is
+behind one of the doors.
+Your friend has to open one of the doors, but he can't open
+the door that has the prize behind it.
+So he has to open the other bad door, leaving the good
+door with the prize behind it as the one that
+you can switch to.
+And so by switching you will win in this scenario.
+And what is the probability of that happening?
+Well, that happens if your initial pick was wrong, which
+happens with probably 2/3.
+So the final answer then, it's pretty simple, the probability
+of winning if you stay is one third, and the probability of
+winning if you switch is 2/3.
+And so maybe counterintuitively the result
+is that it's actually better for you, twice as good for
+you, to switch rather than stay.
+And so that was the argument, the kind of simple argument.
+We can also be more methodical about this and actually list
+out all of the possible outcomes.
+Because it's relatively small problem-- there's only three
+doors-- we can actually just list out all
+the possible outcomes.
+So for example, if you chose door one first, and the prize
+was behind door one, your friend has a choice.
+He can open door two or door three, because
+they're both empty.
+And then in that case, if you stay, you win, you picked the
+door correctly.
+And if you switch to two or three, then you lose.
+But if you chose door one, the prize is behind door two, then
+your friend has to open door three, he is forced to do
+that, then staying with lose but switching would win.
+And so on for the other cases.
+And so again, this is just an exhaustive list of all the
+possible outcomes, from which you can see that, in fact,
+staying wins, only if your first choice was correct.
+And switching wins in all the other cases.
+And so one third of the time, staying would win, 2/3 of the
+time switching would win.
+OK, so now, we have the answer.
+Let's try to figure out and convince yourself that it's
+actually right, because you might think before going
+through this process that maybe it doesn't matter
+whether you stay or you switch, they both have the
+same probablility of winning, or maybe
+even staying is better.
+So why is staying worse and switching better?
+Well, the first argument really is something that we've
+already talked about.
+By staying, you're essentially banking on your first choice
+being correct, which is a relatively poor bet, because
+you have only one in three chance of being right.
+But by switching, you're actually banking on your first
+choice being wrong, which is a relatively better bet, because
+you're more likely to be wrong than right in your first
+choice, because you're just picking blindly.
+OK, so that is one intuitive explanation for why
+switching is better.
+Another slightly different way to think about it is that
+instead of picking single doors, you're actually picking
+groups of doors.
+So let's say that your first pick was door one.
+Then you're actually really deciding between door one or
+doors two and three combined.
+So why is that?
+It's because by staying with door one, you're
+staying with door one.
+But by switching, you're actually getting two doors for
+the price of one, because you know that your friend will
+reveal one of these to be empty, and the other one will
+stay closed.
+But switching really kind of buys you both of these.
+And so because it buys you two opportunities to win, you get
+2/3 chance of winning, versus a one third chance.
+Another way of thinking about this is to increase the scale
+of the problem, and maybe that will help visualize the
+counter-intuitive answer.
+So instead of having three doors, imagine that you have
+1,000 doors that are closed.
+And again, one prize is behind one of the doors.
+And the rules are similar-- you pick one door first, and
+then your friend will open 998 other doors.
+And these doors are guaranteed to be empty.
+And now you're left with your initial door plus one other
+door that is unopened.
+So now the question is should you stay with your first
+choice or switch to your other choice?
+And it should be more intuitively obvious now that
+the better decision would be to switch, because you're
+overwhelmingly more likely to have picked incorrectly for
+your first pick.
+You have only 1 in 1,000 chance of getting it right.
+So that is kind of just taking this to a bigger extreme and
+really driving home the intuition.
+OK, so what we've really discovered is that the fact
+that the rules of the game are that your friend has to open
+one of the other two doors and cannot reveal the prize plays
+a big role in this problem.
+And that is an important assumption.
+OK, so now let's think about a slightly
+different variation now.
+So a different strategy.
+Instead of just always staying or always switching, we have a
+specific other strategy, which is that you will choose door
+one first and then, depending on what your friend does, you
+will act accordingly.
+So if your friend opens door two, you will not switch.
+And if your friend opens door three, you will switch.
+So let's draw out exactly what happens here.
+So you have door one that you've chosen.
+And the prize can be behind doors one, two, or three.
+And again, it's equally likely.
+So the probabilities of these branches are one third, one
+third, and one third.
+And now given that, your friend in this scenario has a
+choice between opening doors two or three.
+And so because of doors, you chose one, the prize actually
+is behind one, and so two and three are both empty, so he
+can choose whichever one he wants to open.
+And the problem actually hasn't specified how your
+friend actually decides between this.
+So we'll leave it in general.
+So we'll say that [with]
+probability p, your friend will open two, door
+two, in this case.
+And with the remaining probability 1 minus p, he will
+open door three.
+What about in this case?
+Well, you chose door one.
+The prize is actually behind door two.
+So following the rules of the game, your friend is forced to
+open door three.
+So this happens with probability 1.
+And similarly, if the prize is behind door three, your friend
+is forced to open door two, which, again, happens with
+probably 1.
+So now let's see how this strategy works.
+When do you win?
+You win when, according to the strategy, your final choice is
+the right door.
+So according to the strategy, in this case, your friend
+opened door two.
+And according to your strategy, if door two is open,
+you don't switch.
+So you stay with your first choice of one.
+And that happens to the right one, so you win in this case.
+But what about here?
+Your friend opened door three, and by your strategy, you do
+switch, which is the wrong choice here, so you lose.
+Here, you switch, because you open door three, and you
+switch to the right door, so that wins.
+And this one, you don't switch, and you lose.
+All right, so what is the final probability of winning?
+And the final probably of winning is the probability of
+getting to these two outcomes, which happens with probability
+one third times p plus one third times 1.
+So one third.
+So the final answer is 1/3 p plus 1/3.
+And notice now that the answer isn't just a number.
+Like in this case, the answer was one third and 2/3.
+And it didn't actually matter how your friend chose between
+these two doors when he had a choice.
+But in this case, it actually doesn't matter, because p
+stays in the answer.
+But one thing that we can do is we can compare this with
+these strategies.
+So what we see is that, well, p is a probability, so it has
+to be between 0 and 1.
+So this probability winning for this strategy is somewhere
+between one third times 0 plus one third, which is one third.
+And one third times 1 plus one third, which is 2/3.
+So the strategy is somewhere between 2/3 and one third.
+So what we see is that no matter what, this strategy is
+at least as good as staying all the time, because that was
+only one third.
+And no matter what it can't be any better than switching,
+which was 2/3.
+So you can also come up with lots of other different
+strategies and see what the probabilities of winning are
+in that case.
+OK, so what have we learned in this problem?
+What are the key takeaways?
+One important takeaway is that it's important to really
+understand a problem and arrive at a concrete and
+precise set of assumptions.
+So really have a precise problem that you're solving.
+And another important takeaway is to think about your final
+answer, make sure that that actually makes sense to you,
+make sure that you can justify it somehow intuitively.
+In that case, you can actually convince yourself that your
+answer is actually correct, because sometimes go through a
+lot of formulas, and sometimes your formula may have an error
+in there somewhere.
+But you could take the final answer and ask yourself does
+this actually makes sense, intuitively?
+That's often a very good check and sometimes you can catch
+errors in your calculations that way.
+OK so we'll see next time.
+
+
+
+
+
+
+
+
+
+
+# 5. A random walker
+
+A random walker. Imagine a drunk tightrope walker, who manages to keep his balance, but takes a step forward with probability p and takes a step back with probability (1-p).
+
+(a) What is the probability that after two steps, the tightrope walker will be at the same place on the rope as where he started?
+
+(b) What is the probability that after three steps, the tightrope walker will be one step forward from where he started?
+
+(c) Given that after three steps he has managed to move ahead one step, what is the probability that the first step he took was a step forward?
+
+Teaching Assistant: Kuang Xu 
+
+
+![](C:/Users/qp/Pictures/Screenshots/5. A random walker - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/5. A random walker - 2.png)
+In this problem, we'll be working with a object called
+random walk, where we have a person on the line-- or a
+tight rope, according to the problem.
+Let's start from the origin, and each time step, it would
+randomly either go forward or backward with certain
+probability.
+In our case, with probability p, the person would go
+forward, and 1 minus p going backwards.
+Now, the walk is random in the following sense-- that the
+choice going forward or backward in each step is
+random, and it's completely independent
+from all past history.
+So let's look at the problem.
+It has three parts.
+In the first part, we'd like to know what's the probability
+that after two steps the person returns to the starting
+point, which in this case is 0?
+Now, throughout this problem, I'm going to be using the
+following notation.
+F indicates the action of going forward and B indicates
+the action of going backwards.
+A sequence says F and B implies the sample that the
+person first goes forward, and then backwards.
+If I add another F, it will mean, forward, backward,
+forward again.
+OK?
+So in order for the person to go somewhere after two steps
+and return to the origin, the following must happen.
+Either the person went forward followed by backward, or
+backward followed by forward.
+And indeed, this event--
+namely, the union of these two possibilities--
+defines the event of interest in our case.
+And we'd like to know what's the probability of A, which
+we'll break down into the probability of forward,
+backward, backward, forward.
+Now, forward-backward and backward-forward, they are two
+completely different outcomes.
+And we know that because they're disjoint, this would
+just be the sum of the two probabilities--
+plus probability of backward-forward.
+Here's where the independence will come in.
+When we try to compute the probability of going forward
+and backward, because the action--
+each step is completely independent from the past, we
+know this is the same as saying, in the first step, we
+have probability p of going forward, in the next step,
+probability 1 minus p of going backwards.
+We can do so-- namely, writing the probability of forward,
+backward as a product of going forward times the probability
+of going backwards, because these actions are independent.
+And similarly, for the second one, we have going backwards
+first, times going forward the second time.
+Adding these two up, we have 2 times p times (1 minus p).
+And that will be the answer to the first part of the problem.
+In the second part of the problem, we're interested in
+the probability that after three steps, the person ends
+up in position 1, or one step forward
+compared to where he started.
+Now, the only possibilities here are that among the three
+steps, exactly two steps are forward, and one step is
+backwards, because otherwise there's no way the person will
+end up in position 1.
+To do so, there, again, are three possibilities in which
+we go forward, forward, backward, or forward,
+backward, forward, or backward, forward, forward.
+And that exhausts all the possibilities that the person
+can end up in position 1 after three steps.
+And we'll define the collection of all these
+outcomes as event C. The probability of event C--
+same as before--
+is simply the sum of the probability of
+each individual outcome.
+Now, based on the independence assumption that we used
+before, each outcome here has the same probability, which is
+equal to p squared times (1 minus p).
+The p squared comes from the fact that two forward steps
+are taken, and 1 minus p, the probability of that one
+backwards step.
+And since there are three of them, we multiply 3 in front,
+and that will give us the probability.
+In the last part of the problem, we're
+asked to compute --
+conditional on event C already [having taken]
+place --
+what is the probability that the first step he took was a
+forward step?
+Without going into the details, let's take a look at
+C, in which we have three elements, and only the first
+two elements correspond to a forward step
+in the first step.
+So we can define event D as simply
+the first two outcomes--
+forward, forward, backward, and
+forward, backward, forward.
+Now, the probability we're interested in is simply
+probability of D conditional on C. We'd write it out using
+the [definition]
+of conditional probability--
+D intersection C conditional on C. Now, because D is a
+subset of C, we have probability of D divided by
+the probability of C.
+Again, because all samples here have the same
+probability, all we need to do is to count the number of
+samples here, which is 2, and divide by the number of
+samples here, which is 3.
+So we end up with 2 over 3.
+And that concludes the problem.
+See you next time.
+
+
+
+
+
+
+
+
+
+
+# 6. Communication over a noisy channel
+
+![](C:/Users/qp/Pictures/Screenshots/6. Communication over a noisy channel - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Communication over a noisy channel - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Communication over a noisy channel - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Communication over a noisy channel - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Communication over a noisy channel - 5.png)
+
+
+Hi.
+In this problem, we'll be talking about communication
+across a noisy channel.
+But before we dive into the problem itself, I wanted to
+first motivate the context a little bit and talk more about
+what exactly a communication channel is and
+what "noise" means.
+So in our everyday life, we deal with a lot of
+communication channels, for example, the internet, where
+we download data and we watch videos online, or even just
+talking to a friend.
+And the air could be your communication
+channel for our voice.
+But as you probably have experienced, sometimes these
+channels have noise, which just means that what the
+sender was trying to send isn't necessarily exactly what
+the receiver receives.
+And so in probability, we try to model these communication
+channels and noise and try to understand the
+probability behind it.
+And so now, let's go into the problem itself.
+In this problem, we're dealing with a pretty simple
+communication channel.
+It's just a binary channel, which means that what we're
+sending is just one bit at a time.
+And here, a bit just means either 0 or 1--
+so essentially, the simplest case of information that you
+could send.
+But sometimes when you send a 0, the receiver actually
+receives a 1 instead, or vice versa.
+And that is where noise comes in.
+So here in this problem, we actually have a probabilistic
+model of this channel and the noise that hits the channel.
+What we're trying to send is either 0 or a 1.
+And what we know is that on the receiving end, a 0 can
+either be received when a 0 is sent, or a 1 can be received
+when a 0 is sent.
+And when a 1 is sent, we could also have noise
+that corrupts it.
+And you get a 0 instead.
+Or you can have a 1 being successfully transmitted.
+And the problem actually tells us what the
+probabilities here are.
+So we know that if a 0 is sent, then with probability 1
+minus epsilon naught, a 0 is received.
+And with the remaining probability, it actually gets
+corrupted and turned into a 1.
+And similarly, if a 1 is sent, then with probability 1 minus
+epsilon 1, the 1 is correctly transmitted.
+And with the remaining probability epsilon 1, it's
+turned into a 0 instead.
+And the last bit of information is that we know
+that with the probability p, any random bit is actually is
+0 that is being sent.
+And with probability 1 minus p, we're actually
+trying to send a 1.
+So that is the basic setup for the problem.
+And the first part that the problem asks us to find, what
+is the probability of a successful transmission when
+you have just any arbitrary bit that's being sent.
+So what we can do here is, use this tree that we've already
+drawn and identify what are the cases, the outcomes where
+a bit is actually successfully transmitted.
+So if a 0 is sent and a 0 is received, then that
+corresponds to a successful transmission.
+Similarly, if a 1 is sent and a 1 is received, that also
+corresponds to a successful transmission.
+And then we can calculate what these probabilities are,
+because we just calculate the
+probabilities along the branches.
+And so here implicitly, what we're doing is invoking the
+multiplication rule.
+So we can calculate the probabilities of these two
+individual outcomes and they are disjoint outcomes.
+So we can actually just sum the two probabilities to find
+the answer.
+So the probability here is p times 1 minus epsilon naught--
+that's the probability of a 0 being successfully
+transmitted--
+plus 1 minus p times 1 minus epsilon, 1, which is the
+probability that a 1 is successfully transmitted.
+And so what we've done here is actually just looked at this
+kind of diagram, this tree to find the answer.
+What we also could have done is been a little bit more
+methodical maybe and actually apply the law of total
+probability, which is really what we're trying to do here.
+So you can see that this actually corresponds to--
+the p corresponds to the probability of 0 being sent.
+And 1 minus epsilon naught is the probability of success,
+given that a 0 is sent.
+And this second term is analogous.
+It's the probability that a 1 was sent times the probability
+that you have a success, given that a 1 was sent.
+And this is just an example of applying the law of total
+probability, where we partitioned into the two cases
+of a 0 being sent and a 1 being sent and calculated the
+probabilities for each of those two cases
+and added those up.
+So that's kind of a review of the multiplication rule and
+law of total probability.
+So now, let's move on to part B. Part B is asking, what is
+the probability that a particular sequence of bits,
+not just a single one, but a sequence of four bits in a row
+is successfully transmitted?
+And the sequence that we're looking for is, 1, 0, 1, 1.
+So this is how I'll denote this event.
+1, 0, 1, 1 gets successfully transmitted into 1, 0, 1, 1.
+Now, instead of dealing with single bits in isolation, we
+have a sequence of four bits.
+But we can really just break this out into the four
+individual bits and look at those one by one.
+So in order to transmit successfully 1, 0, 1, 1, that
+whole sequence, we first need to transmit a 1 successfully,
+then a 0 successfully, then another 1 successfully, and
+then finally, the last 1 successfully.
+So really, this is the same as the intersection of four
+different smaller events, a 1 being successfully transmitted
+and a 0 being successfully transmitted and two more 1's
+being successfully transmitted.
+So why are we able to do this, first of all?
+We are using an important assumption that we make in the
+problem that each transmission of an individual bit has the
+same probabilistic structure so that no matter which bit
+you're talking about, they all have the same error
+probability, the same probabilities of being either
+successfully transmitted or having noise corrupt it.
+So because of that, it doesn't really matter which particular
+1 or 0 we're talking about.
+And now, we'll make one more step, and we'll invoke
+independence, which is the third topic here.
+And the other important assumption here we're making
+is that every single bit is independent
+from any other bit.
+So the fact that this one was successfully transmitted has
+no impact on the probability of the 0 being successfully
+transmitted or not.
+And so because of that, we can now break this down into a
+product of four probabilities.
+So this becomes the probability of 1 transmitted
+into a 1 times the probability of 0 transmitted into a 0, 1
+to a 1, and 1 to 1.
+And that simplifies things, because we know what each one
+of these are.
+The probability of 1 being successful transmitted into a
+1, we know that's just 1 minus epsilon 1.
+And similarly, probability of 0 being transmitted into a 0
+is 1 minus epsilon naught.
+So our final answer then is just--
+well, we have three of these and one of these.
+So the answer is going to be 1 minus epsilon naught times 1
+minus epsilon 1 to the third power.
+Now, let's move on and go on to part C, which adds another
+wrinkle to the problem.
+So now, maybe we're not satisfied with the success
+rate of our current channel.
+And we want to improve it somehow.
+And one way of doing this is to add some redundancy.
+So instead of just sending a single 0 and hoping that it
+gets successfully transmitted, instead what we can do is,
+send three 0's in a row to represent a single 0 and hope
+that because we've added some redundancy, we can somehow
+improve our error rates.
+So in particular what we're going to do is, for a 0, when
+we want to send a 0, which I'll put in quotes here, what
+we're actually going to send is a sequence of three 0s.
+And what's going to happen is, this sequence of three 0s,
+each one of these bits is going to go
+through the same channel.
+So the 0, 0, 0 can stay and get transmitted successfully
+as a 0, 0, 0.
+Or maybe the last 0 gets turned into a 1, or the second
+0 gets turned into a 1, or we can have any one of these
+eight possible outcomes on the receiving end.
+And then similarly, for a 1, when we want to send a 1, what
+we'll actually send is a sequence of
+three 1's, three bits.
+And just like above, this 1, 1, 1, due to the noise in the
+channel, it can get turned into any one of these eight
+sequences on the receiving end.
+So what we're going to do now is, instead of sending just a
+single 0, we'll send three 0s, and instead of sending a 1,
+we'll send three 1s.
+But now, the question is, this is what you'll get on the
+receiving end.
+How do you interpret--
+0, 0, 0, maybe intuitively you'll say
+that's obviously a 0.
+But what if you get something like 0, 1, 0 or 1, 0, 1, when
+there's both 0s and 1s in the received message?
+What are you going to do?
+So one obvious thing to do is to take a majority rule.
+So because there's three of them, if there's two or more
+0s, we'll say that what was meant to be sent
+was actually a 0.
+And if there's two or more 1s, then we'll interpret that as a
+1 being sent.
+So in this case, let's look at the case of 0.
+The majority rule here would say that, well, if 0, 0, 0 was
+sent, then the majority is 0s.
+And similarly, in these two cases, 0, 0, 1 or 0, 1, 0, the
+majority is also 0s.
+And then finally, in this last case, 1, 0, 0, you get a
+majority of 0s.
+So in these four received messages, we'll interpret that
+as a 0 have being set.
+So part C is asking, given this majority rule and this
+redundancy, what is the probability that a 0 is
+correctly transmitted?
+Well, to answer that, we've already identified these are
+the four outcomes, where a 0 would be correctly
+transmitted.
+So to find the answer to this question, all we have to do is
+find the probability that a sequence of 0, 0, 0 gets
+turned into one of these four sequences.
+So let's do that.
+What is the probability that a 0, 0, 0 gets turned
+into a 0, 0, 0?
+Well, that means that all three of
+these 0s had no errors.
+So we would have the answer being 1 minus epsilon 0 cubed,
+because all three of these bits had to have been
+successfully transmitted.
+Now, let's consider the other ones.
+For example, what's the probability that a 0, 0, 0
+gets turned into a 0, 0, 1?
+Well, in this case, we need two successful transmissions
+of 0s, plus one transmission of 0 that had an error.
+So that is going to be 1 minus epsilon naught squared for the
+two successful transmissions of 0, times epsilon naught for
+the single one that was wrong.
+And if you think about it, that was only for this case--
+0, 0, 1.
+But the case where 0, 1, 0 and 1, 0, 0 are the same, because
+for all three of these, you have two successful
+transmissions of 0, plus one that was corrupted with noise.
+And so it turns out that all three of those probabilities
+are going to be the same.
+So this is our final answer for this part.
+Now, let's move on to part D. Part D is asking now a type of
+inference problem.
+And we'll talk more about inference
+later on in this course.
+The purpose of this problem--
+what it's asking is, suppose you received a 1, 0, 1.
+That's the sequence of three messages, three
+bits that you received.
+Given that you received a 1, 0, 1, what's the probability
+that 0 was actually the thing that was being sent.
+So if you look at this, you'll look at it and say, this looks
+like something where we can apply Bayes' rule.
+So that's the fourth thing that we're
+covering in this problem.
+And if you apply Bayes' rule, what you'll get is, this is
+equal to the probability of 0 times the probability of 1, 0,
+1 being received, given that 0 was what was sent, divided by
+the probability that 1, 0, 1 is received.
+So we have this basic structure.
+And we also know that we can use the law of total
+probability again on this denominator.
+So we know that the probability that 1, 0, 1 is
+received is equal to the probability of 0 being sent
+times probability of 1, 0, 1 being received, given that 0
+was sent, plus the probability that 1 was sent times the
+probability that 1, 0, 1 is received,
+given that 1 is sent.
+And as you'll notice in applications of Bayes' rule,
+usually what you'll have is a numerator is then repeated as
+one of the terms in the denominator, because it's just
+an application of total probability.
+So if you put these pieces together, really, what we need
+is just these four terms.
+Once we have those four terms, we can just plug them into
+this equation, and we'll have our answer.
+So let's figure out what those four terms are.
+The probability of 0 being sent-- well,
+we said that earlier.
+Probability of 0 being sent is just p.
+And the probability of 1 being sent is 1 minus p.
+That's just from the model that we're
+given in the problem.
+Now, let's figure out this part.
+What is the probability of a 1, 0, 1 being received, given
+that 0 was sent?
+So if 0 was sent, then we know that what really was sent was
+0, 0, 0, that sequence of three bits.
+And now, what's the probability that 0, 0, 0 got
+turned into 1, 0, 1?
+Well, in this case, what we have is one successful
+transmission of a 0, plus two failed transmission of a 0.
+So that one successful transmission of a 0, that
+probability is 1 minus epsilon naught.
+And now, we have two failed transmissions of a 0.
+So we have to multiply that by epsilon naught squared.
+And now, for the last piece, what's the probability of
+receiving the 1, 0, 1, given that 1 was actually sent?
+Well, in that case, if a 1 was sent, what was really sent was
+a sequence of three 1s.
+And now, we want the probability that a 1, 1, 1 got
+turned into a 1, 0, 1.
+In this case, we have two successful transmissions of
+the 1 with one failed transmission.
+So the two successful transmissions will have 1
+minus epsilon 1 squared.
+And then the one failed transmission will give us an
+extra term of epsilon 1.
+So just for completeness, let's actually write out what
+this final answer would be.
+So probability of 0 is p.
+Probability of 1, 0, 1, given 0 is, we calculated that as 1
+minus epsilon naught times epsilon naught squared.
+The same term appears again in the denominator.
+Plus the other term is, probability of 1 times the
+probability of 1, 0, 1, given 1.
+So that is 1 minus epsilon squared times epsilon 1.
+So that is our final answer.
+And it's really just a application of Bayes' rule.
+So this was a nice problem, because it represents a real
+world phenomenon that happens.
+And we can see that you can apply a pretty simple
+probabilistic model to it and still be able to answer some
+interesting questions.
+And there are other extensions that you can ask also.
+For example, we've talked about adding redundancy by
+tripling the number of bits, but tripling the number of
+bits also reduces the throughput, because instead of
+sending one, you have to send three bits just to send one.
+So if there's a cost of that, at what point does the benefit
+of having lower error outweigh the cost of having to send
+more things?
+And so that's a question that you can answer with some more
+tools in probability.
+So we hope you enjoyed this problem.
+And we'll see you again next time.
+
+
+
+
+
+
+
+
+# 7. Network reliability
+
+![its an interesting problem](C:/Users/qp/Pictures/Screenshots/7. Network reliability - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Network reliability - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Network reliability - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Network reliability - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Network reliability - 5.png)
+Previously, we learned the concept of independent
+experiments.
+In this exercise, we'll see how the seemingly simple idea
+of independence can help us understand the behavior of
+quite complex systems.
+In particular, we'll combine the concept of independence
+with the idea of divide and conquer, where we break a
+large system into smaller components, and then use
+[independence]
+properties to glue them back together.
+Now, let's take a look at the problem.
+We are given a network of connected components, and each
+component can be good with
+probability p or bad otherwise.
+All components are independent from each other.
+We say the system is operational if there exists a
+path connecting point A here to point B that goes through
+only the good components.
+And we'd like to understand, what is the probability that
+system is operational?
+Which we'll denote by P of A to B.
+Although the problem might seem a little complicated at
+the beginning, it turns out only two
+structures really matter.
+So let's look at each of them.
+In the first structure, which we call the serial structure,
+we have a collection of k components, each one having
+probability p of being good, connected one next to each
+other in a serial line.
+Now, in this structure, in order for there to be a good
+path from a to b, every single one of the
+components must be working.
+So the probability of having a good path from a to b is
+simply p times p, so on and so, repeated k times, which is
+p raised to the k power.
+Note that the reason we can write the probability this
+way, in terms of this product, is because of the
+independence property.
+Now, the second useful
+structure is parallel structure.
+Here again, we have k components one, two, through
+k, but this time they're connected in parallel to each
+other, namely they start from one point here and ends at
+another point here, and this holds for
+every single component.
+Now, for the parallel structure to work, namely for
+there to exist a good path from a to b, it's easy to see
+that as long as one of these components works the whole
+thing will work.
+So the probability of a to b is the probability that at
+least one of these components works.
+Or in [other words], the probability of the complement
+of the event where all components fail.
+Now, if each component has probability p to be good, then
+the probability that all k components fail is 1 minus p
+raised to the kth power.
+Again, having this expression means that we have used the
+property of independence, and that is [the]
+probability of having a good parallel structure.
+Now, there's one more observation that will be
+useful for us.
+Just like how we define two components to be independent,
+we can also find two collections of components to
+be independent from each other.
+For example, in this diagram, if we call the components
+between points C and E as collection two, and the
+components between E and B as collection three.
+Now, if we assume that each component in both
+collections--
+they're completely independent from each other, then it's not
+hard to see that collection two and three behave
+independently.
+And this will be very helpful in getting us the breakdown
+from complex networks to simpler elements.
+Now, let's go back to the original problem of
+calculating the probability of having a good path from point
+big A to point big B in this diagram.
+Based on that argument of independent collections, we
+can first divide the whole network into three
+collections, as you see here, from A to C, C to E, and E to
+B. Now, because they're independent and in a serial
+structure, as seen by the definition of a serial
+structure here, we see that the probability of A to B can
+be written as a probability of A to C, multiplied by C to E,
+and finally, E to B.
+Now, the probability of A to C is simply p because the
+collection contains only one element.
+And similarly, the probability of E to B is not that hard
+knowing the parallel structure here.
+We see that collection three has two components in
+parallel, so this probability will be given by 1 minus 1
+minus P squared.
+And it remains to calculate just the probability of having
+a good path from point C to point E. To get
+a value for P [of]
+C to E, we notice again, that this area can be treated as
+two components, C1 to E and C2 to E, connected in parallel.
+And using the parallel law we get this probability is 1
+minus 1 minus P C1 to E, multiplied by 1 minus P C2 to
+E. Note that I'm using two different characters, C1 and
+C2, to denote the same node, which is C. This is simply for
+making it easier to analyze two branches where they
+actually denote the same node.
+Now P C1 to E, is another serial connection of these
+three elements here with another component.
+So the first three elements are connected in parallel, and
+we know the probability of that being successful is 1
+minus p [to the power]
+3, and the last one is p.
+And finally, P C2 to E. It's just a single element
+component with probability of [being]
+successful being p.
+At this point, there is no longer any unknown variables,
+and we have indeed obtained exact values for all the
+quantities that we're interested in.
+So starting from this equation, we can plug in the
+values for P C2 to E, P C1 to E back here, and then further
+plug in P C to E back here.
+That will give us the final solution, which is given by
+the following somewhat complicated formula.
+So in summary, in this problem, we learned how to use
+the independence property among different components to
+break down the entire fairly complex network into simple
+modular components, and use the law of serial and parallel
+connections to put the probabilities back together
+and come up with the overall success probability of finding
+a path from A to B.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 2: Conditioning and independence  /  Problem Set 2
+
+# 1. Two five-sided dice
+
+![](C:/Users/qp/Pictures/Screenshots/1. Two five-sided dice - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Two five-sided dice - 2.png)
+![](C:/Users/qp/Pictures/20220914_231317.jpg)
+
+![Think](C:/Users/qp/Pictures/Screenshots/3. Independence of two events.png)
+![Think](C:/Users/qp/Pictures/Screenshots/7. Independence of event complements.png)
+
+
+
+Independence of events
+
+question posted about 4 hours ago by einjunge99
+
+Even if both events have an equal intersection and product, does their individual probability has to be greater than 0 to be considered independent?
+This post is visible to everyone.
+1 response
+
+    orhan_akpinar1
+
+    32 minutes ago
+
+as the formula goes, P(A∩B) = P(A).P(B), so if an individual event has 0 probability this formula holds 0 = 0. If an event has 0 probability that means it has intersection of an empty set with any other event. Sum of any event with an empty set is equals to the probability of event itself so I didn't really understand the first part
+
+
+
+
+
+
+
+
+# 2. A reliability problem
+
+![](C:/Users/qp/Pictures/Screenshots/2. A reliability problem - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. A reliability problem - 2.png)
+![Think in your brain](C:/Users/qp/Pictures/Screenshots/2. A reliability problem - 3.png)
+![](C:/Users/qp/Pictures/20220914_231842.jpg)
+![](C:/Users/qp/Pictures/20220914_232702.jpg)
+![](C:/Users/qp/Pictures/20220914_232859.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+# 3. Oscar's lost dog in the forest
+
+![](C:/Users/qp/Pictures/Screenshots/3. Oscar's lost dog in the forest - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Oscar's lost dog in the forest - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Oscar's lost dog in the forest - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Oscar's lost dog in the forest - 4.png)
+![Wrong Thinking process, where did I missed](C:/Users/qp/Pictures/20220914_223712.jpg)
+![Wrong Thinking process, where did I missed](C:/Users/qp/Pictures/20220914_223421.jpg)
+![](C:/Users/qp/Pictures/20220914_223024.jpg)
+![](C:/Users/qp/Pictures/20220914_224212.jpg)
+![](C:/Users/qp/Pictures/20220914_224624.jpg)
+![](C:/Users/qp/Pictures/20220914_230707.jpg)
+![](C:/Users/qp/Pictures/20220914_230928.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+# 4. Serap and her umbrella
+
+![](C:/Users/qp/Pictures/Screenshots/4. Serap and her umbrella - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Serap and her umbrella - 2.png)
+![](C:/Users/qp/Pictures/20220914_222152.jpg)
+![](C:/Users/qp/Pictures/20220914_222214.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 3: Counting  /  Lec. 4: Counting

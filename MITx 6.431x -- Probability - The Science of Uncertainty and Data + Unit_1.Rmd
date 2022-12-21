@@ -1,0 +1,2672 @@
+---
+title: "MITx 6.431x -- Probability - The Science of Uncertainty and Data + Unit_1.Rmd"
+author: "John HHU"
+date: "2022-11-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+
+
+
+## Unit 0: Overview, Incomplete section
+
+Course overview, Incomplete
+Course introduction, objectives, and study guide, Incomplete
+Syllabus, Calendar, and grading policy, Incomplete
+Homework mechanics and standard notation, Incomplete
+Discussion forum and collaboration guidelines, Incomplete
+Textbook information, Incomplete
+
+    MicroMasters, Certification, and Honor Pledge, Incomplete
+
+Entrance Survey, Incomplete section
+
+    Important Preliminary Survey, Incomplete
+
+
+
+## Unit 1: Probability models and axioms, Incomplete section
+
+Lec. 1: Probability models and axioms (10 Questions), Incomplete
+Exercises due Sep 7, 2022, 7:59 PM GMT+8
+Mathematical background: Sets; sequences, limits, and series; (un)countable sets., Incomplete
+Solved problems, Incomplete
+
+    Problem Set 1 (6 Questions), Incomplete
+    Problem Set due Sep 7, 2022, 7:59 PM GMT+8
+
+
+
+## Unit 2: Conditioning and independence, Incomplete section
+
+Unit overview, Incomplete
+Lec. 2: Conditioning and Bayes' rule (5 Questions), Incomplete
+Exercises due Sep 14, 2022, 7:59 PM GMT+8
+Lec. 3: Independence (7 Questions), Incomplete
+Exercises due Sep 14, 2022, 7:59 PM GMT+8
+Solved problems, Incomplete
+Problem Set 2 (4 Questions), Incomplete
+Problem Set due Sep 14, 2022, 7:59 PM GMT+8
+
+
+
+
+
+## Important dates
+
+Tue, Aug 30, 2022Today
+    Course starts
+    
+Wed, Sep 7, 2022Due next
+    Exercises: Lec. 1: Probability models and axiomsdue7:59 PM GMT+8
+    Problem Set: Problem Set 1due7:59 PM GMT+8
+    
+Wed, Sep 14, 2022
+    Exercises: Lec. 2: Conditioning and Bayes' ruledue7:59 PM GMT+8
+    Exercises: Lec. 3: Independencedue7:59 PM GMT+8
+    Problem Set: Problem Set 2due7:59 PM GMT+8
+
+Wed, Sep 21, 2022Not yet released
+    Exercises: Lec. 4: Countingdue7:59 PM GMT+8
+    Problem Set: Problem Set 3due7:59 PM GMT+8
+
+Fri, Sep 30, 2022Not yet released
+    Exercises: Lec. 5: Probability mass functions and expectationsdue7:59 PM GMT+8
+    Exercises: Lec. 6: Variance; Conditioning on an event; Multiple r.v.'sdue7:59 PM GMT+8
+    Exercises: Lec. 7: Conditioning on a random variable; Independence of r.v.'sdue7:59 PM GMT+8
+    Problem Set: Problem Set 4due7:59 PM GMT+8
+
+Wed, Oct 5, 2022Not yet released
+    Mid Term: Exam 1due7:59 PM GMT+8
+
+Thu, Oct 13, 2022
+    Verification Upgrade Deadline
+    You are still eligible to upgrade to a Verified Certificate! Pursue it to highlight the knowledge and skills you gain in this course.
+
+Fri, Oct 14, 2022Not yet released
+    Exercises: Lec. 8: Probability density functionsdue7:59 PM GMT+8
+    Exercises: Lec. 9: Conditioning on an event; Multiple r.v.'sdue7:59 PM GMT+8
+    Exercises: Lec. 10: Conditioning on a random variable; Independence; Bayes' ruledue7:59 PM GMT+8
+    Problem Set: Problem Set 5due7:59 PM GMT+8
+
+Wed, Oct 26, 2022Not yet released
+    Exercises: Lec. 11: Derived distributionsdue7:59 PM GMT+8
+    Exercises: Lec. 12: Sums of independent r.v.'s; Covariance and correlationdue7:59 PM GMT+8
+    Exercises: Lec. 13: Conditional expectation and variance revisited; Sum of a random number of independent r.v.'sdue7:59 PM GMT+8
+    Problem Set: Problem Set 6due7:59 PM GMT+8
+
+Wed, Nov 9, 2022Not yet released
+    Exercises: Lec. 14: Introduction to Bayesian inferencedue7:59 PM GMT+8
+    Exercises: Lec. 15: Linear models with normal noisedue7:59 PM GMT+8
+    Exercises: Lec. 16: Least mean squares (LMS) estimationdue7:59 PM GMT+8
+    Problem Set: Problem Set 7due7:59 PM GMT+8
+
+Mon, Nov 14, 2022
+    Verified only
+    Mid Term: Exam 2due7:59 PM GMT+8
+
+Wed, Nov 23, 2022Not yet released
+    Exercises: Lec. 18: Inequalities, convergence, and the Weak Law of Large Numbersdue7:59 PM GMT+8
+    Exercises: Lec. 19: The Central Limit Theorem (CLT)due7:59 PM GMT+8
+    Exercises: Lec. 20: An introduction to classical statisticsdue7:59 PM GMT+8
+    Problem Set: Problem Set 8due7:59 PM GMT+8
+
+Wed, Dec 7, 2022Not yet released
+    Exercises: Lec. 21: The Bernoulli processdue7:59 PM GMT+8
+    Exercises: Lec. 22: The Poisson processdue7:59 PM GMT+8
+    Exercises: Lec. 23: More on the Poisson processdue7:59 PM GMT+8
+    Problem Set: Problem Set 9due7:59 PM GMT+8
+
+Fri, Dec 16, 2022Not yet released
+    Exercises: Lec. 24: Finite-state Markov chainsdue7:59 PM GMT+8
+    Exercises: Lec. 25: Steady-state behavior of Markov chainsdue7:59 PM GMT+8
+    Problem Set: Problem Set 10due7:59 PM GMT+8
+
+Mon, Dec 19, 2022
+    Verified only
+    Final Exam: Final Examdue7:59 PM GMT+8
+
+Tue, Dec 20, 2022
+    Course ends
+    After the course ends, the course content will be archived and no longer active.
+    Audit Access Expires
+    You lose all access to this course, including your progress.
+
+Fri, Jan 6, 2023
+    Certificate Available
+    Day certificates will become available for passing verified learners.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 0: Overview  /  Course overview
+
+# 1. Course character and objectives
+
+![](C:/Users/qp/Pictures/course objective by the instructor.png)
+Welcome.  Before diving into this class, it is useful to have a sense of its character and objectives.  
+
+First, we want to *introduce the probabilistic way of thinking*.  This involves understanding the nature of probabilistic models, the key concepts, and the mathematical language that goes with them.  At the same time, we want to expose you to some of the main types of models that tends to arise in applications.  
+
+Second we want to introduce the basics tools of probability theory expressed in the language of mathematics.  We will develop a fair number of mathematical skills.  Indirectly we also want to advance your ability to think with precision and to express your thinking in a mathematical language.  On the other hand this is not a mathematics class.  Our aim is not to teach you how to prove theorems nor is it to teach you recipes--how to plug numbers into formulas without thinking.  Instead, we will emphasize the interpretation of basic concepts and related facts at an intuitive level, always aiming to complement mathematical arguments with intuitive explanations.  
+
+Finally, our most important goal is to bring you to a level where you're ready to apply what you have learned to real world problems.  Say, in the context of your job or in a research project.  This is a very ambitious goal and the course covers perhaps 40% more than what you would see in a typical introduction to probability class.  But we believe that our ambitious goals are realistic.  Calculus and mental concentration is all you need.  The material in this class has been refined, condensed, and codified over about 50 years of residential offerings at MIT.  As a consequence, our hope is that the material is organized and presented in a way that allows learning to move at a fast pace.  
+
+![](C:/Users/qp/Pictures/what this course is not, lets see whats for dinner.png)
+Finally I should add some comments about what this class is not about, so as to keep your expectations realistic.  
+
+First, as it should be clear from what I said before, this is not some kind of overview class for general scientific literacy.  It is not just about understanding what you hear.  We really want you to be able to use what you hear.  Also, while the subject is very much driven by applications, we will not go through the details of real world examples.  Instead, we will go through many examples that serve to enhance your general understanding.  In the same spirit, there will not be much in terms of demos, illustrations through plots, or computational exercises.  We hope that you will find the mix of material that we have chosen to be really useful and that the end result will be rewarding.  
+
+
+
+
+Slides: [clean]
+https://courses.edx.org/assets/courseware/v1/a92671eded03002e1b74615efb21f21e/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_Overview1.pdf
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/56a1f087231004befb83d79bbcc2db2c/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_Course_overview1.pdf
+
+
+
+Discussion
+Topic: Unit 0: Overview:Course overview / 1. Course character and objectives
+Filter:
+Sort:
+
+    discussion
+    Introductions
+    Hi, everyone. My name is James Bullock from Oakdale, Louisiana. I’m excited to start this journey with you. I’ve been through several of the MIT boot camps for data science and have already had the pleasure of taking a few courses by Dr. John. He’s one of the best teachers because he speaks with such intention. Don’t hesitate to reach out if you need help. I’m not claiming to be an expert at probability or statistics, but I’m not too bad at Python and machine learning. Let’s go!
+    1 comments
+    discussion
+    Hello world from Gary, Indiana USA!
+    Located very near the South Side of Chicago. Good luck to everyone :)
+    1 comments
+    discussion
+    Hi!
+    Hi! Really excited to learn new things here
+    1 comments
+    discussion
+    Hi every one
+    I am happy with this new journey
+    1 comments
+    discussion
+    Good luck everyone!
+    We got this.
+    11 comments (11 unread comments)
+    discussion
+    hi everyone!
+    Wait is over. :)
+    1 comments
+    discussion
+    Hi Everyone !
+    Really excited to be a part of this program. All the BEST to everyone.
+    1 comments
+    discussion
+    My greatest expectation:
+    "Indirectly we also want to advance your ability to think with precision and to express your thinking in a mathematical language"
+    1 comments
+    discussion
+    Hi!
+    Happy to be here.
+    1 comments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Why study probability?
+
+Why study probability?  If you're watching this clip, it is probably because you have already registered for this class and therefore are already somewhat convinced that the subject is useful.  Nevertheless, let me add some more perspective.  Until quite recently, scientific literacy meant calculus, some physics, and some chemistry.  With the more recent addition of familiarity with computers and computation, this was all you needed to know in order to make sense of the world.  
+
+But these days, there's not much you can understand about what is going on around you if you do not understand the uncertainty attached to pretty much every phenomenon.  In fact, I predict that for most of you in your careers, you're more likely to have to deal with uncertainty, for example, analyzing noisy data, rather than having to calculate integrals.  Probability is now a central component of scientific literacy.  What is it that has changed and caused this shift?  
+
+I can think of two main factors.  As science and engineering move forward, we end up dealing with more and more complex systems.  And in a complex system, we cannot expect to have a perfect model of each component or to know the exact state of every piece of the system.  So uncertainty is now at the foreground and needs to be modeled.  The second factor is that we live in an information society.  Data and information play an increasingly central role, both in our individual lives and in the economy as a whole.  Now, data and information are only useful because they can tell us something we did not know.  Their reason for existence is to reduce uncertainty.  
+
+![](C:/Users/qp/Pictures/And this is why probability theory and its children--statistics and inference is a must.png)
+But if your goal is to reduce uncertainty, to fight it, you'd better understand its nature.  You'd better have the tools to describe it and analyze it.  And this is why probability theory and its children--statistics and inference--is a must.  If these arguments sound a bit too abstract, just think of any scientific field, and you quickly realize that maybe, other than the motion of the planets, everything else involves uncertainty and calls for probabilistic models.  Think of physics.  Quantum mechanics has taught us that nature is inherently uncertain.  Think of biological evolution.  It progresses through the accumulation of many random effects, like mutations, within an uncertain environment.  Think also of the haystack of biological data that we are accumulating and that needs to be sifted using statistical tools in order to make progress in the biomedical sciences.  Think of communications and signal processing.  These fields are almost by definition a fight against noise, an effort to clean signals from the noise that nature has added.  Think of management.  Customer demand is random, and you want to be able to model it and predict it.  Think of finance.  Markets are uncertain, and whoever has the best methods to analyze financial data has an advantage.  Think of transportation systems.  Random disruptions due to weather or accidents are a major concern.  Think of trends in social networks, which spread like epidemics but in ways that are hard to predict.  
+![](C:/Users/qp/Pictures/I could go on and on, giving you many more examples..png)
+I could go on and on, giving you many more examples.  But the message is hopefully clear.  Most phenomena of interest involve significant randomness.  And the only reason we collect and manipulate data is because we want to fight this randomness as much as we can.  And the first step in fighting an enemy like randomness is to study and understand your enemy.  
+
+
+
+
+
+Slides: [clean]
+https://courses.edx.org/assets/courseware/v1/ae4cc75a89354c128dbf45eb11794268/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_Overview2.pdf
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/f338645c7e42246c16ce8049110cf3c4/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_Course_overview2.pdf
+
+
+Discussion
+Topic: Unit 0: Overview:Course overview / 2. Why study probability?
+Filter:
+Sort:
+
+    discussion
+    Study your enemy
+    Wow. I really enjoyed his last comment. I feel like I just watched a clip from the art of war for mathematics. Study the enemy - randomness.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 3. Course contents
+
+![](C:/Users/qp/Pictures/Units 1 to 5 together with Unit 8 include material that, gets covered in any undergraduate probability class.png)
+Let me now walk you quickly through a high-level summary of this class.  Units 1 to 5 together with Unit 8 include material that, at some level, gets covered in any undergraduate probability class.  In Units 1 to 5, we introduce the general framework of probability theory and learn how to put together models, calculate probabilities, calculate certain types of averages, and also the general rules for incorporating new evidence into a model.  Unit 8 also covers material that is standard in a first course, by covering laws of large numbers, what happens when you average many random measurements.  Unit 6 adds some more depth to the basic material by considering a few special topics, that although they may not always get covered in a first course, they are nevertheless indispensable if you are to have working knowledge of the subject.  
+
+The less conventional part of this class comes in the remaining three units.  In Unit 7, we study the subject of [][statistical inference] in some depth.  Even though at some level it is just an application of the basic theory in earlier units, we discuss it in enough detail to get you ready to use it [in] real world inference problems, whatever your field happens to be.  The other non-standard component comes in Units 9 and 10, which provide you with an introduction to the simplest and most basic models of random processes that evolve in time.  This is because most real-world phenomena do involve a time aspect, and also because this is where you can finally get to use, in interesting ways, the tools that you will have accumulated.  
+
+
+
+
+Slide: [clean]
+https://courses.edx.org/assets/courseware/v1/2133f8269975c59e752a3908ec9b4ec8/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_Overview3.pdf
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/c52059c1eb93233faf1a05de95b97064/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_Course_overview3.pdf
+
+
+Discussion
+Topic: Unit 0: Overview:Course overview / 3. Course contents
+Filter:
+Sort:
+
+    discussion
+    Which units are the most appealing to you?
+    For me, I can see a lot of value for Baynesian inference and Markov chains in real world applications. Hoping that the other units will help build my foundation for these
+    1 comments
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 0: Overview  /  Course introduction, objectives, and study guide
+
+# 1. Introduction and Course Team
+
+
+
+
+Welcome to 6.431x, an introduction to probabilistic models, including random processes and the basic elements of statistical inference.
+
+The world is full of uncertainty: accidents, storms, unruly financial markets, noisy communications. The world is also full of data. Probabilistic modeling and the related field of statistical inference are the keys to analyzing data and making scientifically sound predictions.
+
+The course covers all of the basic probability concepts, including:
+
+    multiple discrete or continuous random variables, expectations, and conditional distributions
+
+    laws of large numbers
+
+    the main tools of Bayesian inference methods
+
+    an introduction to random processes (Poisson processes and Markov chains) 
+
+Discussion
+Topic: Unit 0: Overview:Course introduction, objectives, and study guide / 1. Introduction and Course Team
+Filter:
+Sort:
+
+There are no posts in this topic yet.
+
+
+
+
+
+
+
+
+
+
+# 2. Course objectives
+
+
+
+Upon successful completion of this course, you will:
+
+At a conceptual level:
+
+    Master the basic concepts associated with probability models .
+
+    Be able to translate models described in words to mathematical ones.
+
+    Understand the main concepts and assumptions underlying Bayesian and classical inference .
+
+    Obtain some familiarity with the range of applications of inference methods . 
+
+At a more technical level:
+
+    Become familiar with basic and common probability distributions .
+
+    Learn how to use conditioning to simplify the analysis of complicated models.
+
+    Have facility manipulating probability mass functions , densities , and expectations .
+
+    Develop a solid understanding of the concept of conditional expectation and its role in inference.
+
+    Understand the power of laws of large numbers and be able to use them when appropriate.
+
+    Become familiar with the basic inference methodologies (for both estimation and hypothesis testing ) and be able to apply them.
+
+    Acquire a good understanding of two basic stochastic processes (Bernoulli and Poisson) and their use in modeling.
+
+    Learn how to formulate simple dynamical models as Markov chains and analyze them. 
+
+Discussion
+Topic: Unit 0: Overview:Course introduction, objectives, and study guide / 2. Course objectives
+Filter:
+Sort:
+
+There are no posts in this topic yet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 3. Meet the Course Team
+
+
+Meet the Course Team
+Instructors
+Professor John Tsitsiklis
+
+Dr. John Tsitsiklis is a Clarence J Lebel Professor in the Department of Electrical Engineering and Computer Science, and the director of the Laboratory for Information and Decision Systems at MIT.
+
+His research interests are in the fields of systems, optimization, control, and operations research. He is a coauthor of Parallel and Distributed Computation: Numerical Methods (1989, with D. Bertsekas), Neuro-Dynamic Programming (1996, with D. Bertsekas), Introduction to Linear Optimization (1997, with D. Bertsimas), and Introduction to Probability (1st ed. 2002, 2nd. ed. 2008, with D. Bertsekas). He is also a coinventor in seven awarded U.S. patents.
+
+He is a member of the National Academy of Engineering, and a Fellow of the IEEE (1999) and of INFORMS (2007). His distinctions include the ACM Sigmetrics Achievement Award (2016), the INFORMS John von Neumann Theory Prize (2018), and the IEEE Control Systems Award (2018). He holds honorary doctorates from the Universite catholique de Louvain, (2008), the Athens University of Economics and Business (2018), and the Harokopio University.
+
+Professor Tsitsiklis has been teaching probability for over 20 years.
+Professor Patrick Jaillet
+
+Patrick Jaillet is Dugald C. Jackson Professor in the Department of Electrical Engineering and Computer Science and a member of the Laboratory for Information and Decision Systems at MIT.
+
+Professor Jaillet's research interests include online optimization and learning; machine learning; and decision making under uncertainty. Professor Jaillet's teaching covers subjects such as machine learning; algorithms; mathematical programming; network science and models; and probability. Dr. Jaillet's consulting activities primarily focus on the development of optimization-based analytic solutions in various industries, including defense, financial, electronic marketplace, and information technology.
+
+Professor Jaillet was a fulbright scholar in 1990 and the recipient of many research and teaching awards. He is a Fellow of the Institute for Operations Research and Management Science Society (INFORMS), a member of the Mathematical Optimization Society (MOS), and a member of the Society for Industrial and Applied Mathematics (SIAM). He is currently an Associate Editor for INFORMS Journal on Optimization, Networks, and Naval Research Logistics, and has been an Associate Editor for Operations Research from 1994 until 2005 and for Transportation Science from 2002 until 2017.
+Professor Dimitri Bertsekas
+
+Dimitri P. Bertsekas is McAfee Professor of Engineering in the Electrical Engineering and Computer Science Department of MIT. In 2019, he was also appointed a full time professor in the department of Computer, Information, and Decision Systems Engineering at Arizona State University, Tempe, while maintaining a research position at MIT.
+
+His research spans several fields, including optimization, control, large-scale computation, and data communication networks, and is closely tied to his teaching and book authoring activities. He has written numerous research papers, and seventeen books and research monographs, several of which are used as textbooks in MIT classes.
+
+Professor Bertsekas was awarded the INFORMS 1997 Prize for Research Excellence in the Interface Between Operations Research and Computer Science for his book "Neuro-Dynamic Programming", the 2000 Greek National Award for Operations Research, the 2001 ACC John R. Ragazzini Education Award, the 2009 INFORMS Expository Writing Award, the 2014 ACC Richard E. Bellman Control Heritage Award for "contributions to the foundations of deterministic and stochastic optimization-based methods in systems and control," the 2014 Khachiyan Prize for Life-Time Accomplishments in Optimization, and the SIAM/MOS 2015 George B. Dantzig Prize. In 2018, he was awarded, jointly with his coauthor John Tsitsiklis, the INFORMS John von Neumann Theory Prize, for the contributions of the research monographs "Parallel and Distributed Computation" and "Neuro-Dynamic Programming". In 2001, he was elected to the United States National Academy of Engineering for "pioneering contributions to fundamental research, practice and education of optimization/control theory, and especially its application to data communication networks."
+
+Prof Bertsekas has been teaching probability for over 15 years.
+On the Forum
+Silun Zhang
+
+Silun joins the MicroMasters in Statistics and Data Science program in 2021. He is a Postdoctoral Associate at the Institute of Data, Systems, and Society (IDSS) at MIT, and holds a Ph.D. degree in Applied Mathematics specialized in Optimization and Systems Theory.
+His research interests include nonlinear control, networked systems, rigid-body attitude control, and modeling large-scale systems.
+During his Ph.D., he served as a TA for three courses and gained extensive experience in teaching theoretical materials in a highly interactive and heuristic manner.
+You may have seen him on the forum in the course Data Analysis: Statistical Modeling and Computations for Applications. He will be the main instructor answering your questions on the discussion forum.
+Behind the Scenes
+Qing He
+
+Qing He received her PhD in the MIT Department of Electrical Engineering and Computer Science. Her research interests include inference, signal processing, and wireless communications -- all of which rely on the fundamental concepts taught in 6.041x/6.431x. Qing has taken several probability classes at MIT, and has been a teaching assistant for this course for two semesters.
+Eren Kizildag
+
+Eren Kizildag is a graduate student in the Department of Electrical Engineering and Computer Science at MIT; and doing research in the Laboratory for Information and Decision Systems (LIDS) and the Research Laboratory of Electronics (RLE). His research interests include probability, signal processing and optimization.
+Even though you will not see him in videos, Eren has made significant contribution to the written content of this course.
+Jimmy Li
+
+Jimmy Li received his PhD from MIT’s Department of Electrical Engineering and Computer Science. His research focused on applying the tools taught in this and related courses to problems in marketing. He took 6.041x/6.431x as an undergraduate and has also been a TA for the course three times.
+Jagdish Ramakrishnan
+
+Jagdish Ramakrishnan received his PhD from the Department of Electrical Engineering and Computer Science at MIT. His dissertation focused on optimizing the delivery of radiation therapy cancer treatments dynamically over time. His general research interests include systems modeling, optimization, and resource allocation. He was a teaching assistant for this course twice while at MIT.
+Katie Szeto
+
+Katie Szeto received her Bachelor and Master of Engineering degrees from MIT. Her Master’s thesis explored applications of probabilistic rank aggregation algorithms. Katie took 6.041x/6.431x with Professor Tsitsiklis when she was a sophomore at MIT. Later, as a graduate student, she was a teaching assistant for the class.
+Kuang Xu
+
+Kuang Xu received his PhD from MIT’s Department of Electrical Engineering and Computer Science. His research focused on the design and performance analysis of large-scale networks, such as data centers and the Internet, which involve a significant amount of uncertainties and randomness. Kuang took his first probability course in his junior year, and served as a teaching assistant for 6.041x/6.431x in 2012.
+Karene Chu
+
+Karene Chu received her Ph.D. in mathematics from the University of Toronto in 2012. Since then she has been a postdoctoral fellow first at the University of Toronto/Fields Institute, and then at MIT, with research focus on knot theory. She has taught multiple courses in mathematics at the University of Toronto where she received a teaching award.
+Since then, as a digial learning lab fellow at MIT, she made major and significant contribution to the MITx courses in mathematics, including the Calculus series and Differential equations series. She is now leading the effort in the production and running of the IDSS Micromasters Program in Statistics and Data Science.
+Special thanks to
+Video Producer
+
+Robby Macbain
+IDSS Support Staff
+
+Susana Kevorkova
+Jeremy Rossen
+MITx Support Staff
+
+David Chotin
+Shelly Upton
+Kyle Boots
+Lana Scott
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4. Study guide
+
+
+
+A guide on how to use the wealth of available material
+
+This class provides you with a great wealth of material, perhaps more than you can fully digest. This “guide" offers some tips about how to use this material.
+
+Start with the overview of a unit, when available. This will help you get an overview of what is to happen next. Similarly, at the end of a unit, watch the unit summary to consolidate your understanding of the “big picture" and of the relation between different concepts.
+
+Watch the lecture videos. You may want to download the slides (clean or annotated) at the beginning of each lecture, especially if you cannot receive high-quality streaming video. Some of the lecture clips proceed at a moderate speed. Whenever you feel comfortable, you may want to speed up the video and run it faster, at 1.5x.
+
+Do the exercises! The exercises that follow most of the lecture clips are a most critical part of this class. Some of the exercises are simple adaptations of you may have just heard. Other exercises will require more thought. Do your best to solve them right after each clip — do not defer this for later – so that you can consolidate your understanding. After your attempt, whether successful or not, do look at the solutions, which you will be able to see as soon as you submit your own answers.
+
+Solved problems and additional materials. In most of the units, we are providing you with many problems that are solved by members of our staff. We provide both video clips and written solutions. Depending on your learning style, you may pick and choose which format to focus on. But in either case, it is important that you get exposed to a large number of problems.
+
+The textbook. If you have access to the textbook, you can find more precise statements of what was discussed in lecture, additional facts, as well as several examples. While the textbook is recommended, the materials provided by this course are self-contained. See the “Textbook information" tab in Unit 0 for more details.
+
+Problem sets. One can really master the subject only by solving problems – a large number of them. Some of the problems will be straightforward applications of what you have learned. A few of them will be more challenging. Do not despair if you cannot solve a problem – no one is expected to do everything perfectly. However, once the problem set solutions are released (which will happen on the due date of the problem set), make sure to go over the solutions to those problems that you could not solve correctly.
+
+Exams. The midterm exams are designed so that in an on-campus version, learners would be given two hours. The final exam is designed so that in an on-campus version, learners would be given three hours. You should not expect to spend much more than this amount of time on them. In this respect, those weeks that have exams (and no problem sets!) will not have higher demands on your time. The level of difficulty of exam questions will be somewhere between the lecture exercises and homework problems.
+
+Time management. The corresponding on-campus class is designed so that students with appropriate prerequisites spend about 12 hours each week on lectures, recitations, readings, and homework. You should expect a comparable effort, or more if you need to catch up on background material. In a typical week, there will be 2 hours of lecture clips, but it might take you 4-5 hours when you add the time spent on exercises. Plan to spend another 3-4 hours watching solved problems and additional materials, and on textbook readings. Finally, expect about 4 hours spent on the weekly problem sets.
+
+Additional practice problems. For those of you who wish to dive even deeper into the subject, you can find a good collection of problems at the end of each chapter of the print edition of the book, whose solutions are available online.
+Discussion
+Topic: Unit 0: Overview:Course introduction, objectives, and study guide / 4. Study guide
+Filter:
+Sort:
+
+There are no posts in this topic yet.
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 0: Overview  /  Syllabus, Calendar, and grading policy
+
+# 1. Syllabus
+
+ The weekly deadlines for lecture exercises and Problem sets are Wednesdays 11:59AM UTC .
+
+The closing times for exams are Tuesdays 11:59AM UTC .
+
+The release dates of lecture exercises, homework, and exams are roughly two weeks before the respective due dates.
+
+Please refer to the “Dates" tab for due dates. The syllabus below and calendar on the next page include both the release and due dates.
+
+Warning on due time: All deadlines are at 11:59AM UTC . Note the AM and the UTC time. Please find the corresponding time at your current location. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Grading policy
+
+Grading policy
+
+Your overall score in this class will be a weighted average of your scores for the different components, with the following weights:
+
+20% for the lecture exercises (divided equally among 21 (out of 24) lectures)
+20% for the problem sets (divided equally among 9 (out of 10) problem sets)
+18% for the first midterm exam (timed)
+18% for the second midterm exam (timed)
+24% for the final exam (timed)
+
+To earn a verified certificate for this course, you will need to obtain an overall score of 60% or more of the maximum possible overall score.
+
+Lecture Exercises and Problem Sets
+
+The lowest 2 scores among the 23 lectures will be dropped, so only 21 out of 23 lectures will count . The lowest 1 score among the 10 problem sets will be dropped, so only 9 out of 10 problem sets will count .
+
+This policy is to accommodate for scheduling conflict, illness, or events which might deter you from completing the work before the deadline with the best grades you can. However, we still fully expect you to learn the material for any dropped assignments, and the exams will cover everything.
+
+Note that not every problem set or set of lecture exercises will have the same number of raw points. For example, Problem Set 1 may have 30 points and Problem Set 2 may have 35 points. However, each one receives the same weight for the purposes of calculating your overall score.
+
+As an illustrative example, if you receive 20 points out of 30 on Problem Set 1, this will contribute 20/30 * (20%)/9 = 1.48% to your overall score. Similarly, if you receive 30 points out of 35 on Problem Set 2, this will contribute 30/35 * (20%)/9 = 1.9% to your overall score.
+
+Under the “Progress" tab at the top, you can see your score broken down for each assignment, as well as a summary plot.
+
+Timed Exams
+
+The 2 midterm exams and one final exam are timed exams . This means that each exam is available for approximately a week, but once you open the exam, there is a limited amount of time (48 hours), counting from when you start, within which you must complete the exam. Please plan in advance for the exams. If you do not complete the whole exam during the allowed time, you will miss the points associated with the questions that have not been answered. The exams are designed to assess your knowledge. There are no extensions granted to these deadlines. You can find the exam dates on the calendar on the previous page.
+
+Note that the timed exams cannot be completed using the edX mobile app.
+
+MITx Committment to Accessibility
+
+If you have a disability-related request regarding accessing an MITx course, including exams, please contact the course team as early in the course as possible (at least 2 weeks in advance of exams opening) to allow us time to respond in advance of course deadlines. Requests are reviewed via an interactive process to meet accessibility requirements for learners with disabilities and uphold the academic integrity for MITx. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 0: Overview  /  Homework mechanics and standard notation
+
+# 1. Checking and submitting an answer
+
+
+
+Checking and submitting an answer
+
+For each problem, you will have between 2 to 5 attempts to submit an answer, with the exception of problems where an attempt essentially reveals the answer (e.g., True/False questions), for which you will be limited to a single attempt.
+
+To submit your answer, click the “Submit " button. This will automatically submit the problem for grading purposes, and the edX platform is able to verify your answer and give you immediate feedback as to whether or not your answer is correct. To save your answer without submitting it for grading purposes, click the “Save" button. Your answer will be restored when you return to the problem.
+
+The number of attempts allowed as well as the number of attempts you've already made will always be visible on a problem's page at the bottom, next to the “Check" button. Please note that for problems consisting of multiple parts, hitting the button will count as an attempt for all parts of the problem. Unfortunately, it is not possible to submit answers for one part at a time.
+
+For lecture exercises, a “Show Answer(s)" button will appear immediately after you submit the correct answer or use all of your attempts. Clicking this button will reveal the correct answers and solutions.
+
+For homework problems, the “Show Answer(s)" button will appear after the due date of the homework.
+
+You are strongly encouraged to look at the solutions even if your answer is correct.
+
+Answer formats
+
+This course will use several answer formats:
+
+    Multiple choice : Select the correct option from the dropdown menu or radio buttons.
+
+    Numerical answers : Enter a number, in decimal (e.g., '3.14159'), in fractional form (e.g., '22/7'), or as a numerical expression (i.e. an expression you would enter in a calculator, e.g. '4*(3.56)/(2*(1001)'). Do not enter any non-numerical letters or symbols other than well-known mathematical constants (these will be covered in the standard notation table on the next page). Exact expressions are encouraged, but to account for rounding, the system will accept a range of answers as correct. Unless otherwise specified in the problem, the default tolerance range will be +/-3% of the correct answer.
+
+    Symbolic answers : Some problems will ask for a symbolic answer (e.g., 'n*(n+1)/2'). See the next section on “Standard notation" for details on how to submit such answers. 
+
+Below are some example problems for you to familiarize yourselves with how these problem types work with different number of attempts. These problems are not graded and have no impact on your grade.
+
+
+
+##  Sample numerical problem
+0 points possible (ungraded)
+
+This problem has 20 attempts. If you get an answer wrong, you can simply try again until you run out of attempts.
+
+Also try the “Save" button. It will save your answer without submission.
+
+In this problem, just like in any lecture exercises, you will have access to the “Show Answer" button once you have submitted the correct answer, run out of problem attempts, or when the due date has passed. Note that in homework problems, the “Show Answer" button will not appear until after the due dates.
+
+
+
+## How many lectures are there in this course?
+
+incorrect
+
+You have used 2 of 20 attempts Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Incorrect
+Sample Multiple Choice
+0 points possible (ungraded)
+
+
+[][Solution:]
+
+There are 26 lectures, 11 problem sets, and 3 exams.
+
+You have used 3 of 20 attempts Some
+
+
+
+## Which choice is correct?
+
+incorrect
+correct
+incorrect
+incorrect
+unanswered
+
+You have used 0 of 2 attempts Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+
+
+
+## Sample Drop-down Multiple Choice
+0 points possible (ungraded)
+
+Another format of multiple choice problems uses the dropdown menu. Often, true-or-false questions will be in this form.
+
+Note also that for any problem that contains multiple parts, you will be able to hit the “Submit" button only after you have answered all parts.
+
+Which of the following is true?
+
+unsubmitted
+
+Which of the following is false?
+
+unanswered
+
+You have used 0 of 1 attempt Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+
+Any questions?
+
+Click “Show Discussion" below to see discussions on homework mechanics. Remember to search for the topic before adding a new post!
+Discussion
+Topic: Unit 0: Overview:Homework mechanics and standard notation / 1. Checking and submitting an answer
+Filter:
+Sort:
+
+    unanswered question
+    [STAFF] How many lectures are there?
+    Hello! I got the answer correct to the first question correct with a bit of trial and error, but on the previous page it gives us a few different numbers, and none of them work. Under the scoring breakdown we see: > 20% for the lecture exercises (divided equally among 21 (out of 24) lectures) Then a few lines later: > The lowest 2 scores among the 23 lectures will be dropped, so only 21 out of 23 lectures will count . None of those numbers work in question 1 on this page. I did a search on the previous page for the answer that eventually got marked correct, and got no results. Is this an error? Thanks!
+    7 comments 
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Standard notation
+
+ Many exercises and problems throughout the course will ask you to provide an algebraic answer in terms of symbols. Please follow the guidelines below when entering your responses. Below your answer textbox, the system will also display, in a "pretty" format, what it has interpreted your input to be. However, this display is not perfect (for example, it does not catch all cases of missing close parentheses) so please also check your text input carefully.
+
+
+    Symbols are case-sensitive: a and A are different – make sure to use the correct case as specified in the problem
+
+
+    Parentheses: make sure that your parentheses are properly balanced – each open parenthesis should have a matching close parenthesis!
+
+
+    Elementary arithmetic operations: use the symbols + , - , * , / for addition, subtraction, multiplication, and division, respectively
+        1 + bc - d/e should be entered as 1+b*c-d/e 
+
+
+    For multiplication, use * explicitly:
+
+        in the example above, enter b*c ; do NOT enter bc
+        for 2n(n + 1), enter 2*n*(n+1) ; do NOT enter 2n(n+1)
+        although the "pretty" display underneath your answer looks correct if you do not include * s, your answer will be marked incorrect! 
+
+
+    Exponents: use the symbol ^ to denote exponentiation
+
+        2**n should be entered as 2^n
+        x**(n+1) should be entered as x^(n+1) 
+
+
+    Square root: use the string of letters sqrt , followed by enclosing what is under the square root in parentheses
+
+        sqrt(-1) should be entered as sqrt(-1) 
+
+
+    Mathematical constants: use the symbol e for the base of the natural logarithm, e; use the string of letters pi for Pi
+        e**(iPi) + 1 should be entered as e^(i*(pi))+1 
+
+
+    Order of operations: 1) parentheses, 2) exponents and roots, 3) multiplication and division, 4) addition and subtraction
+        (1/(sqrt(2Pi)) * e^((x**2)/2)) should be entered as (1/sqrt(2*(pi)))*e^(-(x^2)/2)
+
+        a/b*c is interpreted as (a/b) * c; enter a/(b*c) for a/(bc)
+
+        When in doubt, use additional parentheses to remove possible ambiguitites 
+
+
+    Natural logarithm: although in lectures and solved problems we will sometimes use the notation "log" (instead of "ln"), you should use the string of letters ln , followed by the argument enclosed in parentheses
+
+        ln(2x) should be entered as ln(2*x) 
+
+
+    Trigonometric functions: use the usual 3-letter symbols to denote the standard trigonometric functions
+        sin(x) should be entered as sin(x) 
+
+
+    Greek letters: use the Latin-character name to denote each Greek letter
+        (Rho*e)^(- Rho*t) should be entered as lambda*e^(-lambda*t)
+        mu*a*Sigma should be entered as mu*alpha*theta 
+
+
+    Factorials, permutations, combinations: you will not need enter these for any symbolic answers; do NOT use ! in your answers as it will not be evaluated correctly! 
+
+
+
+
+ Sample Problem with Symbolic Answers
+0 points possible (ungraded)
+
+Each symbolic entry problem will have a Standard Notation button just above the submit button, where you can find the guidelines above. (See the button below.)
+
+To see how the symbolic answer box works, enter the function[][ 2*e^((x-1)^2/3) using the rules above. That is, type 2*e^((x-1)^2/3)] into the answer box.
+
+Below the answer box, there is a display box that shows how the system interpreted your formula. (You will get an error if you try to enter variables, like z, that are unspecified in the problem. You will get an error as you are typing if you have only one half “(" of a parenthesis. Just continue typing, and when you enter the closing parenthesis “)", the error will go away.)
+
+unanswered
+
+Loading
+
+? STANDARD NOTATION
+
+You have used 0 of 25 attempts Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+
+Any questions?
+
+Click “Show Discussion" below to see discussions on Standard Notation. Remember to search for the topic before adding a new post!
+Discussion
+Topic: Unit 0: Overview:Homework mechanics and standard notation / 2. Standard notation
+Filter:
+Sort:
+
+    unanswered question
+    Cubic root or root of 4-th and more power
+    How should I denote the root with 3 or more power in the answer field?
+    1 comments
+    unanswered question
+    Does anyone cannot see the notations?
+    It is somehow replaced by [Math Processing Error]...
+    1 comments
+    unanswered question
+    Is three a full Cheat-sheet of what can be filled out ?
+    Although the boundaries of what is and is not allowed is fairly clear it would be helpful to have a cheat-sheet of what is allowed to fill out. Does this exist ?
+    1 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 0: Overview  /  Discussion forum and collaboration guidelines
+
+# 1. Discussion Forum guidelines
+
+Discussion forum overview
+
+The course provides an online discussion forum for you to communicate with the course team and other learners. You may access the forum through the “Discussion" tab at the top of the page, as well as through many embedded discussions within each unit. We recommend using the embedded discussions within each unit to discuss topics related to a specific unit's materials, whether it's lectures, solved problems, or problem set problems. Please see the guidelines below for more information on how to use these embedded discussions.
+
+For other more general discussions, you may use the “Discussion" tab at the top of the page. When creating a new post, please choose one of the following categories that best describes your post:
+
+    Introductions: Introduce yourself to your fellow learners and find out more about them!
+
+    MicroMasters: Ask questions related to the MITx Micromaster Program in Statistics and Data Science and meet other MicroMasters fellows!
+
+    Course Feedback: Let the course team know how you are finding the course, what you think works well, and what you would like to see improved.
+
+    Technical Problems: Let the course team know about any technical issues you are dealing with (e.g., playing videos, entering answers, etc).
+
+    General: Other general discussions. 
+
+Discussion forum guidelines
+
+The discussion forum is the main way for you to communicate with the course team and other learners. We hope it contributes to a sense of community and serves as a useful resource for your learning. Here are some guidelines to help you successfully navigate and interact on the forum:
+
+    Use discussion while working through the material. Beginning with Unit 1, each lecture will contain an embedded discussion located at the bottom of the lecture overview clip, which is the first or second clip of that lecture sequence. You should discuss anything related to that lecture's video clips or exercises there. Click “Show Discussion" to see all discussions associated with the lecture, and click “Add a Post" to post a new topic. In addition, every solved problem and problem set problem will have its own embedded discussion located at the bottom of their respective pages. As with the lecture discussions, click “Show Discussion" and “Add a Post" to see and create discussion topics related to that specific problem. We recommend that you use these in-page discussion boards to help focus discussions on specific topics.
+
+    Use informative topic titles and tags. To make it easier to identify relevant discussion topics, please use informative titles and tags when creating a new discussion topic. We suggest using titles or tags that are as informative as possible, e.g., “Lecture 1 / 4. Exercise: Sample space, clarify part 2"
+
+    Be very specific. Provide as much information as possible about what you need help for: Which part of what problem or video? Why do you not understand the question? Do you need help understanding a particular concept? What have you tried doing so far? Use a descriptive title to your post. This will attract the attention of other learners having the same issue.
+
+    Observe the honor code. We encourage collaboration and help, but please do not ask for nor post problem solutions.
+
+    Upvote good posts. This applies to questions and answers. Click on the green plus button so that good posts can be found more easily.
+
+    Search before asking. The forum can become hard to use if there are too many threads, and good discussions happen when people participate in the same thread. Before asking a question, use the search feature by clicking on the magnifying glass on the left-hand side.
+
+    Write clearly. We know that English is a second language for many of you but correct grammar will help others to respond. Avoid ALL CAPS, abbrv of wrds (abbreviating words), and excessive punctuation!!!! 
+
+Please Introduce Yourself!
+
+Let's get started by introducing yourselves on the discussion forum. A lot of the learning in this class will happen in your interactions with each other.
+
+Click on the post titled “Introduce yourself!" below, and respond to it by telling everyone your name, where you are from, why you are taking this course, and whatever else you would like to share! Your post will be indexed in the “Introductions" category in the forum.
+Discussion
+Topic: Introductions / Please introduce yourself
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1. Discussion Forum guidelines
+
+
+
+We encourage you to interact with your fellow learners and engage in active discussion about the course. Please use the guidelines below for acceptable collaboration.
+
+The staff will be proactive in removing posts and replies in the discussion forum that have stepped over the line.
+
+    Given a problem, it is ok to discuss the general approach to solving the problem.
+
+    You can work jointly to come up with the general steps for the solution.
+
+    It is ok to get a hint, or several hints for that matter, if you get stuck while solving a problem.
+
+    You should work out the details of the solution yourself.
+
+    It is not ok to take someone else's solution and simply copy the answers from their solution into your checkboxes.
+
+    It is not ok to take someone else's formula and plug in your own numbers to get the final answer.
+
+    It is not ok to post answers to homework and lab problems before the submission deadline.
+
+    It is not ok to look at a full step-by-step solution to a problem before the submission deadline.
+
+    It is ok to have someone show you a few steps of a solution where you have been stuck for a while, provided of course, you have attempted to solve it yourself without success.
+
+    After you have collaborated with others in generating a correct solution, a good test to see if you were engaged in acceptable collaboration is to make sure that you are able to do the problem on your own. 
+
+Discussion
+Topic: Unit 0: Overview:Discussion forum and collaboration guidelines / 2. Collaboration guidelines
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 0: Overview  /  Textbook information
+
+# 1. Textbook
+
+
+
+The class follows closely the text Introduction to Probability, 2nd edition, by Bertsekas and Tsitsiklis, Athena Scientific, 2008; see the publisher's website for more information.
+
+The materials provided by this course are self-contained, and the texbook is not required, but it is recommended - several past learners have found it to be a useful complement.
+
+Order Information
+
+The recommended (though not required) textbook is now available on Google play as an ebook, with a discount code–XUTUXQSURT2NN that expires February 28 , specifically for learners enrolled in this course.
+
+If interested in purchasing a physical copy of the textbook, it is available through Amazon.
+
+Summary Tables
+
+Furthermore, the publisher has made available the summary tables that are included in the textbook. These can be found under the “Resources" tab, or directly by following this link.
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/1
+In various places within the courseware, there will also be links to specific sections and pages to the excerpts from the textbook relevant to the material at hand.
+
+Textbook Errata
+
+Textbook errata can be found here. Ignore “Corrections to the 1st and 2nd printing." These do not apply to the currently available printed version.
+Discussion
+Topic: Unit 0: Overview:Textbook information / 1. Textbook
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 1. MicroMasters
+
+MITx/IDSS MicroMasters Program in Statistics and Data Science
+
+
+
+MITx/IDSS MicroMasters Program in Statistics and Data Science
+
+This course is part of the MITx/IDSS Micromaster Program in Statistics and Data Science. Welcome to the program!
+
+About the Program
+
+The MicroMasters program in Statistics and Data Science (SDS) was developed by MITx and the MIT Institute for Data, Systems, and Society (IDSS). It is a multidisciplinary approach comprised of four online courses and a virtually proctored exam that will provide you with the foundational knowledge essential to understanding the methods and tools used in data science, and hands-on training in data analysis and machine learning. You will dive into the fundamentals of probability and statistics, as well as learn, implement, and experiment with data analysis techniques and machine learning algorithms. This program will prepare you to become an informed and effective practitioner of data science who adds value to an organization.
+
+Anyone can enroll in this MicroMasters program. It is designed for learners who want to acquire sophisticated and rigorous training in data science without leaving their day job but without compromising quality. There is no application process, but college-level calculus and comfort with mathematical reasoning and Python programming are highly recommended if you want to excel.
+
+All the courses of this program are taught by MIT faculty and administered by Institute for Data, Systems, and Society (IDSS), at a similar pace and level of rigor as an on-campus course at MIT. This program brings MIT's rigorous, high-quality curricula and hands-on learning approach to learners around the world—at scale.
+
+What You'll Learn
+
+    Master the foundations of data science, statistics, and machine learning
+
+    Analyze big data and make data-driven predictions through probabilistic modeling and statistical inference; identify and deploy appropriate modeling and methodologies in order to extract meaningful information for decision making
+
+    Develop and build machine learning algorithms to extract meaningful information from seemingly unstructured data; learn popular unsupervised learning methods, including clustering methodologies and supervised methods such as deep neural networks
+
+    Master techniques in modern data analysis to leverage big datasets; use python and R skillfully to analyze data 
+
+How to earn the MicroMasters credential
+
+To earn the MicroMasters credential in statistics and data science, you must successfully pass and receive a Verified Certificate in each of the 3 core courses and 1 of the 2 electives listed below, and pass the final Capstone Exam:
+
+Core Courses: Complete 3 of 3
+
+    6.431x Probability–the Science of Uncertainty and Data
+
+    18.6501x Fundamentals of Statistics
+
+    6.86x Machine Learning with Python–From Linear Models to Deep Learning 
+
+Electives: Complete 1 of 2
+
+    6.419x Data Analysis: Statistical Modeling and Computation in Applications
+
+    14.310x/Fx Data Analysis in Social Sciences 
+
+Capstone Exams (Virtually Proctored)
+
+    DS-CFx Capstone Exam in Statistics and Data Science 
+
+All the courses are taught by MIT faculty at a similar pace and level of rigor as an on-campus course at MIT.
+
+These courses originate from different academic departments at MIT. Much like a multi-disciplinary program on campus, the course structure, lecture style, effort requirement is different for each course. We hope that the program as a whole will allow you to achieve competence enough to get started on your own unique data science journey, be it further studies and research, or applications to real life problems.
+
+More information
+
+If you are interested in the MicroMasters program, visit https://www.edx.org/micromasters/mitx-statistics-and-data-science .
+
+For more detail on this program and credit pathways, please visit the MITx MicroMasters Portal, which includes a “Contact us" link at the very bottom left. You may also find the FAQ helpful.
+
+Finally, you can start connecting with fellow MicroMasters learners on the discussion forum!
+Discussion
+Topic: Unit 0: Overview:MicroMasters, Certification, and Honor Pledge / 1. MicroMasters
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Certification
+
+To earn a Verified Certificate in this course, you need to:
+
+    Upgrade your status to be a verified learner - The fee is $300.
+
+    Pass the course - at least 60% on your final grade. 
+
+You have limited time to switch to a Verified Certificate learner. See the EdX FAQ for more details on certificates.
+
+Note: It is your responsibility to make sure that your ID verification is valid during the whole course.
+
+A verified certificate indicates that you have successfully completed the course, but will not include a specific grade. Certificates are issued by edX under the name of MITx and are delivered online through your dashboard on edx.org.
+Discussion
+Topic: Unit 0: Overview:MicroMasters, Certification, and Honor Pledge / 2. Certification
+Filter:
+Sort:
+
+There are no posts in this topic yet.
+
+
+
+
+
+
+
+
+
+
+
+
+# 3. EdX Honor Code Pledge
+
+## EdX Honor Code Pledge
+0 points possible (ungraded)
+
+By enrolling in an EdX course, you have already agreed with the EdX Honor Code, which means that you will do the following. Please check all boxes to indicate that you agree.
+
+Complete all graded material (graded assignments and exams) with your own work and only your own work. You will not submit the work of any other person or have anyone else submit work under your name.
+Maintain only one user account and not let anyone else use your username and/or password. Having two user accounts registered in this course will constitute cheating. Not engage in any activity that would dishonestly improve your results, or improve or hurt the results of others."."Not collaborate with anyone other than staff on the exam questions. This means comparing answers, working as teams, or sharing answers in any way.
+Not post answers to any problems that are used to assess learner performance.
+Always be polite and respectful when communicating across the platform (with other learners and the staff).
+correct
+
+We will strictly enforce this honor code pledge. Learners found violating this pledge will be dealt with directly. If we become aware of any suspicious activity we reserve the right to remove credit, not award a certificate, revoke a certificate, ban from this and other courses in the MITx MicroMasters Program in Statistics and Data Science as well as notify edX for other actions. We take academic honesty very, very seriously at MIT. With the introduction of the MicroMasters Credential, the importance of honesty in work has been elevated to a much higher level than before. We will diligently monitor this and be very proactive.
+You have used 1 of 2 attempts 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Entrance Survey  /  Important Preliminary Survey
+
+# no time wasting here, you've already waste me too much of time
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 1: Probability models and axioms  /  Lec. 1: Probability models and axioms
+
+# 1. Motivation
+
+Let's face it.  Life is uncertain.  But one thing is certain.  We need a way to make predictions and make decisions under uncertainty.  Probabilistic models can help you answer questions, such as--What are the odds that there will be a long line at the supermarket checkout counter?  How likely is it that my GPS device is off by more than 10 meters?  What are the odds that I will have a car accident next year?  How likely is it that the air traffic control radar will miss the approaching plane?  Should I invest in the stock market now or wait?  Can I use a probabilistic model of social networking data to create a marketing campaign?  
+
+How do we use a statistical model to decide if a medical treatment is effective?  How do I model the huge amounts of data that are now becoming available in so many different fields, big data, as they call it, and extract useful information?  I am John Tsitsiklis.  And I'm Patrick Jaillet.  Our mission in this class is to give you the tools to model and analyze uncertain situations no matter what your discipline.  To do that, we will use the language and precision of mathematics, but we will also build your intuition.  
+
+This is an ambitious class.  The online version is at the same level as the one offered to MIT students.  It covers a lot of material.  Beyond the basics, you will learn about random processes and about extracting information from data.  In the end, you will be able to make much better sense of the uncertainty around you.  The rewards are certain to come.  Let's face it.  Life is uncertain.  
+
+[][This is marketing video, do not watch or read it]
+
+
+
+
+
+
+
+
+
+
+
+# 2. Lecture 1 overview and slides
+
+This lecture sequence introduces the basic structure of probability models, including the sample space and the axioms that any probabilistic model should obey, together with some consequences of the axioms and some simple examples.
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/21d89d53a74686e23c0d37a0fe2e1c4b/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_L01-Overview.pdf
+
+Lecture slides: [clean] [annotated]
+https://courses.edx.org/assets/courseware/v1/72030270676178c44564492ac38555d2/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L01cleanslides.pdf
+https://courses.edx.org/assets/courseware/v1/763ee7dc9d36ae6414892cf0a457cb0d/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L01annotatedslides.pdf
+
+The same material, in live lecture hall format, can be found here and here.
+http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-041-probabilistic-systems-analysis-and-applied-probability-fall-2010/video-lectures/lecture-1-probability-models-and-axioms/
+http://www.youtube.com/watch?v=j9WZyLZCBzs
+
+You can also take this occasion to review some concepts related to sets (especially De Morgan's laws), sequences, and infinite series, by watching the “Mathematical background" sequence of clips.
+
+More information is given in the text:
+Sets: Section 1.1
+Probabilistic models: Section 1.2
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/3
+
+
+
+Discussion
+Topic: Unit 1: Probability models and axioms:Lec. 1: Probability models and axioms / 2. Lecture 1 overview and slides
+Filter:
+Sort:
+
+There are no posts in this topic yet.
+
+
+
+
+
+
+
+
+
+# 3. Sample space
+
+Putting together a probabilistic model--that is, a model of a random phenomenon or a random experiment--involves two steps.  First step, we describe the possible outcomes of the phenomenon or experiment of interest.  Second step, we describe our beliefs about the likelihood of the different possible outcomes by specifying a probability law.  
+
+Here, we start by just talking about the first step, namely, the description of the possible outcomes of the experiment.  So we carry out an experiment.  For example, we flip a coin.  Or maybe we flip five coins simultaneously.  Or maybe we roll a die.  Whatever that experiment is, it has a number of possible outcomes, and we start by making a list of the possible outcomes--or, a better word, instead of the word "list", is to use the word "set", which has a more formal mathematical meaning.  
+
+So we create a set that we usually denote by capital omega.  That set is called the sample space and is the set of all possible outcomes of our experiment.  The elements of that set should have certain properties.  Namely, the elements should be mutually exclusive and collectively exhaustive.  What does that mean?  *Mutually exclusive* means that, if at the end of the experiment, I tell you that this outcome happened, then it should not be possible that this outcome also happened.  At the end of the experiment, there can only be one of the outcomes that has happened.  Being *collectively exhaustive* means something else-- that, together, all of these elements of the set exhaust all the possibilities.  So no matter what, at the end, you will be able to point to one of the outcomes and say, that's the one that occurred.  
+
+To summarize--this set should be such that, at the end of the experiment, you should be always able to point to one, and exactly one, of the possible outcomes and say that this is the outcome that occurred.  Physically different outcomes should be distinguished in the sample space and correspond to distinct points.  But when we say physically different outcomes, what do we mean?  We really mean different in all relevant aspects but perhaps not different in irrelevant aspects.  Let's make more precise what I mean by that by looking at a very simple, and maybe silly, example, which is the following.  Suppose that you flip a coin and you see whether it resulted in heads or tails.  So you have a perfectly legitimate sample space for this experiment which consists of just two points--heads and tails.  Together these two outcomes exhaust all possibilities.  And the two outcomes are mutually exclusive.  So this is a very legitimate sample space for this experiment.  
+
+Now suppose that while you were flipping the coin, you also looked outside the window to check the weather.  And then you could say that my sample space is really, heads, and it's raining.  Another possible outcome is heads and no rain.  Another possible outcome is tails, and it's raining, and, finally, another possible outcome is tails and no rain.  This set, consisting of four elements, is also a perfectly legitimate sample space for the experiment of flipping a coin.  The elements of this sample space are mutually exclusive and collectively exhaustive.  
+
+Exactly one of these outcomes is going to be true, or will have materialized, at the end of the experiment.  So which sample space is the correct one?  This sample space, the second one, involves some irrelevant details.  So the preferred sample space for describing the flipping of a coin, the preferred sample space is the simpler one, the first one, which is sort of at the right granularity, given what we're interested in.  But ultimately, the question of which one is the right sample space depends on what kind of questions you want to answer.  For example, if you have a theory that the weather affects the behavior of coins, then, in order to play with that theory, or maybe check it out, and so on, then, in such a case, you might want to work with the second sample space.  This is a common feature in all of science.  Whenever you put together a model, you need to decide how detailed you want your model to be.  And the right level of detail is the one that captures those aspects that are relevant and of interest to you.  
+
+
+
+
+
+
+
+
+
+
+
+# 4. Exercise: Sample space
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Sample space
+2/2 points (graded)
+
+For the experiment of flipping a coin, and for each one of the following choices, determine whether we have a legitimate sample space:
+
+omega = {Heads and it is raining, Heads and it is not raining, Tails}
+T
+correct
+
+omega = {Heads and it is raining, Tails and it is not raining, Tails}
+F
+correct
+
+You have used 1 of 1 attempt Some
+
+
+
+
+
+
+
+
+
+
+# 5. Sample space examples
+
+Let us now look at some examples of sample spaces.  Sample spaces are sets.  And a set can be discrete, finite, infinite, continuous, and so on.  Let us start with a simpler case in which we have a sample space that is discrete and finite.  The particular experiment we will be looking at is the following.  We take a very special die, a tetrahedral die.  So it's a die that has four faces numbered from 1 up 4.  We roll it once.  And then we roll it twice [again].  Were not dealing here with two probabilistic experiments.  *We're dealing with a single probabilistic experiment that involves two rolls of the die within that experiment*.  What is the sample space of that experiment?  
+
+Well, one possible representation is the following.  We take note of the result of the first roll.  And then we take note of the result of the second roll.  And this gives us a pair of numbers.  Each one of the possible pairs of numbers corresponds to one of the little squares in this diagram.  For example, if the first roll is 1 and the second is also 1, then this particular outcome has occurred.  If the first roll is it 2 and the second is a 3, then this particular outcome occurs.  If the first roll is a 3 and then the next one is a 2, then this particular outcome occurs.  
+
+Notice that these two outcomes are pretty closely related.  In both cases, we observe a 2 and we observe a 3.  But we distinguish those two outcomes because in those two outcomes, the 2 and the 3 happen in different order{because its an experiencement with 2 orders}.  And the order in which they appear may be a detail which is of interest to us.  And so we make this distinction in the sample space.  So we keep the (3, 2) and the (2, 3) as separate outcomes.  
+
+Now this is a case of a model in which the probabilistic experiment can be described in phases or stages.  We could think about rolling the die once and then going ahead with the second roll.  So we have two stages.  A very useful way of describing the sample space of experiments--whenever we have an experiment with several stages, either real stages or imagined stages.  So a very useful way of describing it is by providing a sequential description in terms of a tree.  So a diagram of this kind, we call it a tree.  You can think of this as the root of the tree from which you start.  And the endpoints of the tree, we usually call them the leaves.  So the experiment starts.  We carry out the first phase, which in this case is the first roll.  And we see what happens.  So maybe we get a 2 in the first roll.  And then we take note of what happened in the second roll.  And maybe the result was a 3.  So we follow this branch here.  And we end up at this particular leaf, which is the leaf associated with the outcome 2, 3.  Notice that in this tree we once more have a distinction.  The outcome 2 followed by a 3 is different from the outcome 3 followed by a 2, which would correspond to this particular place in the diagram.  In both cases, we have 16 possible outcomes.  4 times 4 makes 16.  And similarly, if you count here, the number of leaves is equal to 16.  
+
+The previous example involves a sample space that was discrete and finite.  There were only 16 possible outcomes.  [][But sample spaces can also be infinite].  And they could also be continuous sets.  Here's an example of an experiment that involves a continuous sample space.  So we have a rectangular target which is the unit square.  And you throw a dart on that target.  And suppose that you are so skilled that no matter what, when you throw the dart, it always falls inside the target.  Once the dart hits the target, you record the coordinates x and y of the particular point that resulted from your dart throw.  And we record x and y with infinite precision.  So x and y are real numbers.  So in this experiment, the sample space is just the set of x, y pairs that lie between 0 and 1.  
+
+
+
+
+
+
+
+
+
+# 6. Exercise: Tree representations
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Tree representations 
+
+Paul checks the weather forecast. If the forecast is good, Paul will go out for a walk. If the forecast is bad, then Paul will either stay home or go out. If he goes out, he might either remember or forget his umbrella. In the tree diagram below, identify the leaf that corresponds to the event that the forecast is bad and Paul stays home. 
+
+![Think about this diagram, is this legit](C:/Users/qp/Pictures/images_texshop_image.jpg)
+
+1
+2
+3
+4
+correct
+
+You have used 1 of 2 attempts Some
+
+
+
+
+
+
+
+
+
+
+
+# 7. Probability axioms
+
+We have so far discussed the first step involved in the construction of a probabilistic model.  Namely, the construction of a sample space, which is a description of the possible outcomes of a probabilistic experiment.  We now come to the second and much more interesting part.  We need to specify which outcomes are more likely to occur and which ones are less likely to occur and so on.  And we will do that by assigning probabilities to the different outcomes.  
+
+However, as we try to do this assignment, we run into some kind of difficulty, which is the following.  Remember the previous experiment involving a [][continuous sample space], which was the unit square and in which we throw a dart at random and record the point that occurred.  In this experiment, what do you think is the probability of a particular point?  Let's say what is the probability that my dart hits exactly the center of this square.  Well, this probability would be essentially 0.  Hitting the center exactly with infinite precision should be 0.  And so it's natural that in such a continuous model any individual point should have a 0 probability.  
+
+For this reason instead of assigning probabilities to individual points, we will instead assign probabilities to whole sets, that is, to subsets of the sample space.  So here we have our sample space, which is some abstract set omega.  Here is a subset of the sample space.  Call it capital A. We're going to assign a probability to that subset A, which we're going to denote with this notation, which we read as the probability of set A. So probabilities will be assigned to subsets.  And these will not cause us difficulties in the continuous case because even though individual points would have 0 probability, if you ask me what are the odds that my dart falls in the upper half, let's say, of this diagram, then that should be a reasonable positive number.  So even though individual outcomes may have 0 probabilities, sets of outcomes in general would be expected to have positive probabilities.  So coming back, *we're going to assign probabilities to the various subsets of the sample space*.  
+
+And here comes a piece of terminology, that **a subset of the sample space is called an event**.  Why is it called an event?  Because once we carry out the experiment and we observe the outcome of the experiment, either this outcome is inside the set A and in that case we say that event A has occurred, or the outcome falls outside the set A in which case we say that event A did not occur.  Now we want to move on and describe certain rules.  The rules of the game in probabilistic models, which are basically the rules that these probabilities should satisfy.  They shouldn't be completely arbitrary.  
+
+First, by convention, probabilities are always given in the range between 0 and 1.  Intuitively, 0 probability means that we believe that something practically cannot happen.  And probability of 1 means that we're practically certain that an event of interest is going to happen.  So we want to specify rules of these kind for probabilities.  These rules that any probabilistic model should satisfy are called the axioms of probability theory.  And our first axiom is a nonnegativity axiom.  Namely, probabilities will always be non-negative numbers.  It's a reasonable rule.  The second rule is that if the subset that we're looking at is actually not a subset but is the entire sample space omega, the probability of it should always be equal to 1.  What does that mean?  We know that the outcome is going to be an element of the sample space.  This is the definition of the sample space.  So we have absolute certainty that our outcome is going to be in omega.  Or in different language we have absolute certainty that event omega is going to occur.  And we capture this certainty by saying that the probability of event omega is equal to 1.  These two axioms are pretty simple and very intuitive.  The more interesting axiom is the next one that says something a little more complicated.  
+
+Before we discuss that particular axiom, a quick reminder about set theoretic notation.  If we have two sets, let's say a set A, and another set, another set B, we use this particular notation, which we read as []["A intersection B"] to refer to the collection of elements that belong to both A and B. So in this picture, the intersection of A and B is this shaded set.  We use this notation, which we read as []["A union B"], to refer to the set of elements that belong to A or to B or to both.  So in terms of this picture, the union of the two sets would be this blue set.  After this reminder about set theoretic notation, now let us look at the form of the third axiom.  What does it say?  If we have two sets, two events, two subsets of the sample space, which are disjoint.  So here's our sample space.  And here are the two sets that are disjoint.  In mathematical terms, two sets being disjoint means that their intersection has no elements.  So their intersection is the empty set.  And we use this symbol here to denote the empty set.  So if the intersection of two sets is empty, then the probability that the outcome of the experiments falls in the union of A and B, that is, the probability that the outcome is here or there, is equal to the sum of the probabilities of these two sets.  *This is called the additivity axiom*.  So it says that we can add probabilities of different sets when those two sets are disjoint.  
+
+In some sense we can think of probability as being one pound of some substance which is spread over our sample space and the probability of A is how much of that substance is sitting on top of a set A. So what this axiom is saying is that the total amount of that substance sitting on top of A and B is how much is sitting on top of A plus how much is sitting on top of B. And that is the case whenever the sets A and B are disjoint from each other.  The additivity axiom needs to be refined a bit.  We will talk about that a little later.  Other than this refinement, these three axioms are the only requirements in order to have [][a legitimate probability model].  At this point you may ask, shouldn't there be more requirements?  Shouldn't we, for example, say that probabilities cannot be greater than 1?  Yes and no.  We do not want probabilities to be larger than 1, but we do not need to say it.  As we will see in the next segment, such a requirement follows from what we have already said.  And the same is true for several other natural properties of probabilities.  
+
+
+
+
+
+
+
+
+
+# 8. Exercise: Axioms
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Axioms
+1/1 point (graded)
+
+Let A and B be events on the same sample space, with P(A) = 0.6 and P(B) = 0.7. Can these two events be disjoint?
+
+F
+correct
+
+You have used 1 of 1 attempt Some
+
+
+
+
+
+
+
+
+
+
+# 9. Simple properties of probabilities
+
+The probability axioms are the basic rules of probability theory.  And they are surprisingly few.  But they imply many interesting properties that we will now explore.  First we will see that what you might think of as missing axioms are actually implied by the axioms already in place.  For example, we have an axiom that probabilities are non-negative.  We will show that probabilities are also less than or equal to 1.  We have another axiom that says that the probability of the entire sample space is 1.  We will show a counterpart that the probability of the empty set is equal to 0.  This makes perfect sense.  The empty set has no elements, so it is impossible.  There is 0 probability that the outcome of the experiment would lie in the empty set.  
+
+We also have another intuitive property.  The probability that an event happens plus the probability that the vendor does not happen exhaust all possibilities.  And these two probabilities together should add to 1.  For instance, if the probability of heads is 0.6, then the probability of tails should be 0.4.  Finally, we can generalize the additivity axiom, which was originally given for the case of two disjoint events to the case where we're dealing with the union of several disjoint events.  By disjoint here we mean that the intersection of any two of these events is the empty set.  We will prove this for the case of three events and then the argument generalizes for the case where we're taking the union of k disjoint events, where k is any finite number.  So the intuition of this result is the same as for the case of two events.  
+
+![Think the similarity of 2](C:/Users/qp/Pictures/Screenshots/Screenshot - 3548.png)
+
+But we will derive it formally and we will also use it to come up with a way of calculating the probability of a finite set by simply adding the probabilities of its individual elements.  All of these statements that we just presented are intuitive.  And you do not to really need to be convinced about their validity.  Nevertheless, it is instructive to see how these statements follow from the axioms that we have put in place.  So we will now present the arguments based only on the three axioms that we have available.  And in order to be able to refer to these axioms, let us give them some names, call them axioms A, B, and C.  We start as follows.  Let us look at the sample space and a subset of that sample space.  Call it A. And consider the complement of that subset.  The complement is the set of all elements that do not belong to the set A. So a set together with its  complement make up everything, which is the entire sample space.  
+
+On the other hand, if an element belongs to a set A, it does not belong to its complement.  So the intersection of a set with its complement is the empty set.  Now we argue as follows.  We have that the probability of the entire sample space is equal to 1.  This is true by our second axiom.  *Now the sample space, as we just discussed, can be written as the union of an event and the complement of that event*.  This is just a set theoretic relation.  And next since a set and its complement are disjoint, this means that we can apply the additivity axiom and write this probability as the sum of the probability of event A with the probability of the complement of A. This is one of the relations that we had claimed and which we have now established.  Based on this relation, we can also write that the probability of an event A is equal to 1 minus the probability of the complement of that event.  And because, by the non-negativity axiom this quantity here is non-negative, 1 minus something non-negative is less than or equal to 1.  We're using here the non-negativity axiom.  And we have established another property, namely that probabilities are always less than or equal to 1.  
+
+Finally, let us note that 1 is the probability, always, of a set plus the probability of a complement of that set.  And let us use this property for the case where the set of interest is the entire sample space.  Now, the probability of the entire sample space is itself equal to 1.  And what is the complement of the entire sample space?  The complement of the entire sample space consists of all elements that do not belong to the sample space.  But since the sample space is supposed to contain all possible elements, its complement is just the empty set.  And from this relation we get the implication that the probability of the empty set is equal to 0.  This establishes yet one more of the properties that we had just claimed a little earlier.  
+
+We finally come to the proof of the generalization of our additivity axiom from the case of two disjoint events to the case of three disjoint events.  So we have our sample space.  And within that sample space we have three events, three subsets.  And these subsets are disjoint in the sense that any two of those subsets have no elements in common.  And we're interested in the probability of the union of A, B, and C.  [][How do we make progress?  We have an additivity axiom in our hands, which applies to the case of the union of two disjoint sets].  Here we have three of them.  But we can do the following trick.  We can think of the union of A, B, and C as consisting of the union of this blue set with that green set.  Formally, what we're doing is that we're expressing the union of these three sets as follows.  We form one set by taking the union of A with B. And we have the other set C. And the overall union can be thought of as the union of these two sets.  Now since the three sets are disjoint, this implies that the blue set is disjoint from the green set and so we can use the additivity axiom here to write this probability as the probability of A union B plus the probability of C. And now we can use the additivity axiom once more since the sets A and B are disjoint to write the first term as probability of A plus probability of B. We carry over the last term and we have the relation that we wanted to prove.  This is the proof for the case of three events.  
+
+[][You should be able to follow this line of proof to write an argument for the case of four events and so on].  And you might want to continue by induction.  And eventually you should be able to prove that if the sets A1 up to Ak are disjoint then the probability of the union of those sets is going to be equal to the sum of their individual probabilities.  So this is the generalization to the case where we're dealing with the union of finitely many disjoint events.  
+
+*A very useful application of this comes in the case where we want to calculate the probability of a finite set*.  So here we have a sample space.  And within that sample space we have some particular elements S1, S2, up to Sk, k of them.  And these elements together form a finite set.  What can we say about the probability of this finite set?  [][The idea is to take this finite set that consists of k elements and think of it as the union of several little sets that contain one element each].  So set theoretically what we're doing is that we're taking this set with k elements and we write it as the union of a set that contains just S1, a set that contains just the second element S2, and so on, up to the k-th element.  We're assuming, of course, that these elements are all different from each other.  So in that case, these sets, these single element sets, are all disjoint.  So using the additivity property for a union of k disjoint sets, we can write this as the sum of the probabilities of the different single element sets.  At this point, it is usual to start abusing, or rather, simplifying notation a little bit.  Probabilities are assigned to sets.  [So here we're talking about the probability of a set that contains a single element].  
+
+But intuitively, we can also talk as just the probability of that particular element and use this simpler notation.  So when using the simpler notation, we will be talking about the probabilities of individual elements.  Although in terms of formal mathematics, what we really mean is the probability of this event that's comprised only of a particular element S1 and so on.  
+
+
+
+
+
+
+
+
+
+
+# 10. Exercise: Simple properties
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Simple properties
+4/4 points (graded)
+
+Let A, B, and C be disjoint subsets of the sample space. For each one of the following statements, determine whether it is true or false. Note: "False" means "not guaranteed to be true."
+
+a) P(A) + P(A_comp) + P(B) = P(A U A_comp U B)
+F
+correct
+
+b) P(A) + P(B) <= 1
+T
+correct
+
+c) P(A_comp) + P(B) <= 1
+F
+correct
+
+d) P(A U B U C) >= P(A U B)
+T
+correct
+
+You have used 1 of 1 attempt Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (4/4 points) 
+
+
+
+
+
+
+
+
+
+
+
+
+# 11. More properties of probabilities
+
+We will now continue and derive some additional properties of probability laws which are, again, consequences of the axioms that we have introduced.  The first property is the following.  If we have two sets and one set is smaller than the other--so we have a picture as follows.  We have our sample space.  And we have a certain set, A.  And then we have a certain set, B, which is even bigger.  So the set B is the bigger blue set.  So if B is a set which is larger than A, then, naturally, the probability that the outcome falls inside B should be at least as big as the probability that the outcome falls inside A.  
+
+[][How do we prove this formally]?  The set B can be expressed as a union of two pieces.  One piece is the set A itself.  The second piece is whatever elements of B there are, that do not belong in A. What are these elements?  They are elements that belong to B. And they do not belong to A, which means that they belong to the complement of A.  So we have expressed the set B as the union of two pieces.  Now this piece is A. This piece here is outside A. *So these two pieces are disjoint.  And so we can apply the additivity axiom*, and write that the probability of B is equal to the probability of A plus the probability of the other set.  And since probabilities are non-negative, this expression here is at least as large as the probability of A. And this concludes the proof of the property that we wanted to show.  Indeed, the probability of A is less than or equal to the probability of B.  
+
+The next property we will show is the following.  It allows us to write the probability of the union of two sets for the case now, where the two sets are not necessarily disjoint.  So the picture is as follows.  [][We have our two sets, A and B. These sets are not necessarily disjoint.  And we want to say something about the probability of the union of A and B].  Now the union of A and B consists of three pieces.  One piece is this one here.  *And that piece consists of those elements of A that do not belong to B. So they belong to B complement*.  This set has a certain probability, let's call it little a and indicate it on this diagram.  So a is the probability of this piece.  Another piece is this one here, which is the intersection of A and B. It has a certain probability that we denote by little b.  This is the probability of A intersection B.  And finally, there's another piece, which is out here.  And that piece has a certain probability c.  It is the probability of that set.  And what is that set?  That set is the following.  It's that part of B that consists of elements that do not belong in A. So it's B intersection with the complement of A.  *Now let's express the two sides of this equality here in terms of little a, little b, and little c*, and see whether we get the same thing.  So the probability of A union B. A union B consists of these three pieces that have probabilities little a, little b, and little c, respectively.  And by the additivity axiom, the probability of the union of A and B is the sum of the probabilities of these three pieces.  Let's look now at the right hand side of that equation and see whether we get the same thing.  The probability of A plus the probability of B, minus the probability of A intersection B is equal to the following.  A consists of two pieces that have probabilities little a and little b.  The set B consists of two pieces that have probabilities little b and little c.  And then we subtract the probability of the intersection, which is b.  And we notice that we can cancel here one b with another b.  And what we are left with is a plus b plus c.  So this checks.  And indeed we have this equality here.  We have verified that it is true.  
+
+One particular consequence of the equality that we derived is the following.  Since this term here is always non-negative, this means that *the probability of A union B is always less than or equal to the probability of A plus the probability of B*. This inequality here is quite useful whenever we want to argue that a certain probability is smaller than something.  And it has a name.  It's called the union bound.  
+
+We finally consider one last consequence of our axioms.  And namely, we are going to derive an expression, a way of calculating the probability of the union of three sets, not necessarily disjoint.  So we have our sample space.  And within the sample space there are three sets-- set A, set B, and set C.  We are going to use a set theoretic relation.  [][We are going to express the union of these three sets as the union of three disjoint pieces].  What are these disjoint pieces?  One piece is the set A itself.  The second piece is going to be that part of B which is outside A. So this is the intersection of B with the complement of A.  The third piece is going to be whatever is left in order to form the union of the three sets.  What is left is that part of C that does not belong to A and that does not belong to B. So that part is C intersection with A complement and B complement.  Now this set here, of course, is the same as that set because intersection of two sets is the same no matter in which order we take the two sets.  And similarly, the set that we have here is the same one that appears in that expression.  Now we notice that these three pieces, the red, the blue, and the green, are disjoint from each other.  So by the additivity axiom, the probability of this union here is going to be the sum of the probabilities of the three pieces.  And that's exactly the expression the we have up here.  
+
+
+
+
+
+
+
+
+
+# 12. Exercise: More properties
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: More properties
+1/2 points (graded)
+
+Let A, B, and C be subsets of the sample space, not necessarily disjoint. For each one of the following statements, determine whether it is true or false. Note: “False" means “not guaranteed to be true."
+
+a) P((A n B) U (C n A_com)) <= P(A U B U C)
+T, F, T  {I was initiall choose correct, but then thought we are comparing with P(A n B n C), changed to F, thus failed}
+incorrect
+![](C:/Users/qp/Pictures/pay attention to details, its pro of union instead of intersaction of three set.png)
+# marked area represent the P(C n A_com), and be careful, you are comparing with the union of three sets, not intersection
+
+b) P(A U B U C) = P(A n C_com) + P(C) + P(B n A_com n C_com)
+T
+correct
+
+You have used 1 of 1 attempt Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Partially correct (1/2 points) 
+
+
+
+
+
+
+
+
+
+# 13. A discrete example
+
+Let us now move from the abstract to the concrete.  Recall the example that we discussed earlier where we have two rolls of a tetrahedral die.  So there are 16 possible outcomes illustrated in this diagram.  To continue, now we need to specify a probability law, some kind of probability assignment. To keep things simple, we're going to make the assumption that the 16 possible outcomes are all equally likely.  And each outcome has a probability of 1 over 16.  Given this assumption, we will now proceed to calculate certain probabilities.  Let us look first at the probability that X, which stands the result of the first roll, is equal to 1.  The way to calculate this probability is to identify what exactly that event is in our picture of the sample space, and then calculate.  The event that X is equal to 1 can happen in four different ways that correspond to these four particular outcomes.  Each one of these outcomes has a probability of 1 over 16.  The probability of this event is the sum of the probabilities of the outcomes that it contains.  So it is 4 times 1 over 16, equal to one fourth.  
+
+[][Let now Z stand for the smaller of the two numbers that came up in our two rolls].  So for example, if X is 2 and Y is equal to 3, then Z is equal to 2, which is the smaller of the two.  Let us try to calculate the probability that the smaller of the two outcomes is equal to 4.  Now for the smaller of the two outcomes to be equal to 4, we must have that both X and Y are equal to 4.  So this outcome here is the only way that this particular event can happen.  Since there's only one outcome that makes the event happen, the probability of this event is the probability of that outcome and is equal to 1 over 16.  For another example, let's calculate the probability that the minimum is equal to 2.  **What does it mean that the minimum is equal to 2?  It means that one of the dice resulted in a 2, and the other die resulted in a number that's 2 or larger**.  So we could have both equal to 2.  We could have X equal to 2, but Y larger.  Or we could have Y equal to 2 and X something larger.  
+
+This green event, this green set, is the set of all outcomes for which the minimum of the two rolls is equal to 2.  There's a total of five such outcomes.  Each one of them has probably 1 over 16.  And we have discussed that for finite sets, the probability of a finite set is the sum of the probabilities of the elements of that set.  So we have five elements here, each one with probability 1 over 16.  And this is the answer to this problem.  
+
+This particular example that we saw here is a special case of what is called a discrete uniform law.  In a discrete uniform law, we have a sample space which is finite.  And it has n elements.  And we assume that these n elements are equally likely.  Now since the probability of omega, the probability of the entire sample space, is equal to 1, this means that each one of these elements must have probability 1 over n.  That's the only way that the sum of the probabilities of the different outcomes would be equal to 1 as required by the normalization axiom.  Consider now some subset of the sample space, an event A that, exactly k elements.  *What is the probability of the set A?  It's the sum of the probabilities of its elements*.  There are k elements.  And each one of them has a probability of 1 over n.  And this way we can find the probability of the set A.  So when we have a discrete uniform probability law, we can calculate probabilities by simply counting the number of elements of omega, which is n, finding the number n, and counting the number of elements of the set A. That's the reason why counting will turn out to be an important skill.  And there will be a whole lecture devoted to this particular topic.  
+
+
+
+
+
+
+
+
+# 14. Exercise: Discrete probability calculations
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Discrete probability calculations
+2/2 points (graded)
+
+Consider the same model of two rolls of a tetrahedral die, with all 16 outcomes equally likely. Find the probability of the following events:
+
+a) The value in the first roll is strictly larger than the value in the second roll.
+correct
+
+b) The sum of the values obtained in the two rolls is an even number.
+correct
+
+You have used 2 of 3 attempts Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (2/2 points) 
+
+
+
+
+
+
+
+
+
+# 15. A continuous example
+
+We will now go through a probability calculation for the case where we have a continuous sample space.  We revisit our earlier example in which we were throwing a dart into a square target, the square target being the unit square.  And we were guaranteed that our dart would fall somewhere inside this set.  So our sample space is the unit square itself.  *We have a description of the sample space, but we do not yet have a probability law.  We need to specify one.  The choice of a probability law could be arbitrary.  It's up to us to choose how to model a certain situation.  And to keep things simple, we're going to assume that our probability law is a uniform one, which means that the probability of any particular subset of the sample space is going to be the area of that subset*.  So if we have some subset lying somewhere here and we ask what is the probability that we fall into that subset?  The probability is exactly the area of that particular subset.  Once more, this is an arbitrary choice of a probability law.  There's nothing in our assumptions so far that would force us to make this particular choice.  And we just use it for the purposes of this example.  
+
+So now let us calculate some probabilities.  Let us look at this event.  This is the event that the sum of the two numbers that we get in our experiment is less than or equal to 1/2.  It is always useful to work in terms of a picture and to depict that event in a picture of the sample space.  So in terms of that sample space, the points that make this event to be true are just a triangle that lies below the line, where this is the line, that's x plus y equals 1/2.  Anything below that line, these are the outcomes that make this event happen.  So we're trying to find the probability of this red event.  We have assumed that probability is equal to area.  Therefore, the probability we're trying to calculate is the area of a triangle.  And the area of a triangle is 1/2 times the base of the triangle, which is 1/2 in our case, times the height of the triangle, which is again 1/2 in our case. And the end result is 1/8.  
+
+Let us now calculate another probability.  Now, this is an event that consists of only a single element.  We take the point 0.5, 0.3, which sits somewhere here.  The event of interest is a set, but that set consists of a single point.  So we're asking for the probability that our dart falls exactly on top of that point.  What is it?  Well, it is the area of a set that consists of a single point.  What is the area of a single point?  It is 0.  And similarly for any other single point inside that sample space that we might have considered, the answer is going to be 0.  Let us now abstract from this example, as well as the previous one, and note the following.  
+
+[][Probability calculations involve a sequence of four steps].  Starting with a word description of a problem, of a probabilistic experiment, we first write down the sample space.  Then we specify a probability law.  Let me emphasize again here that this step has some arbitrariness in it.  You can choose any probability law you like, although for your results to be useful it would be good if your probability law captures the real-world phenomenon you're trying to model.  Typically you're interested in calculating the probability of some event.  That event may be described in some loose manner, so you need to describe it mathematically.  And if possible, it's always good to describe it in terms of a picture.  Pictures are immensely useful when going through this process.  And finally, the last step is to go ahead and calculate the probability of the event of interest.  Now, a probability law in principle specifies the probability of every event, and there's nothing else to do.  But quite often the probability law will be given in some implicit manner, for example, by specifying the probabilities of only some of the events. In that case, you may have to do some additional work to find the probability of the particular event that you care about.  This last step sometimes will be easy.  Sometimes it may be complicated.  **But in either case, by following this four-step procedure and by being systematic** you will always be able to come up with a single correct answer.  
+
+
+
+
+
+
+
+
+
+
+
+
+# 16. Exercise: Continuous probability calculations
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Continuous probability calculations
+3/3 points (graded)
+
+Consider a sample space that is the rectangular region [0, 1] X [0, 2], i.e., the set of all pairs (x, y) that satisfy 0 <= x <= 1 and 0 <= y <= 2. Consider a “uniform" probability law, under which the probability of an event is half of the area of the event. Find the probability of the following events:
+
+a) The two components x and y have the same values.
+0
+correct
+
+b) The value, x, of the first component is larger than or equal to the value, y, of the second component.
+1/4
+correct
+
+c) The value of x^2 is larger than or equal to the value of y.
+1/6
+correct
+# Think, Think, Think
+
+You have used 2 of 5 attempts Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Correct (3/3 points) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 17. Countable additivity
+
+We have seen so far an example of a [][probability law] on a *discrete* and *finite* sample space as well as an example with an *infinite and continuous sample space*.  Let us now look at an example involving a *discrete but infinite sample space*.  We carry out an experiment whose outcome is an arbitrary positive integer.  As an example of such an experiment, [][suppose that we keep tossing a coin and the outcome is the number of tosses until we observe heads for the first time].  The first heads might appear in the first toss or the second or the third, and so on.  So in this example, any positive integer is possible.  
+
+And so our sample space is infinite.  Let us not specify a probability law.  **A probability law should determine the probability of every event, of every subset of the sample space*.  That is, the probability of every set of positive integers.  But instead I will just tell you the probability of events that contain a single element.  I'm going to tell you that there is probability 1 over 2 to the n that the outcome is equal to n.  Is this good enough?  Is this information enough to determine the probability of any subset?  Before we look into that question, let us first do a quick sanity check to see whether these numbers that we are given look like legitimate probabilities.  Do they add to 1?  
+![](C:/Users/qp/Pictures/probability calculation discrete but infinite sample space.png)
+![](C:/Users/qp/Pictures/20220904_195259.jpg)
+![](C:/Users/qp/Pictures/20220905_204844.jpg)
+![](C:/Users/qp/Pictures/20220905_212649.jpg)
+Let's do a quick check.  So the sum over all the possible values of n of the probabilities that we're given, which is an [][infinite sum] starting from 1, all the way up to infinity, of 1 over 2 to the n, is equal to the following.  *First we take out a factor of 1/2 from all of these terms, which reduces the exponent from n to n minus 1*.  This is the same as running the sum from n equals 0 to infinity of 1/2 and to the n.  And now we have a usual infinite geometric series and we have a formula for this.  The geometric series has a value of 1 over 1 minus the number whose power we're taking, which is 1/2.  And after we do the arithmetic, this turns out to be equal to 1.  
+
+So indeed, it appears that we have the basic elements of what it would take to have a legitimate probability law.  But now let us look into how we might calculate the probability of some general event.  For example, the probability that the outcome is even{*Think, Why its not 1/2, do you have any element either than odd and even values in a 1 to infinity*}.  We proceed as follows.  The probability that the outcome is even, this is the probability of an infinite set that consists of all the even integers.  We can write this set as the union of lots of little sets that contain a single element each.  So it's the set containing the number 2, the set containing the number 4, the set containing the number 6, and so on.  At this point we notice that we're talking about the probability of a union of sets and these sets are disjoint because they contain different elements.  So we can use an additivity property and say that this is the probability of obtaining a 2, plus the probability of obtaining a 4, plus the probability of obtaining a 6 and so on.  If you're curious about doing this calculation and actually obtaining a numerical answer, you would proceed as follows.  
+
+You notice that this is 1 over 2 to the second power plus 1 over 2 to the fourth power plus 1 over 2 to the sixth power and so on.  Now you factor out a factor of 1/4 and what you're left is 1 plus 1 over 2 to the second power, which is 1/4, plus 1 over 2 to the fourth power, which is the same as 1/4 to the second power and so on.  And now we have 1/4 times the infinite sum of a geometric series, which gives us 1 over 1 minus 1/4.  And after you do the algebra you obtain a numerical answer, which is equal to 1/3.  
+
+[][But leaving the details of the calculation aside, the more important question I want to address is the following.  Is this calculation correct?]  We seem to have used an additivity property at this point.  But the additivity properties that we have in our hands at this point only talk about disjoint unions of finitely many subsets.  Our initial axiom talked about a disjoint union of two subsets and then later on we established a similar property for a disjoint union of finitely many subsets.  But here we're talking about the union of infinitely many subsets.  So this step here is not really allowed by what we have in our hands.  On the other hand, we would like our theory to allow this kind of calculation.  
+
+The way out of this dilemma is to introduce an additional axiom that will indeed allow this kind of calculation.  The axiom that we introduce is the following.  If we have an infinite sequence of disjoint events, as for example in this picture.  We have our sample space.  We have a first event, A1.  We have a second event, A2.  The third event, A3.  And so we keep continuing and we have an infinite sequence of such events.  Then the probability of the union of these events, of these infinitely many events, is the sum of their individual probabilities.  [][The key word here is the word sequence].  Namely, these events, these sets that we're dealing with, can be arranged so that we can talk about the first event, A1, the second event, A2, the third one, A3, and so on.  To appreciate the issue that arises here and to see why the word sequence is so important, let us consider the following calculation.  Our sample space is the unit square.  And we consider a model where the probability of a set is its area, as in the examples that we considered earlier.  Let us now look at the probability of the overall sample space.  Our sample space is the unit square and the unit square can be thought of as the union of various sets that consist of single points.  So it's the union of subsets with one element each.  And it's a union taken over all the points in the unit square.  Then we think about additivity.  We observe that these subsets are disjoint.  If we're considering different points, then we get disjoint single element sets.  And then an additivity property would tells us that the probability of these union is the sum of the probabilities of the different single element subsets.  Now, as we discussed before, single element subsets have 0 probability.  So we have a sum of lots of 0s and the sum of 0s should be equal to 0.  On the other hand, by the probability axioms, the probability of the entire sample space should be equal to 1.  And so we have established that 1 is equal to 0.  
+
+This looks like a paradox.  Is it?  The catch is that there is nothing in the axioms we have introduced so far or the properties we have established that would justify this step.  So this step here is questionable.  You might argue that the unit square is the union of disjoint single element sets, which is the case that we have in additivity axioms.  But [][the additivity axiom only applies when we have a sequence of events].  And this is not what we have here.  This is not a union of a sequence of single element sets.  In fact, there is no way that the elements of the unit square can be arranged in a sequence.  The unit square is said to be an *uncountable set*.  This is a deep and fundamental mathematical fact.  What it essentially says is that there are two kinds of infinite sets.  Discrete ones or in formal terminology countable.  These are sets whose elements can be arranged in a sequence, like the integers.  And also uncountable sets, such as the unit square or the real line, whose elements cannot be arranged in a sequence.  If you're curious, you can find the proof of this important fact in the supplementary materials that we are providing.  
+
+After all these discussion, you may now have legitimate suspicions about the models we have been looking at.  Is area a legitimate probability law?  Does it even satisfy countable additivity?  This question takes us into deep waters and has to do with a deep subfield of mathematics called Measure Theory.  Fortunately, it turns out that all is well.  Area is a legitimate probability law.  It does indeed satisfy the countable additivity axiom as long as we only deal with nice subsets of the unit square.  Fortunately, the subsets that arise in whatever we do in this course will be "nice".  Subsets that are not nice are quite pathological and we will not encounter them.  At this stage we are not in a position to say anything more that would be meaningful about these issues because they're quite complicated and mathematically deep.  We can only say that there are some serious mathematical subtleties.  But fortunately, they can all be overcome in a rigorous manner.  And for the rest of this class, you can just forget about these subtle issues.  
+
+
+
+
+
+
+
+
+
+
+# 18. Exercise: Using countable additivity
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Using countable additivity
+1/1 point (graded)
+
+Let the sample space be the set of positive integers and suppose that P(n) = 1/2**n, for n = 1, 2, 3, ... . Find the probability of the set {3, 6, 9, 12, 15, ...}, that is, of the set of of positive integers that are multiples of 3.
+
+correct
+1/7
+0.14286
+![](C:/Users/qp/Pictures/20220906_195128.jpg)
+
+Solution:
+
+Using countable additivity, and with a = 2^(-3) = 1/8, the desired probability is
+[][	 1/2^3 + 1/2^6 + 1/2^9 + 1/2^12 + ... = a + a^2 + a^3 + a^4 + ... = a/(1-a) = (1/8)/(1 - 1/8) = 1/7 ]
+
+You have used 1 of 3 attempts Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Answers are displayed within the problem 
+
+
+
+
+
+
+
+
+
+# 19. Exercise: Uniform probabilities on the integers
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: Uniform probabilities on the integers
+1/1 point (graded)
+
+Let the sample space be the set of all positive integers. *Is it possible to have a “uniform" probability law, that is, a probability law that assigns the same probability c to each positive integer?* ------------------------------------------
+
+correct
+
+No
+
+Solution:
+
+Suppose that c = 0. Then, by countable additivity,
+[][	   1 = P(sigma) = P({1} U {2} U {3} U {4} ...) = P({1}) + P({2}) + P({3}) + P({4}) + ... = 0 + 0 + 0 + 0 + 0 + ...  ]
+
+which is a contradiction.
+
+Suppose that c > 0. Then, there exists an integer k such that kc > 1. By additivity,
+[][    P({1, 2, 3, 4, ..., k}) = kc > 1 ]	 
+
+which contradicts the normalization axiom.
+
+You have used 1 of 1 attempt Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Answers are displayed within the problem 
+
+
+
+*Discussion*
+Topic: Unit 1: Probability models and axioms:Lec. 1: Probability models and axioms / 19. Exercise: Uniform probabilities on the integers
+
+Second Contradiction
+
+question posted 6 days ago by vincent_lcy7
+
+Can someone help to elaborate on the second contradiction? How are we certain that kc will be greater than the value shown?
+This post is visible to everyone.
+1 response
+
+    kyohei-h
+
+    6 days ago
+
+Since the sample space is the set of all positive integers, you can think of as large k as possible. If you have some c that satisfies P({1,2,...,k) = kc = 1, you can think of k' such that k' > k, which leads the second contradiction.
+
+    Got it, since k can be infinitely large, this contradiction will occur. Thanks for explaining!
+
+posted 6 days ago by vincent_lcy7
+
+Add a comment
+Your question or idea (required)
+
+
+
+
+A tip for this
+
+discussion posted 2 days ago by david49franco
+
+If you want to assure that all elements have the same probability, you need to divide the 1 by the number of elements, but...
+This post is visible to everyone.
+
+
+![](C:/Users/qp/Pictures/additivity holds only for countable sequenceof events, for the unit square, area is legitimate probability law of it.png)
+
+
+
+
+
+
+
+
+
+
+
+# 20. Exercise: On countable additivity
+
+
+Exercises due Sep 7, 2022 19:59 AWST
+Exercise: On countable additivity
+2/2 points (graded)
+
+Let the sample space be the two-dimensional plane. For any real number x, let A_x be the subset of the plane that consists of all points of the vertical line through the point (x, 0), i.e., A_x = {(x, y): y belong Re}.
+
+a) Do the axioms of probability theory imply that the probability of the union of the sets A_x (which is the whole plane) is equal to the sum of the probabilities P(A_x)?
+
+correct
+
+No
+
+b) Do the axioms of probability theory imply that
+[][	   P(A_1 U A_2 U A_3 U ...) = SUM_x=1 ~ infinity P(A_x)? ]
+
+(In other words, we consider only those lines for which the
+
+coordinate is a positive integer.)
+
+correct
+
+Yes
+
+Solution:
+
+a) The collection of sets A_x is not countable *because the set of real numbers is not countable (i.e., cannot be arranged in a sequence), and so the additivity axiom does not apply*.
+
+b) The countable additivity axiom applies because we are dealing with a sequence (in particular, a countable collection) of disjoint events.
+
+You have used 1 of 1 attempt Some problems have options such as save, reset, hints, or show answer. These options follow the Submit button.
+Answers are displayed within the problem 
+
+![](C:/Users/qp/Pictures/Screenshots/20. Exercise On countable additivity.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 21. Interpretations and uses of probabilities
+
+
+We end this lecture sequence by stepping back to discuss what probability theory really is and what exactly is the meaning of the word probability.  In the most narrow view, probability theory is just a branch of mathematics.  We start with some axioms.  We consider models that satisfy these axioms, and we establish some consequences, which are the theorems of this theory.  You could do all that without ever asking the question of what the word "probability" really means.  
+
+Yet, one of the theorems of probability theory, that we will see later in this class, is that probabilities can be interpreted as frequencies, very loosely speaking.  If I have a fair coin, and I toss it infinitely many times, then the fraction of heads that I will observe will be one half.  In this sense, the probability of an event, A, can be interpreted as the frequency with which event A will occur in an infinite number of repetitions of the experiment.  
+
+But is this all there is?  If we're dealing with coin tosses, it makes sense to think of probabilities as frequencies.  But consider a statement such as the "current president of my country will be reelected in the next election with probability 0.7".  It's hard to think of this number, 0.7, as a frequency.  It does not make sense to think of infinitely many repetitions of the next election.  *In cases like this, and in many others, it is better to think of probabilities as just some way of describing our beliefs*.  And if you're a betting person, probabilities can be thought of as some numerical guidance into what kinds of bets you might be willing to make.  But now if we think of probabilities as beliefs, you can run into the argument that, well, beliefs are subjective.  Isn't probability theory supposed to be an objective part of math and science?  
+
+Is probability theory just an exercise in subjectivity?  Well, not quite.  There's more to it.  Probability, at the minimum, gives us some rules for thinking systematically about uncertain situations.  And if it happens that our probability model, our subjective beliefs, have some relation with the real world, then probability theory can be a very useful tool for making predictions and decisions that apply to the real world.  *Now, whether your predictions and decisions will be any good will depend on whether you have chosen a good model*.  Have you chosen a model that's provides a good enough representation of the real world?  
+
+How do you make sure that this is the case?  There's a whole field, the field of statistics, whose purpose is to complement probability theory by using data to come up with good models.  And so we have the following diagram that summarizes the relation between the real world, statistics, and probability.  [][The real world generates data.  The field of statistics and inference uses these data to come up with probabilistic models].  Once we have a probabilistic model, we use probability theory and the analysis tools that it provides to us.  **And the results that we get from this analysis lead to predictions and decisions about the real world**.  
+
+
+![](C:/Users/qp/Pictures/Screenshots/And the results that we get from this analysis lead to predictions and decisions about the real world..png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 1: Probability models and axioms  /  Mathematical background: Sets; sequences, limits, and series; (un)countable sets.
+
+# 1. Mathematical background overview
+
+This collection of clips reviews some background material about sets, including De Morgan's laws (see also Section 1.1 of the text), sequences and their convergence, infinite series, infinite series with multiple indices, and uncountable sets.  
+
+In this sequence of segments, we review some mathematical background that will be useful at various places in this course.  Most of what is covered, with the exception of the last segment, is material that you may have seen before.  But this could still be an opportunity to refresh some of these concepts.  I should say that this is intended to be just a refresher.  Our coverage is not going to be complete in any sense.  
+
+What we will talk about is sets, various definitions related to sets, and some basic properties, including De Morgan's laws.  We will talk about what a sequence is and what it means for a sequence to converge to something.  We will talk about infinite series.  And as an example, we will look at the geometric series.  Then we will talk about some subtleties that arise when you have sums of terms that are indexed with multiple indices.  And finally, probably the most sophisticated part, will be a discussion of countable versus uncountable sets.  [][Countable sets are like the integers.  Uncountable sets are like the real line.  And they're fundamentally different].  And this fundamental difference reflects itself into fundamentally different probabilistic models--models that involve discrete experiments and outcomes versus models that involve continuous outcomes.  
+
+
+Slides: [clean] [annotated]
+https://courses.edx.org/assets/courseware/v1/e481b600e386ea44afd4d66ac7f258ee/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_mathOverview.pdf
+https://courses.edx.org/assets/courseware/v1/8307d1e4d8897a5b7fddd3f1806c5a0d/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_mathOverview-annotated.pdf
+
+
+Printable transcript available here.
+
+Mathematical background discussion
+Click “Show Discussion" below to see discussions on the mathematical background's video clips. 
+
+
+
+
+
+
+
+
+# 2. Sets
+
+In this segment, we will talk about sets.  I'm pretty sure that most of what I will say is material that you have seen before.  Nevertheless, it is useful to do a review of some of the concepts, the definitions, and also of the notation that we will be using.  So what is a set?  **A set is just a collection of distinct elements**.  So we have some elements, and we put them together.  And this collection, we call it the set S.  
+![](C:/Users/qp/Pictures/Screenshots/Sets relationship with other set or its elements.png)
+More formally, how do we specify a set?  We could specify a set by listing its elements, and putting them inside braces.  So this is a set that consists of four elements, the letters, a, b, c, d.  Another set could be the set of all real numbers.  Notice a distinction here--the first set is a finite set.  It has a finite number of elements, whereas the second set is infinite.  And in general, sets are of these two kinds.  Either [][they're finite], [][or their infinite].  A piece of notation now.  
+
+We use this notation to indicate that a certain object x is an element of a set S. We read that as x belongs to S.  If x is not an element of S, then we use this notation to indicate it, and we read it as x does not belong to S.  Now, one way of specifying sets is as follows.  We start with a bigger set-- for example, the set of real numbers--and we consider all of those x's that belong to that big set that have a certain property.  For example, that the cosine of this number is, let's say, bigger than 1/2.  This is a way of specifying a set.  We start with a big set, but we then restrict to those elements of that set that satisfy a particular property.  
+
+One set of particular interest is the following.  Sometimes in some context, we want to fix a collection of all possible objects that we might ever want to consider, and that collection will be a set.  We denote it usually by omega, and we call it the universal set.  So having fixed a universal set, we will only consider smaller sets that lie inside that big universal set.  And once we have a universal set, we can talk about the collection of all objects, or elements, that belong to our universal set, but do not belong to the set S. So that would be everything outside the set S.  Everything outside the set S, we denote it this way, and we call it the complement of the set S. And it is defined formally as follows--an element belongs to the complement of S if x is an element of our universal set, and also x does not belong to S. Notice that if we take the complement of the complement--that is, anything that does not belong to the green set--we get back the red set.  So what this is saying is that the complement of the complement of a set is the set itself.  
+
+Another set of particular interest is the so-called empty set.  The empty set is a set that contains no elements.  In particular, if we take the complement of the universal set--well, since the universal set contains everything, there is nothing in its complement, so its complement is going to be the empty set.  Finally, one more piece of notation.  Suppose that we have two sets, and one set is bigger than the other.  So S is the small set here, and T is the bigger set.  We denote this relation by writing this expression, which we read as follows--[][S is a subset of the set T].  And what that means is that if x is an element of S, then such an x must be also an element of T. Note that when S is a subset of T, there is also the possibility that S is equal to T. One word of caution here--the notation that we're using here is the same as what in some textbooks is written this way--that is, S is a subset of T, but can also be equal to T. We do not use this notation, but that's how we understand it.  That is, we allow for the possibility that the subset is equal to the larger set.  
+
+![](C:/Users/qp/Pictures/Screenshots/Sets union and intersection relationship.png)
+*Now when we have two sets, we can talk about their union and their intersection*.  Let's say that this is set S, and this is set T. The union of the two sets consists of all elements that belong to one set or the other, or in both.  The union is denoted this way, and the formal definition is that some element belongs to the union if and only if this element belongs to one of the sets, or it belongs to the other one of the sets.  We can also form the intersection of two sets, which we denote this way, and which stands for the collection of elements that belong to both of the sets.  So formally, an element belongs to the intersection of two sets if and only if that element belongs to both of them.  So x must be an element of S, and it must also be an element of T.  
+
+[][By the way, we can also define unions and intersections of more than two sets], even of infinitely many sets.  So suppose that we have an infinite collection of sets.  Let's denote them by Sn.  So n ranges over, let's say, all of the positive integers.  So pictorially, you might think of having one set, another set, a third set, a fourth set, and so on, and we have an infinite collection of such sets.  Given this infinite collection, we can still define their union to be the set of all elements that belong to one of those sets Sn that we started with.  *That is, an element is going to belong to that union if and only if this element belongs to some of the sets that we started with*.  We can also define the intersection of an infinite collection of sets.  We say that an element x belongs to the intersection of all these sets if and only if x belongs to Sn for all n.  So if x belongs to each one of those Sn's, then we say that x belongs to their intersection.  
+
+![](C:/Users/qp/Pictures/Screenshots/Set properities.png)
+Set operations satisfy certain basic properties.  One of these we already discussed.  This property, for example, is pretty clear.  The union of a set with another set is the same as the union if you consider the two sets in different orders.  If you take the union of three sets, you can do it by forming, first, the union of these two sets, and then the union with this one; or, do it in any alternative order.  Both expressions are equal.  Because of this, we do not really need the parentheses, and we often write just this expression here, which is the same as this one.  And the same would be true for intersections.  That is, the intersection of three sets is the same no matter how you put parentheses around the different sets.  Now if you take a union of a set with a universal set, you cannot get anything bigger than the universal set, so you just get the universal set.  On the other hand, if you take the intersection of a set with the universal set, what is left is just the set itself.  Perhaps the more complicated properties out of this list is this one and this one, which are sort of a distributive property of intersections and unions.  *And I will let you convince yourselves that these are true*.  The way that you verify them is by proceeding logically.  If x is an element of this, then x must be an element of S, and it must also be an element of either T or U.  Therefore, it's going to belong either to this set--it belongs to S, and it also belongs to T-- or it's going to be an element of that set-- it belongs to S, and it belongs to U.  So this argument shows that this set here is a subset of that set.  
+
+Anything that belongs here belongs there.  Then you need to reverse the argument to convince yourself that anything that belongs here belongs also to the first set, and therefore, the two sets are equal.  Here, I'm using the following fact-- that if S is a subset of T, and T is a subset of S, this implies that the two sets are equal.  And then you can use a similar argument to convince yourselves about this equality, as well.  So this is it about basic properties of sets.  We will be using some of these properties all of the time without making any special comment about them.  
+
+
+
+
+
+
+
+
+
+# 3. De Morgan's laws
+
+De Morgan's laws: 
+[][    (U_n S_n)^com = n_n (S_n)^com,  (n_n S_n)^com = U_n (S_n)^com ]
+
+![](C:/Users/qp/Pictures/De Morgans laws in a picture.png)
+![](C:/Users/qp/Pictures/Screenshots/morgans law of set and their complement relationship explained.png)
+[][We will now discuss De Morgan's laws that are some very useful relations between sets and their complements].  One of the De Morgan's laws takes this form.  If we take the intersection of two sets and then take the complement of this intersection, what we obtain is the union of the complements of the two sets.  Pictorially, here is the situation.  We have our universal set.  Inside that set, we have a set, S, which is this one.  And we have another set, T, which is this one.  Let us look at this side.  The complement of S is this part of the diagram.  The complement of T is this part of the diagram.  What is left?  What is left is just this region here, which is the intersection of S with T. So anything that does not belong here belongs to the intersection.  This means that the complement of the intersection is everything out there, which is the set.  
+
+If you're not convinced by this pictorial proof, let us go through an argument that is a little more formal.  What does it take for an element to belong to the first set?  In order to belong to that set, x belongs to the complement of S intersection T. This is the same as saying that x does not belong to the intersection [of] S with T.  What does that mean?  Since it is not in the intersection, **this is the same as saying that x does not belong to S or x does not belong to T**. But this is the same as saying that x belongs to the complement of S or x belongs to the complement of T. And this is equivalent to saying that x belongs to the union of the complement of S with the complement of T.  So this establishes this first De Morgan's law.  
+
+There's another De Morgan's law, which is obtained from this one by a syntactic substitution.  We're going to play the following trick.  Wherever we see an S, we're going to replace it by S complement.  And wherever we see an S complement, we will replace it with an S.  And similarly, whenever we see a T, we'll replace it by T complement.  And when we see a T complement, we will replace it by T. So doing this syntactic substitution, what we obtain is S complement intersection with T complement--everything gets complemented--is the same as S union T.  Now, let us take complements of both sides.  The complement of a complement is the set itself.  So we obtain this.  And now, we take the complement of the other side, which is this one.  And this is the second De Morgan's law.  It tells us that the complement of a union is the same as the intersection of the complements.  We derived it from the first De Morgan's law by a syntactic substitution.  
+
+If you're not convinced, it would be useful for you to go through an argument of this kind to show that something is an element of this set if and only if it is an element of that set as well.  Finally, it turns out that De Morgan's laws are valid when we take unions or intersections of more than two sets.  There is a more general form.  And the general form is as follows--an analogy with this one.  If we have a collection of sets, Sn, perhaps an infinite collection, we take the intersection of those sets and then the complement, what that is is the union of the complements.  So this is analygous to this law.  And this law extends to this one: if we have the union of certain sets and we take the complement of the union, what we obtain is the intersection of the complements.  We will have many occasions to use De Morgan's laws.  They're actually very useful.  They allow us, in general, to go back and forth between unions and intersections.  
+
+
+
+
+
+
+
+
+
+
+
+# 4. Sequences and their limits
+
+![](C:/Users/qp/Pictures/Screenshots/sequence and their limit.png)
+In this segment, we will discuss what a sequence is and what it means for a sequence to converge.  **So a sequence is nothing but some collection of elements that are coming out of some set, and that collection of elements is indexed by the natural numbers**.  We often use the notation, and we say that we have a sequence ai, or sometimes we use the notation that we have a sequence of this kind to emphasize the fact that it's a sequence and not just a single number.  And what we mean by this is that we have i, an index that runs over the natural numbers, which is the set of positive integers, and each ai is an element of some set.  In many cases, the set is going to be just the real line, in which case we're dealing with a sequence of real numbers.  But it is also possible that the set over which our sequence takes values is Euclidean space n-dimensional space, in which case we're dealing witha sequence of vectors.  But it also could be any other kind of set.  Now, the definition that I gave you may still be a little vague.  You may wonder how a mathematician would define formally a sequence.  [][Formally, what a sequence is, is just a function that, to any natural number, associates an element of S. In particular, if we evaluate the function f at some argument i, this gives us the ith element of the sequence.  So that's what a sequence is].  
+
+*Now, about sequences, we typically care whether a sequence converges to some number a*, and we often use this notation.  But to make it more precise, you also add this notation here.  And we read this as saying that as i converges to infinity, the sequence ai converges to a certain number a.  A more formal mathematical notation would be the limit as i goes to infinity of ai is equal to a certain number, a.  But what exactly does this mean?  What does it mean for a sequence to converge?  What is the formal definition?  It is as follows.  Let us plot the sequence as a function of i.  So this is the i-axis, and here we plot entries of ai.  For a sequence to converge to a certain number a, we need to the following to happen.  If we draw a small band around that number a, what we want is that the elements of the sequence, as i increases, eventually get inside this band and stay inside that band forever.  Now, let us turn this into a more precise statement.  What we mean is the following.  If I give you some positive number epsilon, and I'm going to use that positive number epsilon to define a band around the number a.  So it's this band here.  If I give you a positive number epsilon, and therefore, this way, have defined a certain band, there exists a time after which the entries will get the inside the band.  In this picture, it would be this time.  So there exists a time--let's call that time i0--so i0 is here such that after that time, what we have is that the element of the sequence is within epsilon of a.  So this is the formal definition of convergence of a sequence to a certain number a.  
+
+The definition may look formidable and difficult to parse, but what it says in plain English is pretty simple.  No matter what kind of band I take around my limit a, eventually, the sequence will be inside this band and will stay inside there.  Convergence of sequences has some very nice properties that you're probably familiar with.  For example, if I tell you that a certain sequence converges to a number a and another sequence converges to a number b, then we will have that ai plus bi, which is a new sequence--the ith element of the sequence is this sum--will converge to a plus b.  Or similarly, ai times bi, which is another sequence, converges to a times b.  And if, in addition, g is a continuous function, then g of ai will converge to g of a.  So for example, if the ais converge to a, then the sequence ai squared is going to converge to a squared.  
+
+
+
+
+
+
+
+
+
+
+# 5. When does a sequence converge?
+
+So we looked at the formal definition of what it means for a sequence to converge, but as a practical matter, how can we tell whether a given sequence converges or not?  There are two criteria that are the most commonly used for that purpose, and it's useful to be aware of them.  The first one deals with the case where we have a sequence of numbers that keep increasing, or at least, they do not go down.  In that case, those numbers may go up forever without any bound, so if you look at any particular value, there's going to be a time at which the sequence has exceeded that value.  In that case, we say that the sequence converges to infinity.  But if this is not the case, if it does not converge to infinity, which means that the entries of the sequence are bounded--they do not grow arbitrarily large--then, in that case, it is guaranteed that the sequence will converge to a certain number.  This is not something that we will attempt to prove, but it is a useful fact to know.  
+
+Another way of establishing convergence is to derive some bound on the distance or our sequence from the number that we suspect to be the limit.  If that distance becomes smaller and smaller, if we can manage to bound that distance by a certain number and that number goes down to 0, then it is guaranteed that since this distance goes down to 0, that the sequence, ai, converges to a.  And there's a variation of this argument, which is the so-called sandwich argument, and it goes as follows.  
+
+If we have a certain sequence that converges to some number, a, and we have another sequence that converges to that same number, a, and our sequence is somewhere in-between, then our sequence must also converge to that particular number, a.  So these are the usual ways of quickly saying something about the convergence of a given sequence, and we will be often using this type of argument in this class, but without making a big fuss about them, or without even referring to these facts in an explicit manner.  
+
+
+
+
+
+
+
+
+
+
+# 6. Infinite series
+
+![](C:/Users/qp/Pictures/Screenshots/Were given a sequence of numbers ai, indexed by i,.png)
+This will be a short tutorial on infinite series, their definition and their basic properties.  What is an infinite series?  We're given a sequence of numbers ai, indexed by i, where i ranges from 1 to infinity.  So it's an infinite sequence.  And we want to add the terms of that sequence together.  We denote the resulting sum of that infinity of terms using this notation.  But what does that mean exactly?  [][What is the formal definition of an infinite series]?  
+
+Well, the infinite series is defined as the limit, as n goes to infinity, of the finite series in which we add only the first n terms in the series.  However, this definition makes sense only as long as the limit exists.  This brings up the question, when does this limit exist?  The nicest case arises when all the terms are non-negative.  If all the terms are non-negative, here's what's happening.  We consider the partial sum of the first n terms.  And then we increase n.  This means that we add more terms.  So the partial sum keeps becoming bigger and bigger.  The sequence of partial sums is a *monotonic sequence*.  Now monotonic sequences always converge either to a finite number or to infinity.  In either case, this limit will exist.  
+
+And therefore, the series is well defined.  The situation is more complicated if the terms ai can have different signs.  In that case, it's possible that the limit does not exist.  And so the series is not well defined.  [][The more interesting and complicated case is the following.  It's possible that this limit exists.  However, if we rearrange the terms in the sequence, we might get a different limit].  When can we avoid those complicated situations?  We can avoid them if it turns out that the sum of the absolute value of the numbers sums to a finite number.  Now this series that we have here is an infinite series in which we add non-negative numbers.  And by the fact that we mentioned earlier, this infinite series is always well defined.  And it's going to be either finite or infinite.  If it turns out to be finite, then the original series is guaranteed to be well defined, to have a finite limit when we define it that way, and furthermore, that finite limit is the same even if we rearrange the different terms, if we rearrange the sequence with which we sum the different terms.  
+
+
+
+
+
+
+
+
+
+
+
+
+# 7. The geometric series
+
+![](C:/Users/qp/Pictures/Screenshots/the process to proving the geometric series.png)
+![](C:/Users/qp/Pictures/the process to proving the geometric series - hand writting.jpg)
+[][One particular series that shows up in many applications, examples, or problems is the geometric series].  [In] the geometric series, we are *given a certain number, alpha, and we want to sum all the powers of alpha*, starting from the 0th power, which is equal to 1, the first power, and so on, and this gives us an infinite series.  It's the sum of alpha to the i where i ranges from 0 to infinity.  Now, for this series to converge, we need subsequent terms, the different terms in the series, to become smaller and smaller.  And for this reason, we're going to make the assumption that the number alpha is less than 1 in magnitude, which implies that consecutive terms go to zero.  Let us introduce some notation.  
+
+Let us denote the infinite sum by s, and we're going to use that notation shortly.  One way of evaluating this series is to start from an algebraic identity, namely the following.  Let us take 1 minus alpha and multiply it by the terms in the series, but going only up to the term alpha to the n.  So it's a finite series.  We do this multiplication, we get a bunch of terms, we do the cancellations, and what is left at the end is 1 minus alpha to the power n plus 1.  What we do next is we take the limit as n goes to infinity.  On the left hand side, we have the term 1 minus alpha, and then the limit of this finite series is by definition the infinite series, which we're denoting by s.  On the right hand side, we have the term 1.  How about this term?  Since alpha is less than 1 in magnitude, this converges to 0 as alpha goes to infinity, so that term disappears.  
+
+We can now solve this relation, and we obtain that s is equal to 1 over 1 minus alpha, and this is the formula for the infinite geometric series.  There's another way of deriving the same result, which is interesting, so let us go through it as well.  The infinite geometric series has one first term and then the remaining terms, which is a sum for i going from 1 to infinity of alpha to the i.  Now, we can take a factor of alpha out of this infinite sum and write it as 1 plus alpha, the sum of alpha to the i, but because we took out one factor of alpha, here, we're going to have smaller powers.  So now the sum starts from 0 and goes up to infinity.  Now, this is just 1 plus alpha times s because here, we have the infinite geometric series.  Therefore, if we subtract alpha s from both sides of this equality, we get s times 1 minus alpha equal to 1.  And now by moving 1 minus alpha to the denominator, we get again the same expression.  So this is an alternative way of deriving the same result.  
+
+[][However, there's one word of caution.  In this step, we subtracted alpha s from both sides of the equation].  And in order to do that, this is only possible if we take for granted that s is a finite number{*Why we need to put that limitation before???*}.  So this is taken for granted in order to carry out this derivation.  This is to be contrasted with the first derivation, in which we didn't have to make any such assumption.  So strictly speaking, for this derivation here to be correct, we need to have some independent way of verifying that s is less than infinity.  But other than that, it's an interesting algebraic trick.  
+
+
+
+
+
+
+
+
+
+
+
+
+# 8. About the order of summation in series with multiple indices
+
+We now continue our discussion of infinite series.  [][Sometimes we have to deal with series where the terms being added are indexed by multiple indices], as in this example here.  We're given numbers, aij, and i ranges over all the positive integers.  j also ranges over all the positive integers.  So what does this sum represent?  We can think of it as follows.  We have here a two-dimensional grid that corresponds to all the pairs (i,j).  And in essence, each one of those points corresponds to one of the terms that we want to add.  So we can sum the different terms in some arbitrary order.  Let's say we start from here.  Take that term, add this term, then add this term here, then add this term, then the next term, next term, and so on.  And we can keep going that way, adding the different terms according to some sequence.  So essentially, what we're doing here is we're taking this two-dimensional grid and arranging the terms associated with that grid, in some particular linear order.  And we're summing those terms in sequence.  As long as this sum converges to something as we keep adding more and more terms, then this double series will be well defined.  Notice, however, we can add those terms in many different orders.  
+![](C:/Users/qp/Pictures/Screenshots/About the order of summation in series with multiple indices 1.png)
+[][And in principle, those different orders might give us different kinds of results].  On the other hand, as long as the sum of the absolute values of all the terms turns out to be finite, then the particular order in which we're adding the different terms will turn out that it doesn't matter.  There's another way that we can add the terms together, and this is the following.  Let us consider fixing a particular choice of i, and adding all of the terms that are associated with this particular choice of i, as j ranges from 1 to infinity. So what we're doing is we're taking the summation from j equal to 1 to infinity, while keeping the value of i fixed.  We do this for every possible i.  So for every possible i, we're going to get a particular number.  And then we take the numbers that we obtain for the different choices if i, so i ranges from 1 to infinity.  And we add all those terms together.  So this is one particular order, one particular way of doing the infinite summation.  Now, why start with the summation over j's while keeping i fixed?  There's no reason for that.  We could also carry out the summation by fixing a particular choice of j and summing over all i's.  
+
+So now it is i that ranges from 1 to infinity.  And we look at this infinite sum.  This is the infinite sum of those terms.  We obtain one such infinite sum for every choice of j.  And then we take that sum that we obtain for any particular choice of j, and add over the different possible values of j.  So j goes from 1 to infinity.  This is a different way of carrying out the summation.  And these are going to give us the same result, and the same result that we would also obtain if we were to add the terms in this particular order, as long as the double series is well-defined, in the following sense.  *If we have a guarantee that the sum of the absolute values of those numbers is finite, no matter which way we add them, then it turns out that we can use any particular order to add the terms in the series.  We're going to get the same result.  And we can also carry out the double summation by doing--by adding over one index at a time*.  
+
+![](C:/Users/qp/Pictures/Screenshots/About the order of summation in series with multiple indices 2.png)
+*A word of caution--this condition is not always satisfied.  And in those cases, strange things can happen*.  Suppose that the sequences we're dealing with, the aij's, take those particular values indicated in this picture.  And all the remaining terms, the aij's associated with the other dots, are all 0's.  So all these terms out there will be 0's.  If we carry out the summation by fixing a j and adding over all i's, what we get here is 0, and a 0, and a 0, and a 0.  That's because in each row we have a 1 and a minus 1, which cancel out and give us 0's.  So if we carry out the summation in this manner, we get a sum of 0's, which is 0.  But if we carry out the summation in this order, fix an i, and then add over all j's, the first term that we get here is going to be 1, because in this column, this is the only non-zero number.  And then in the remaining columns, as we add the terms, we're going to get 0's, and 0's, and so on.  And so if we carry out the summation in this way, we obtain a 1.  [][So this is an example that shows you that the order of summation actually may matter].  
+
+In this example, the sum of the absolute values of all of the terms that are involved is infinity, because we have infinitely many plus or minus 1's, so this condition here is not satisfied in this example.  Let us now consider the case where we want to add the terms of a double sequence, but over a limited range of indices as in this example, where we have coefficients aij, which we want to add, but only for those i's and j's for which j is less than or equal to i.  Graphically, this means that we only want to consider the pairs shown in this picture.  So these points here correspond to i,j pairs for which i is equal to j.  Terms on the right, or points to the right, correspond to i,j pairs for which i is at least as large as j.  We can carry out this summation in two ways.  *One way is the following.  We fix a value of i, and we consider all of the corresponding terms, that correspond to different choices of j*.  But we only go up to the point where i is equal to j.  This is the largest term.  So what are we doing here?  We're taking the coefficients aij, and we are adding over all j's, starting from 1, which corresponds to this term.  And j goes up to the point where it becomes equal to i.  We do this for every value of i.  And so we get a number for the sum of each one of the columns, and then we add those numbers together.  So we're adding over all i's, and i ranges from 1 up to infinity.  This is one way of carrying out the summation.  
+
+Alternatively, we could fix a value of j, and consider doing the summation over all choices of i.  So this corresponds to the sum over all choices of i, from where?  The smallest term, the first term, happens when i is equal to the value of j.  And then we have larger choices of i, numbers for which i is bigger than the corresponding value of j.  And so i ranges from j all the way to infinity.  And this is the sum over one of the rows in this diagram.  We do this for every j.  We get a result, and then we need to add all those results together.  So we're summing for all j's from 1 up to infinity.  So these are two different ways that we can evaluate this series associated with a double sequence.  We can either add over all j's first and then over i's, or we can sum over all i's first, and then over all j's.  The two ways of approaching this problem, this summation, should give us the same answer.  And this is going to be, again, subject to the usual qualification.  [][As long as the sum of the absolute values of the terms that we're trying to add is less than infinity]--if this condition is true, then the two ways of carrying out the summation are equal, and they're just two different alternatives.  
+
+
+![](C:/Users/qp/Pictures/In this segment, we discuss the following fact summary.png)
+
+Printable transcript available here.
+
+In this segment, we discuss the following fact. We are given a collection of real numbers
+, indexed by positive integers and . When we write , what we mean is the limit of the sum of the terms
+
+, where the summation is carried out by arranging these terms in a sequence and then adding. How do we know that different orderings will give the same result?
+
+There is the following important fact. If the infinite sum
+	 
+
+is finite for some particular order in which the summation is carried out, then the infinite series
+	 
+
+is well-defined and takes a value which is the same, no matter in which order the terms are added. Furthermore, in that case, we have
+	 
+
+As a special case, if you are dealing with a finite sequence and sum, you can always interchange the order of summation.
+
+On the other hand, if
+, and if we carry out the summation of the terms in the expression in different orders, we may get either different values, or failure to converge, in which case the expression is not well-defined. This is demonstrated by the example in the video. Note that perhaps this was not stated explicitly at that point in the video, but the example deals with an infinite sequence
+
+, which follows a certain pattern. The diagram shows only part of the sequence, but you should think of it as continuing forever with the pattern indicated in the diagram.
+Discussion
+Topic: Unit 1: Probability models and axioms:Mathematical background: Sets; sequences, limits, and series; (un)countable sets. / 8. About the order of summation in series with multiple indices
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 9. Countable and uncountable sets
+
+![](C:/Users/qp/Pictures/Screenshots/countable and uncountable of infinite sets, can you read the patterns.png)
+Probability models often involve infinite sample spaces, that is, infinite sets.  [][But not all sets are of the same kind].  *Some sets are discrete and we call them countable, and some are continuous and we call them uncountable*.  But what exactly is the difference between these two types of sets?  How can we define it precisely?  Well, let us start by first giving a definition of what it means to have a countable set.  *A set will be called countable if its elements can be put into a 1-to-1 correspondence with the positive integers*.  This means that we look at the elements of that set, and we take one element-- we call it the first element.  We take another element-- we call it the second.  Another, we call the third element, and so on.  And [][this way we will eventually exhaust all of the elements of the set], so that each one of those elements corresponds to a particular positive integer, namely the index that appears underneath.  
+
+More formally, what's happening is that we take elements of that set that are arranged in a sequence.  We look at the set, which is the entire range of values of that sequence, and we want that sequence to exhaust then entire set omega.  Or in other words, in simpler terms, we want to be able to arrange all of the elements of omega in a sequence.  
+
+So what are some examples of countable sets?  In a trivial sense, the positive integers themselves are countable, because we can arrange them in a sequence.  This is almost tautological, by the definition.  For a more interesting example, let's look at the set of all integers.  Can we arrange them in a sequence?  Yes, we can, and we can do it in this manner, where we alternate between positive and negative numbers.  And this way, we're going to cover all of the integers, and we have arranged them in a sequence.  How about the set of all pairs of positive integers?  This is less clear.  Let us look at this picture.  This is the set of all pairs of positive integers, which we understand to continue indefinitely.  Can we arrange this sets in a sequence?  It turns out that we can.  And we can do it by tracing a path of this kind{*Why, think about it*}.  So you can probably get the sense of how this path is going.  And by continuing this way, over and over, we're going to cover the entire set of all pairs of positive integers.  So we have managed to arrange them in a sequence.  
+
+So the set of all such pairs is indeed a countable set.  And the same argument can be extended to argue for the set of all triples of positive integers, or the set of all quadruples of positive integers, and so on.  This is actually not just a trivial mathematical point that we discuss for some curious reason, but it is because we will often have sample spaces that are of this kind.  And it's important to know that they're countable.  
+
+*Now for a more subtle example.  Let us look at all rational numbers within the range between 0 and 1.  What do we mean by rational numbers?  We mean those numbers that can be expressed as a ratio of two integers*.  It turns out that we can arrange them in a sequence, and we can do it as follows.  Let us first look at rational numbers that have a denominator term of 2.  Then, look at the rational numbers that have a denominator term of 3.  Then, look at the rational numbers, always within this range of interest, that have a denominator of 4.  And then we continue similarly--rational numbers that have a denominator of 5, and so on.  This way, we're going to exhaust all of the rational numbers.  Actually, this number here already appeared there.  It's the same number.  So we do not need to include this in a sequence, but that's not an issue.  Whenever we see a rational number that has already been encountered before, we just delete it.  In the end, we end up with a sequence that goes over all of the possible rational numbers.  And so we conclude that the set of all rational numbers is itself a countable set.  
+
+So what kind of set would be uncountable?  An uncountable set, by definition, is a set that is not countable.  And there are examples of uncountable sets, most prominent, continuous subsets of the real line.  Whenever we have an interval, the unit interval, or any other interval that has positive length, that interval is an uncountable set.  And the same is true if, instead of an interval, we look at the entire real line, or we look at the two-dimensional plane, or three-dimensional space, and so on.  So all the usual sets that we think of as continuous sets turn out to be uncountable.  [][How do we know that they are uncountable]{*Think, how can we think it as that*}?  There is actually a brilliant argument that establishes that the unit interval is uncountable.  And then the argument is easily extended to other cases, like the reals and the plane.  We do not need to know how this argument goes, for the purposes of this course.  But just because it is so beautiful, we will actually be presenting it to you.  
+
+
+
+
+
+
+
+
+
+# 10. Proof that the set of real numbers is uncountable
+
+![but how can we sure the constructed special elements met all the conditions???](C:/Users/qp/Pictures/Screenshots/cantors diagonalization argument to address if real number is countable or not.png)
+For those of you who are curious, we will go through an argument that establishes that the set of real numbers is an uncountable set.  It's a famous argument known as Cantor's diagonalization argument.  Actually, instead of looking at the set of all real numbers, we will first look at the set of all numbers, x, that belong to the open unit interval--so numbers between 0 and 1--and such that their decimal expansion involves only threes and fours.  Now, the choice of three and four is somewhat arbitrary.  It doesn't matter.  What really matters is that we do not have long strings of nines.  
+
+So suppose that this set was countable.  If the set was countable, then that set could be written as equal to a set of this form, x1, x2, x3 and so on, where each one of these is a real number inside that set.  Now, suppose that this is the case.  Let us take those numbers and write them down in decimal notation.  For example, one number could be this one, and it continues forever.  Since we're talking about real numbers, their decimal expansion will go on forever.  Suppose that the second number is of this kind, and it has its own decimal expansion.  Suppose that the third number is, again, with some decimal expansion and so on.  So we have assumed that our set is countable and therefore, the set is equal to that sequence.  So this sequence exhausts all the numbers in that set.  Can it do that?  [][Let's construct a new number in the following fashion].  The new number looks at this digit and does something different.  Looks at this digit, the second digit of the second number, and does something different.  Looks at the third digit of the third number and does something different.  And we continue this way.  This number that we have constructed here is different from the first number.  They differ in the first digit.  It's different from the second number.  They differ in the second digit.  It's different from the third number because it's different in the third digit and so on.  So this is a number, and this number is different from xi for all i.  
+
+So we have an element of this set which does not belong to this sequence.  Therefore, it cannot be true that this set is equal to the set formed by that sequence.  And so this is a contradiction to the initial assumption that this set could be written in this form, and this contradiction establishes that since this is not possible, that the set that we have here is an uncountable set.  Now, this set is a subset of the set of real numbers.  Since this one is uncountable, it is not hard to show that the set of real numbers, which is a bigger set, will also be uncountable.  And so this is this particular famous argument.  We will not need it or make any arguments of this type in this class, but it's so beautiful that it's worth for everyone to see it once in their lifetime.  
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 1: Probability models and axioms  /  Solved problems
+
+# 1. The probability of the symmetric difference of two events
+
+![](C:/Users/qp/Pictures/1. The probability of the symmetric difference of two events.png)
+
+![](C:/Users/qp/Pictures/Screenshots/The probability of the symmetric difference of two events.png)
+
+Hi.  In this problem, we're going to use the set of probability axioms to derive the probability of the difference of two events.  Now, before we get started, there's one thing you might notice, that the equation we're trying to prove is actually quite complicated.  And I don't like it either, so the first thing we're going to do will be to find a simpler notation for the events that we're interested in.  So we start with two events, A and B, and there might be some intersection between the two events.  We'll label the set of points or samples in A that are not in B, as a set C. So C will be A intersection B complement.  Similarly, for all points that are in B but not in A, this area, we'll call it D.  And D will be the set A complement intersection B. And finally, for points that are in the intersection of A and B, we'll call it E. So E is A intersection B. And for the rest of our problem, we're going to be using the notation C, D, and E instead of whatever's down below.  
+
+If we use this notation, we can rewrite our objective as
+the following.
+We want to show that the probability of C union D is
+equal to the probability of the event A plus the
+probability of B minus twice the probability of E. And that
+will be our goal for the problem.
+Now, let's take a minute to review what the axioms are,
+what the probability axioms are.
+The first one says non-negativity.
+We take any event A, then the probability of A
+must be at least 0.
+The second, normalization, says the probability of the
+entire space, the entire sample space omega, must be
+equal to 1.
+And finally, the additivity axiom, which will be the axiom
+that we're going to use for this problem says, if there
+are two events, A and B that are disjoint--
+which means they don't have anything in common, therefore.
+the intersection is the empty set.
+Then the probability of their union will be equal to the
+probabilty A plus the probability of B. For the rest
+of the problem, I will refer to this axiom as ADD.
+So whenever we invoke this axiom, I'll write
+"ADD" on the board.
+Let's get started.
+First, we'll invoke the additivity axioms to argue
+that the probability of C union D is simply the sum of
+probability of C plus probability of
+D. Why is this true?
+We can apply this axiom, because the set C here and the
+set D here, they're completely disjoint from each other.
+And in a similar way, we also notice the following.
+We see that A is equal to the union of the set C and E.
+And also, C and E, they're disjoint with each other,
+because C and E by definition don't share any points.
+And therefore, we have probability of A is equal to
+probability of C plus the probability of E. Now, in a
+similar way, the probability of event B can also be written
+as a probability of D plus the probability of E, because
+event B is the union of D and E.
+And D and E are disjoint from each other.
+So we again invoke the additivity axiom.
+Now, this should be enough to prove our final claim.
+We have the probability of C union D. By the very first
+line, we see this is simply probability of C plus the
+probability of D.
+Now, I'm going to insert two terms here to make the
+connection with a second part of the equation more obvious.
+That is, I will write probability C plus probability
+E plus probability D plus probability of E. Now, I've
+just added two terms here--
+probability E. So to make the equality valid we'll subtract
+out two times, the probability of E.
+Hence this equality is valid.
+So if we look at this equation, we see that there
+are two parts here that we've already seen
+before, right here.
+The very first parenthesis is equal to the probability of A.
+And the value of the second parenthesis is equal to the
+probability of B. We just derived these here.
+And finally, we have the minus 2 probability of E. This line
+plus this line gives us the final equation.
+And that will be the answer for the problem.
+
+
+
+
+
+
+
+
+
+
+
+# 2. Geniuses and chocolates
+
+Geniuses and chocolates. Out of the students in a class, 60% are geniuses, 70% love chocolate, and 40% fall into both categories. Determine the probability that a randomly selected student is neither a genius nor a chocolate lover.
+
+Teaching Assistant: Katie Szeto
+
+
+![](C:/Users/qp/Pictures/Screenshots/Geniuses and chocolates. Out of the students in a class,.png)
+
+Hi.
+Today, we're going to do a really fun problem called
+geniuses and chocolates.
+And what this problem is exercising is your knowledge
+of properties of probability laws.
+So let me just clarify what I mean by that.
+Hopefully, by this point, you have already learned what the
+axioms of probability are.
+And properties of probability laws are essentially any rules
+that you can derive from those axioms.
+So take for example the fact that the probability of A
+union B is equal to the probability of A plus the
+probability of B minus the probability of the
+intersection.
+That's an example of a property of a probability law.
+So enough with the preamble.
+Let's see what the problem is asking us.
+In this problem, we have a class of students.
+And we're told that 60% of the students are geniuses.
+70% of the students love chocolate.
+So I would be in that category.
+And 40% fall into both categories.
+And our job is to determine the probability that a
+randomly selected student is neither a genius nor a
+chocolate lover.
+So first I just want to write down the information that
+we're given in the problem statement.
+So if you let G denote the event that a randomly selected
+student is a genius then the problem statement tells us
+that the probability of G is equal to 0.6.
+Similarly, if we let C denote the event that a randomly
+selected student is a chocolate lover, then we have
+that the probability of C is equal to 0.7.
+Lastly, we are told that the probability a randomly
+selected student falls into both categories is 0.4.
+And the way we can express that using the notation
+already on the board is probability of G intersect C
+is equal to 0.4.
+OK, now one way of approaching this problem is to essentially
+use this information and sort of massage it using properties
+of probability laws to get to our answer.
+Instead, I'm going to take a different approach, which I
+think will be helpful.
+So namely, we're going to use something
+called a Venn diagram.
+Now a Venn diagram is just a tool that's really useful for
+telling you how different sets relate to each other and how
+their corresponding probabilities
+relate to each other.
+So the way you usually draw this is you draw a rectangle,
+which denotes your sample space, which of course, we
+call omega.
+And then you draw two intersecting circles.
+So one to represent our geniuses and one to represent
+our chocolate lovers.
+And the reason why I drew them intersecting is because we
+know that there are 40% of the students in our class are both
+geniuses and chocolate lovers.
+OK, and the way you sort of interpret this diagram is the
+space outside these two circles correspond to students
+who are neither geniuses nor chocolate lovers.
+And so just keep in mind that the probability corresponding
+to these students on the outside, that's actually what
+we're looking for.
+Similarly, students in this little shape, this tear drop
+in the middle, those would correspond to geniuses and
+chocolate lovers.
+You probably get the idea.
+So this is our Venn diagram.
+Now I'm going to give you guys a second trick if you will.
+And that is to work with partitions.
+So I believe you've seen partitions in lecture by now.
+And a partition is essentially a way of cutting up the sample
+space into pieces.
+But you need two properties to be true.
+So the pieces that you cut up your sample space into, they
+need to be disjoint, so they can't overlap.
+So for instance, G and C are not disjoint because they
+overlap in this tear drop region.
+Now the second thing that a partition has to satisfy is
+that if you put all the pieces together, they have to
+comprise the entire sample space.
+So I'm just going to put these labels down on my graph.
+X, Y, Z, and W. So X is everything outside the two
+circles but inside the rectangle.
+And just note, again, that what we're actually trying to
+solve in this problem is the probability of X, the
+probability that you're neither genius, because you're
+not in this circle, and you're not a chocolate lover, because
+you're not in this circle.
+So Y I'm using to refer to this sort of
+crescent moon shape.
+Z, I'm using to refer to this tear drop.
+And W, I'm using to refer to this shape.
+So, hopefully, you agree that X, Y, Z, and W form a
+partition because they don't overlap.
+So they are disjoint.
+And together they form omega.
+So now we're ready to do some computation.
+The first step is to sort of get the information we have
+written down here in terms of these new labels.
+So hopefully, you guys buy that G is just the union of Y
+and Z. And because Y and Z are disjoint, we get that the
+probability of the union is the sum of the probabilities.
+And, of course, we have from before that this is 0.6.
+Similarly, we have that the probability of C is equal to
+the probability of Z union W. And, again, using the fact
+that these two guys are disjoint, you get this
+expression.
+And that is equal to 0.7.
+OK, and the last piece of information, G intersects C
+corresponds to Z, or our tear drop, and so we have that the
+probability of Z is equal to 0.4.
+And now, if you notice, probability of Z shows up in
+these two equations.
+So we can just plug it in.
+So plug in 0.4 into this equation.
+We get P of Y plus 0.4 is 0.6.
+So that implies that P of Y is 0.2.
+That's just algebra.
+And similarly we have point.
+0.4 plus P of W is equal to 0.7.
+So that implies that P of W is 0.3.
+Again, that's just algebra.
+So now we're doing really well because we have a lot of
+information.
+We know the probability of Y, the probability of Z, the
+probability of W. But remember we're going for, we're trying
+to find the probability of X. So the way we finally put all
+this information together to solve for X is we use the
+axiom that tells us that 1 is equal to the probability of
+the sample space.
+And then, again, we're going to use sort of this really
+helpful fact that X, Y, Z, and W form a partition of omega to
+go ahead and write this as probability of X plus
+probability of Y plus probability,
+oops, I made a mistake.
+Hopefully, you guys caught that.
+It's really, oh, no.
+I'm right.
+Never mind.
+Probability of X plus probability of Y plus
+probability of Z plus probability of W. And now we
+can go ahead and plug-in the values that we solved for
+previously.
+So we get probability of X plus 0.2 plus 0.4 plus 0.3.
+These guys sum to 0.9.
+So, again, just simple arithmetic, we get that the
+probability of X is equal to 0.1.
+So we're done because we've successfully found that the
+probability that a randomly selected student is neither a
+genius nor a chocolate lover is 0.1.
+So this was a fairly straightforward problem.
+But there are some important takeaways.
+The first one is that Venn diagrams are
+a really nice tool.
+Whenever the problem is asking you how different sets relate
+to each other or how different probabilities relate to each
+other, you should probably draw a Venn diagram because it
+will help you.
+And the second takeaway is that it's frequently useful to
+divide your sample space into a partition mainly because the
+pieces that compose a partition are disjoint.
+So we will be back soon to solve more problems.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 3. Uniform probabilities on a square
+
+Uniform probabilities on a square. Romeo and Juliet have a date at a given time, and each will arrive at the meeting place with a delay between 0 and 1 hour, with all pairs of delays being “equally likely," that is, according to a uniform probability law on the unit square. The first to arrive will wait for 15 minutes and will leave if the other has not arrived. What is the probability that they will meet?
+
+Teaching Assistant: Jimmy Li
+
+
+![](C:/Users/qp/Pictures/Screenshots/he should draw those dots as the windows, as 15 mins time window.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4. Bonferroni's inequality
+
+![](C:/Users/qp/Pictures/4. Bonferronis inequality.png)
+
+In this segment, we will discuss a little bit the union bound.  And then discuss a counterpart, which is known as the Bonferroni inequality.  Let us start with a story.  Suppose that we have a number of students in some class.
+And we have a set of students that are smart, let's call
+that set A1.
+So this is the set of smart students.
+And we have a set of students that are beautiful.
+And let's call that set A2.
+So A2 is the set of beautiful students.
+If I tell you that the set of smart students is small, and
+the set of beautiful students [is] small, then you can
+probably conclude that there are very few students that are
+either smart or beautiful.
+What does this have to do with probability?
+Well, when we say very few are smart, we might mean that if I
+pick a student at random, there's only a small
+probability that I pick a smart student.
+And similarly for beautiful students.
+Can we make this statement more precise?
+Indeed we can.
+We have the union bound that tells us that the probability
+that I pick a student that is either smart or beautiful is
+less than or equal to the probability of picking a smart
+student plus the probability of
+picking a beautiful student.
+So if this probability is small, and that probability is
+small, then this probability will also be small.
+Which means that there is only a small number of students
+that are either smart or beautiful.
+Now let us try to turn this statement around its head.
+Suppose that most of the students are smart.
+And most of the students are beautiful.
+So in this case, I'm telling you that these sets,
+A1 and A2 are big.
+Now if the set A1 is big, then it means that this set here,
+the complement of A1, is a small set.
+And if I tell you that the set A2 is big, then it means that
+this set here, which is a complement
+of A2, is also small.
+So everything outside here is a small set.
+Which means that whatever is left--
+which is the intersection of A1 and A2
+--should be a big set.
+So we should be able to conclude that in this case,
+most of the students belong to the intersection.
+So they're both smart and beautiful.
+How can we turn this into a mathematical statement?
+It's the following inequality that we will prove shortly.
+But what it says is that the probability of the
+intersection is larger than or equal to something.
+And if this probability is close to 1, which says that
+most of the students are smart, and this probability is
+close to 1, which says that most students are beautiful,
+then this difference here is going to be close to 1 plus 1
+minus 1, which is 1.
+Therefore, the probability of the intersection is going to
+be larger than or equal to some number that's close to 1.
+So this one will also be close to 1, which is the conclusion
+that indeed, most students fall into this intersection.
+And they're both smart and beautiful.
+So what we will do next will be to derive this inequality
+and actually generalize it.
+So here is the relation that we wish to establish.
+We want to show that the probability of a certain event
+is bigger than something.
+How do we show that?
+One way is to show that the probability of the complement
+of this event --
+namely this event here -we want to show that this event
+has small probability.
+Now what is this event?
+Here we can use De Morgan's laws, which tell us that this
+event is the same as this one.
+That is, the complement of an intersection is the union of
+the complements.
+Since these two sets or events are identical, it means that
+their probabilities will also be equal.
+And next we will use the union bound to write this
+probability as being less than or equal to the sum of the
+probabilities of the two events whose
+union we are taking.
+Now we're getting close, except that here we have
+complements all over.
+Whereas up here we do not have any complements.
+What can we do?
+Well, the probability of a complement of an event is the
+same as 1 minus the probability of that event.
+And we do the same thing for the terms that we have here.
+This probability here is equal to 1 minus the
+probability of A1.
+And this probability here is equal to 1 minus the
+probability of A2.
+And now if we take this inequality, cancel this term
+with that term, and then move terms around, what we have is
+exactly this relation that we wanted to prove.
+It turns out that this inequality has a
+generalization to the case where we take the intersection
+of n events.
+And this has again the same intuitive content.
+Suppose that each one of these events, A1 up to An, is almost
+certain to occur.
+That is, it has a probability close to 1.
+In that case, this term will be close to n.
+We subtract n minus 1.
+So this term on the right hand side will be close to 1.
+Therefore the probability of the intersection will be
+larger than or equal to something that's close to 1.
+So this is big.
+Essentially, what it's saying is that [if] we have big sets.
+And we take their intersection.
+Then that intersection will also be big in terms of having
+large probability.
+How do we prove this relation?
+Exactly the same way as it was proved for
+the case of two sets.
+Namely, instead of looking at this event, we look at the
+complement of this event.
+And we use De Morgan's laws to write this complement as the
+union of the complements.
+These two are the same sets or events, so they have the same
+probability.
+And then we use the union bound to write this as being
+less than or equal to the probabilities
+of all those sets.
+Now this is equal to 1 minus the probability of the
+intersection.
+This side here is equal to 1 minus the probability of A1.
+This is one term.
+We get n such terms, the last one being 1 minus the
+probability of An.
+And we still have an inequality going this way.
+We collect those ones that we have here.
+There's n over them.
+And one here.
+So we're left with n minus 1 terms that are equal to 1.
+And this gives rise to this term.
+We have all of the probabilities of the various
+events that appear with the same sign.
+This gives rise to this term.
+And finally, this term here will correspond to that term.
+Namely, if we start with this inequality and just rearrange
+a few terms, we obtain this inequality up here.
+So these Bonferroni inequalities are a nice
+illustration of how one can combine De Morgan's laws, set
+-theoretic operations, and the union bound in order to obtain
+some interesting relations between probabilities.
+
+![](C:/Users/qp/Pictures/Screenshots/4. Bonferroni's inequality - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Bonferroni's inequality - 2.png)
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 1: Probability models and axioms  /  Problem Set 1
+
+# 1. Venn diagrams
+
+![](C:/Users/qp/Pictures/1. Venn diagrams - 1.png)
+![](C:/Users/qp/Pictures/1. Venn diagrams - 2.png)
+
+![](C:/Users/qp/Pictures/1. Venn diagrams - My Solution.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2. Set operations and probabilities
+
+![](C:/Users/qp/Pictures/2. Set operations and probabilities - 1.png)
+
+![](C:/Users/qp/Pictures/2. Set operations and probabilities - My Solution Sub 1.jpg)
+![](C:/Users/qp/Pictures/2. Set operations and probabilities - My Solution Sub 2.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 3. Three tosses of a fair coin
+
+![](C:/Users/qp/Pictures/3. Three tosses of a fair coin - 1.png)
+
+![](C:/Users/qp/Pictures/3. Three tosses of a fair coin - My Solution.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 4. Parking lot problem
+
+![](C:/Users/qp/Pictures/4. Parking lot problem - 1.png)
+
+![](C:/Users/qp/Pictures/4. Parking lot problem - My Solution sub 1.jpg)
+![](C:/Users/qp/Pictures/4. Parking lot problem - My Solution sub 2.jpg)
+![](C:/Users/qp/Pictures/4. Parking lot problem - My Solution sub 3.jpg)
+![](C:/Users/qp/Pictures/4. Parking lot problem - My Solution sub 4.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 5. Probabilities on a continuous sample space
+
+![](C:/Users/qp/Pictures/5. Probabilities on a continuous sample space - 1.png)
+
+![](C:/Users/qp/Pictures/5. Probabilities on a continuous sample space - My Solution sub 1.jpg)
+![](C:/Users/qp/Pictures/5. Probabilities on a continuous sample space - My Solution sub 2.jpg)
+![](C:/Users/qp/Pictures/5. Probabilities on a continuous sample space - My Solution sub 3.jpg)
+
+
+
+
+
+
+
+
+
+# 6. Upper and lower bounds on the probability of intersection
+
+![](C:/Users/qp/Pictures/6. Upper and lower bounds on the probability of intersection - 1.png)
+
+![](C:/Users/qp/Pictures/6. Upper and lower bounds on the probability of intersection - My Solution.jpg)
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 2: Conditioning and independence  /  Unit overview  

@@ -1,0 +1,1714 @@
+---
+title: "MITx 6.431x -- Probability - The Science of Uncertainty and Data + Unit_7.Rmd"
+author: "John HHU"
+date: "2022-12-03"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 7: Bayesian inference  /  Unit overview
+
+# 1. Motivation
+
+![](C:/Users/qp/Pictures/Screenshots/U7 1. Motivation - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/U7 1. Motivation - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/U7 1. Motivation - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/U7 1. Motivation - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/U7 1. Motivation - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/U7 1. Motivation - 6.png)
+An imaging radar sends radio waves to objects
+and uses the reflections of these waves
+to determine properties of the objects.
+For example, is it big or small?
+Is it a boat or a large rock?
+This method relies on the fact that the reflectivity
+of different materials, as well as the distribution
+of the associated noise, are known, based
+on calibration experiments.
+Suppose now that before turning the radar on,
+we know from past experience that 90% of the objects
+surrounding a boat in the ocean are other boats and 10%
+are large rocks, but once we turn the radar on
+and measure reflected waves, we should update our beliefs
+on the identity and properties of any object that gets
+detected.
+This update of our beliefs is the key step
+in Bayesian inference.
+In this unit, we will go over the ingredients
+of Bayesian inference, a systematic way of calculating
+distributions or expectations, while properly incorporating
+any newly acquired information.
+
+
+
+
+
+
+
+
+# 2. Unit 7 overview
+
+![](C:/Users/qp/Pictures/Screenshots/2. Unit 7 overview - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Unit 7 overview - 2.png)
+By this point in this class, we have developed all of the
+basic tools that we need to study and analyze
+probabilistic models.
+So this is a good time to move to a practical subject, the
+subject of inference.
+The general idea is that we have a probabilistic model
+involving several random variables.
+We observe the values of some of them.
+And we want to make inferences on some of the others.
+Note that the unknown quantities are modeled as
+random variables, which means that we can
+use the Bayes rule.
+And so we will stay within the realm of
+so-called Bayesian inference.
+In the four lectures that follow, we will illustrate the
+use of the Bayes rule in various settings.
+We will discuss different methods of coming up with
+estimates of unobserved random variables.
+And we will illustrate the methodology
+through several examples.
+If you have mastered the material in previous units,
+you should not face any challenges here.
+We will only apply tools that we already have, together with
+some new definitions and terminology.
+However, this may be a good time to review the different
+versions of the Bayes rule and the examples covered in the
+second half of lecture 10.
+And by the end of this unit, you should have a working
+knowledge of the key elements of Bayesian inference.
+And you should be ready to apply your knowledge to actual
+problems, as they arise in the real world.
+
+
+
+
+
+
+
+
+
+
+
+
+## Course  /  Unit 7: Bayesian inference  /  Lec. 14: Introduction to Bayesian inference
+
+# 1. Lecture 14 overview and slides
+
+In this lecture, we start by discussing the numerous domains in which inference is useful. We then develop the conceptual framework of Bayesian inference, and review the various forms of the Bayes rule. We discuss possible ways of arriving at a point estimate based on the posterior distribution, and present the relevant performance metrics, namely, the probability of error for hypothesis testing problems and the mean squared error for estimation problems. 
+
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 14 overview and slides - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 14 overview and slides - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 14 overview and slides - 3.png)
+
+In this lecture, we start our systematic
+study of Bayesian inference.
+We will first talk a little bit about the big picture,
+about inference in general, the huge range of possible
+applications, and the different types of problems
+that one may encounter.
+For example, we have hypothesis testing problems in
+which we are trying to choose between a finite and usually
+small number of alternative hypotheses or estimation
+problems where we want to estimate as close as we can an
+unknown numerical quantity.
+We then move into the
+specifics of Bayesian inference.
+The central idea is that we always use the Bayes rule to
+find the posterior distribution of an unknown
+random variable based on observations of a related
+random variable.
+Depending on whether the random variables are discrete
+or continuous, we must of course you use the appropriate
+version of the Bayes rule.
+If we want to summarize the posterior in a single number,
+that is, to come up with a numerical estimate of the
+unknown random variable, we then have some options.
+One is to report the value at which the
+posterior is largest.
+Another is to report the mean of the conditional
+distribution.
+These go under the acronyms MAP and LMS.
+We will see shortly what these acronyms stand for.
+Given any particular method for coming up with a point
+estimate, there are certain performance metrics that tell
+us how good the estimate is.
+For hypothesis testing problems, the appropriate
+metric is the probability of error, the probability of
+making a mistake.
+For problems of estimating a numerical quantity, an
+appropriate metric that we will be using a lot is the
+expected value of the squared error.
+As we will see, there will be no new mathematics in this
+lecture, just a few definitions, a few new terms,
+and an application of the Bayes rule.
+Nevertheless, it is important to be able to apply the Bayes
+rule systematically and with confidence.
+For this reason, we will be going over several examples.
+
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/c36abfb5db20cdb8428a87f6bb0ec37e/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_L14-Overview.pdf
+
+Lecture slides: [clean] [annotated]
+https://courses.edx.org/assets/courseware/v1/7cc7ffe1100786c2660ac3371b05252b/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L14-clean.pdf
+https://courses.edx.org/assets/courseware/v1/d1146be0ccdf4f519873c048343938e9/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L14-annotated.pdf
+
+More information is given in Sections 8.1 and 8.2 of the text.
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/61
+
+You are also encouraged to review the different variants of the Bayes rule, in the last part of Lecture 10 and in Section 3.6 of the text.
+https://courses.edx.org/courses/course-v1:MITx+6.431x+2T2022/pdfbook/0/chapter/1/27
+
+Source attributions:
+
+S&P 500 chart from http://finance.yahoo.com/ (fair use)
+http://finance.yahoo.com/
+
+Genomics graphic from unknown source (fair use)
+
+Systems biology graphic from http://commons.wikimedia.org/wiki/File:Signal_transduction_v1.png (CC license)
+http://commons.wikimedia.org/wiki/File:Signal_transduction_v1.png
+
+Electoral vote distribution graphic copyright Stanford University, 2012 (fair use)
+
+
+
+
+
+
+
+# 2. Overview of some application domains
+
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 7.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Overview of some application domains - 8.png)
+Before we get going with our discussion
+of inference methods, it is worth
+looking at the big picture for some perspective.
+So far, we have concentrated on ways
+to analyze probability models.
+This part of the picture.
+If our model has been selected in a careful way,
+then it should also be relevant to the real world
+and help us make predictions or decisions.
+But how do we know that this is the case?
+This is why we need to look at data that are generated
+by the real world, and then use these to come up with a model.
+This is what the field of inference and statistics
+is all about.
+This field has undergone a radical transformation
+in recent years.
+I will exaggerate a little, but in the past,
+a statistician might be called to look
+at problems such as this one.
+You're given data on a few patients,
+and you need to figure out whether a certain treatment is
+effective or not.
+But today, a statistician lives in a dreamland.
+There are tons of data that are generated everywhere.
+These allow us to build quite detailed large models involving
+thousands of parameters.
+And we do have the computational power to do all that.
+In this landscape, the opportunities
+for a statistician are endless.
+So let me give you a small representative sample.
+In a somewhat traditional setting,
+one designs a data collection method,
+and then uses these data to make a simple prediction.
+This is the case, for example, in polling.
+Where the purpose is to predict the outcome of an election.
+Another field is marketing and advertising,
+where the situation is somewhat similar.
+Except now, we want to make predictions
+not for a population as a whole, but
+for each individual consumer.
+And a particular application has to do
+with so-called recommendation systems.
+You collect ratings that people give to movies, as
+in a famous competition that was announced by Netflix.
+So you have data for every movie and the people
+who have watched them.
+You make a note of what rating that person
+gave to a particular movie.
+And now after you collect huge amounts of data of this kind,
+you try to use this information to guess
+whether, for example, this person is
+interested in this particular movie or not.
+This is a quite difficult problem.
+A quite complicated one.
+And it gave the community an opportunity
+to develop fancier and fancier combinations of methods
+in order to come up with good predictions
+of unknown entries in this table.
+Another field is, of course, finance.
+The markets are truly uncertain.
+And there are quite complete historical data.
+Lots of them.
+How do we use these data to make predictions?
+Coming now to the natural sciences,
+a revolution has been taking place in the life sciences.
+There are tons of genomic data to be processed to find out
+what combination of genes causes what disease.
+Or we may want to find out the details
+of the chemical reactions inside a living cell.
+And there is an upcoming new frontier, neuroscience,
+where there will be vast amounts of data that will be generated.
+These will consist of brain measurements.
+Of measurements of what each neuron is doing.
+And hopefully, these will lead us one day
+to finding out what the brain really does and how it works.
+In the sciences, the list is endless.
+It goes on and on.
+In modeling climate and the environment,
+scientists are using a huge models these days.
+Which they try to calibrate using lots of available data.
+And in physics as well, scientists
+to use fancy inference methods trying to find
+needles in a haystack.
+Like rare particles or remote planets.
+Finally, engineering is a fight against noise.
+Engineers try to make devices that
+will work in uncertain environments.
+The field of signal processing is a prime example
+where the generic question is to recover
+the content of a signal.
+For example, the content of a radio transmission
+when a signal is received after it gets corrupted by noise.
+I could go on and on for hours generating lists of this kind,
+but we have to stop somewhere.
+The bottom line is that the opportunities and the needs
+are vast.
+For this reason, we will look into the core methodologies
+that come into play.
+Fortunately for us, the fundamental concepts
+and approaches turn out to be the same independent
+of the particular application.
+
+
+
+
+
+
+
+# 3. Types of inference problems
+
+![](C:/Users/qp/Pictures/Screenshots/3. Types of inference problems - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Types of inference problems - 1.5.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Types of inference problems - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Types of inference problems - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Types of inference problems - 4.png)
+Before we dive into the heart of the subject,
+I want to make a few comments on the different problem
+types that show up in the field of inference.
+You can think of a general distinction
+between model building versus making inferences
+about unobserved variables.
+We said a little earlier that one
+of the main uses of the field of inference
+is to construct models of certain situations.
+But in many cases, we already have a model.
+On the other hand, there may be variables that are unknown,
+that are unobserved-- variables that are part of the model,
+but whose values are not known.
+In such cases, we still want to use
+data to make some predictions or decisions
+about those unobserved variables.
+So model building might or might not be part of the problem
+that we're dealing with.
+To illustrate the difference between these two versions
+of the problem, let us think of a concrete setting.
+You have a transmitter who is sending a signal.
+Call it S. And that signal goes through some medium.
+It could be just the atmosphere.
+And what that medium does is that it attenuates
+the signal by a certain factor, a.
+And then as the signal travels, it also gets hit by some noise,
+call it W, and what the receiver sees is an observation,
+X. So the situation is described by this simple equation here.
+This situation often brings up the following inference
+problem.
+We want to find out what the medium is.
+How do we do this?
+We send a pilot signal, S, that is
+a signal that we know what it is.
+We observe X, and then using this equation,
+and, knowing that W is random noise coming
+from some distribution, we try to make
+an inference about the variable a.
+So this is an instance of model building.
+We're trying to make a model of the medium that's involved.
+But we can also think of a different problem.
+Suppose that we know what the medium is.
+Perhaps we already went through this particular phase here.
+But we're sitting at the receiver,
+and we do not know what has been sent.
+And we want to find out what S is.
+So we are looking again at this equation.
+This time we know a, and we're trying
+to make inferences about S.
+You notice that these two versions of the problem
+are essentially of the same mathematical structure.
+We have a linear equation.
+In one case, we know S. We want to find out a.
+In the other case, we know a.
+We want to find out what S is.
+So even though the interpretation
+of these two problems [is] quite different,
+the mathematical structure is exactly the same.
+This is fortunate.
+It means that one and the same methodology
+would be applicable to both types of problems.
+There is another distinction between problem types
+which turns out to be a little more substantial.
+There are problems that we call hypothesis testing problems.
+In those problems the unknown takes one out
+of a few possible values.
+That is, we may have a few different alternative
+models of the world.
+And we're trying to figure out which one of those models
+is the correct one.
+We're going to decide in favor of one of the candidate models,
+and what we want to achieve is that we
+make a correct decision.
+Or if not, we want to have a small probability
+of making an incorrect decision.
+An example of this kind is the radar detection problem
+that we had discussed in the very beginning of this course,
+in which we were getting a signal.
+We were getting a radar reading.
+And the question was to make an inference
+whether the radar is seeing an airplane
+or whether an airplane is not present.
+So in hypothesis testing problems,
+we're essentially making a choice
+out of a small number of discrete possible choices.
+Instead, in estimation problems, the unknown quantities
+are more of a numerical type.
+They could even take continuous values.
+And what we want to do is to come up
+with an estimate of an unknown quantity that
+is close to the true but unknown value of the quantity
+that we're trying to estimate.
+So here, our performance objective
+is in terms of some kind of distance function.
+We want to be close to the truth.
+And typically, we have a continuum of possible choices
+that is, our estimates can be general real numbers.
+Generally speaking, these two types of problems, hypothesis
+testing and estimation, have some significant differences
+in the way that they are treated,
+as we will be seeing next.
+
+
+
+
+
+
+
+# 4. Exercise: Hypothesis testing versus estimation
+
+![](C:/Users/qp/Pictures/Screenshots/4. Exercise Hypothesis testing versus estimation - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Exercise Hypothesis testing versus estimation - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Exercise Hypothesis testing versus estimation - 3.png)
+
+
+
+
+
+
+
+
+# 5. The Bayesian inference framework
+
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 7.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 8.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 9.png)
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 10.png)
+[][* Think why its called LMS ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ *]
+[][ Maximum a posteriori probability (MAP) ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ ]
+![](C:/Users/qp/Pictures/Screenshots/5. The Bayesian inference framework - 11.png)
+We can finally go ahead and introduce the basic elements
+of the Bayesian inference framework.
+There is an unknown quantity, which
+we treat as a random variable, and this is what's special
+and why we call this the Bayesian inference framework.
+This is in contrast to other frameworks
+in which the unknown quantity theta is just
+treated as an unknown constant.
+But here, we treat it as a random variable,
+and as such, it has a distribution.
+This is the prior distribution.
+This is what we believe about Theta
+before we obtain any data.
+And then, we obtain some data, which are some observation.
+That observation is a random variable,
+but when the process gets realized,
+we observe an actual value, numerical value,
+of this random variable.
+The observation process is modeled,
+again in terms of a probabilistic model.
+We specify the distribution of X,
+but we actually specify the conditional distribution of X.
+We say how X will behave if Theta happens
+to take on a specific value.
+These two pieces, the prior and the model of the observations,
+are the two components of the model
+that we will be working with.
+Once we have obtained a specific value for the observations,
+then we can use the Bayes rule to calculate
+the conditional distribution of Theta,
+either a conditional PMF if Theta is discrete
+or a conditional PDF if Theta is continuous.
+And this will be a complete solution, in some sense,
+of the Bayesian inference problem.
+There's one philosophical issue about this framework, which
+is where does this prior distribution come from?
+How do we choose it?
+Sometimes we can choose it using a symmetry argument.
+If there's a number of possible choices for Theta
+and there's a reason to believe that they're all
+equally likely, we have no reason
+to believe that one is more likely than the other, then
+the symmetry consideration gives us a uniform prior.
+We definitely take into account any information
+we have about the range of the parameter Theta,
+so we use that range and we assign 0 prior probability
+for values of Theta outside the range.
+Sometimes, we have some knowledge about Theta
+from previous studies of a certain problem, that tell us
+a little bit about what Theta might be,
+and then when we obtain new observations,
+we refine those results that were obtained
+from previous studies by applying the Bayes rule.
+And in some cases, finally, the choice
+could be arbitrary or subjective just reflecting our beliefs
+about Theta, some plausible judgment
+about the relative likelihoods of different choices of Theta.
+Now, as we just discussed, the complete solution
+or the complete answer to a Bayesian inference problem
+is just the specification of the posterior distribution
+of Theta given the particular observation that we
+have obtained.
+Pictorially, if Theta is discrete,
+a complete answer might be in the form of such a diagram that
+tells us that certain values of Theta
+are possible with certain probabilities.
+Or if Theta is continuous, a complete solution
+might be in the form of a conditional PDF that again
+tells us the conditional distribution of Theta.
+To appreciate the idea here, consider the problem
+of guessing the number of electoral votes
+that a candidate gets in the presidential election.
+The electoral votes are certain votes
+that the candidate gets from each one
+of the states in the United States.
+And there is a certain number that the candidate
+needs to get in order to be elected president.
+One possible prediction could be a statement
+that I predict that candidate A will win,
+but actually a more complete presentation
+of the results of a poll could be
+a diagram of this kind, which is essentially a PMF.
+Here, a particular pollster collected all the data
+and gave the posterior probability distribution
+for the different possible numbers of electoral votes.
+And this diagram is a lot more informative
+than the simple statement that we expect a certain candidate
+to get more than the required electoral votes.
+So what is next?
+As we just discussed, the complete solution
+is in terms of a posterior distribution,
+but sometimes, you may want to summarize this posterior
+distribution in a single number or a single estimate,
+and this could be a further stage
+of processing of the results.
+So let us talk about this.
+Once you have in your hands the posterior distribution
+of Theta, either in a discrete or in a continuous setting,
+and if you're asked to provide a single guess about what
+Theta is, how might you proceed?
+In the discrete case, you could argue as follows.
+These values of Theta all have some chance of occurring.
+This value of Theta is the one which is the most likely,
+so I'm going to report this value
+as my best guess of what Theta is.
+And using a similar philosophy, you
+could look at the continuous case
+and find the value of Theta at which the PDF is largest
+and report that particular value.
+This particular way of estimating Theta
+is called the maximum a posteriori probability rule.
+We already have in our hands the specific value of X,
+and therefore, we have determined
+the conditional distribution for Theta.
+What we then do is to find the value of theta
+that maximizes over all possible thetas the conditional PMF
+of this random variables capital Theta.
+And similarly in the continuous case,
+the value of theta that maximizes the conditional PDF
+of the random variable Theta.
+This is one way of coming up with an estimate.
+One can think of other ways.
+For example, I might want to report instead, the mean
+of the conditional distribution, which in this diagram
+might be somewhere here, and in this picture,
+it might be somewhere here.
+This way of estimating theta is the conditional expectation
+estimator.
+It just reports the value of the conditional expectation,
+the mean of this conditional distribution.
+It is called the least mean squares estimator,
+because it has a certain useful and important property.
+It is the estimator that gives you
+the smallest mean squared error.
+We will discuss this particular issue
+in much more depth a little later.
+Now, let me make two comments about terminology.
+What we have produced here is an estimate.
+I gave you the conditional PDF or conditional PMF,
+and you tell me a number.
+This number, the estimate, is obtained
+by starting with the data, doing some processing to the data,
+and eventually, coming up with a numerical value.
+Now, g is the way that we process the data.
+It's a certain rule.
+Now, if we know the value of the data,
+we know what the estimate is going to be.
+But if I do not tell you the value of the data
+and you look at the situation more abstractly,
+then the only thing you can tell me
+is that I will be seeing a random variable,
+capital X, I will do some processing to it,
+and then I will obtain a certain quantity.
+Because capital X is random, the quantity that I will obtain
+will also be random.
+It's a random variable.
+This random variable, capital Theta hat,
+we call it an estimator.
+Sometimes, we might also use the term estimator
+to [refer to] the function g, which
+is the way that we process the data.
+In any case, it is important to keep this distinction in mind.
+The estimator is the rule that we use to process the data,
+and it is equivalent to a certain random variable.
+An estimate is the specific numerical value
+that we get when the data take a specific numerical value.
+So if little x is the numerical value of capital X,
+in that case, little theta hat is the numerical value
+of the estimator capital Theta hat.
+So at this point, we have a complete conceptual framework.
+We know, abstractly speaking, what
+it takes to calculate conditional distributions,
+and we have two specific estimators at hand.
+All that's left for us to do now is
+to consider various examples in which we can discuss what
+it takes to go through these various steps. 
+
+
+
+
+
+
+
+
+# 6. Exercise Estimates and estimators
+
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Estimates and estimators - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Estimates and estimators - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Estimates and estimators - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Estimates and estimators - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/6. Exercise Estimates and estimators - 5.png)
+
+
+
+
+
+
+
+
+# 7. Discrete parameter, discrete observation
+
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 7.png)
+[][* Why Theta got fat??? Think it as groups of Theta hat ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ *]
+[][* Total probability rule, based on conditional probability ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ *]
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 8.png)
+![](C:/Users/qp/Pictures/Screenshots/7. Discrete parameter, discrete observation - 10.png)
+Let us now discuss in some more detail
+what it takes to carry out Bayesian inference,
+when both random variables are discrete.
+The unknown parameter, Theta, is a random variable
+that takes values in the discrete set.
+And we can think of these values as alternative hypotheses.
+In this case, we know how to do inference.
+We have in our hands the Bayes rule
+and we have seen plenty of examples.
+So instead of going through one more example in detail,
+let us assume that we have a model, that we have observed
+the value of X, and that we have already determined
+the conditional PMF of the random variable Theta.
+As a concrete example, suppose that Theta
+can take values 1, 2, or 3.
+We have obtained our observation,
+and the conditional PMF takes this form.
+We could stop at this point or we
+could continue by asking for a specific estimate of Theta--
+our best guess as to what Theta is.
+One way of coming up with an estimate
+is to use the [][**maximum a posteriori of probability rule**], which looks for that value of theta that
+has the largest posterior, or conditional, probability.
+In this example, it is this value,
+so our estimate is going to be equal to 2.
+An alternative way of coming up with an estimate
+could be the LMS rule, which calculates
+an estimate equal to the conditional expectation
+of the unknown parameter, given the observation that we
+have made.
+This is just the mean of this conditional distribution.
+In this example, it would fall somewhere around here,
+and the numerical value, as you can check, is equal to 2.2.
+Next, we may be interested in how good a certain estimate is.
+And for the case where we interpret the values of Theta
+as hypotheses, a relevant criterion
+is the probability of error.
+In this case, because we already have
+some data available in our hands and we're
+called to make an estimate, what we care about
+is the conditional probability, given the information
+that we have, that we're making an error.
+Making an error means the following.
+We have the observation, the value of the estimate
+has been determined, it is now a number,
+and that's why we write it with a lowercase theta hat.
+But the parameter is still unknown.
+We don't know what it is.
+It is described by this distribution.
+And there's a probability that it's
+going to be different from our estimate.
+What is this probability?
+It depends on how we construct the estimates.
+If in this example, we use the MAP rule
+and we make an estimate of 2, there
+is probability 0.6 that the true value of Theta
+is also equal to 2, and we are fine.
+But there's a remaining probability of 0.4
+that the true value of Theta is different than our estimate.
+So there's probability 0.4 of having made a mistake.
+If, instead of an estimate equal to 2,
+we had chosen an estimate equal to 3,
+then the true parameter would be equal to our estimate
+with probability 0.3, but we would have made an error
+with probability 0.7, which would
+be a bigger probability of error.
+More generally, the probability of error
+of a particular estimate is the sum
+of the probabilities of the other values of Theta.
+And if we want to keep the probability of error small,
+we want to keep the sum of the probabilities
+of the other values small, which means
+we want to pick an estimate for which its own probability is
+large.
+And so by that argument, we see that the way
+to achieve the smallest possible probability of error
+is to employ the MAP rule.
+This is a very important property of the MAP rule.
+Now, this is the conditional probability
+of error, given that we already have data in our hands.
+But more generally, we may want to compare estimators or talk
+about their performance in terms of their overall probability
+of error.
+We're designing a decision-making system
+that's going to process data and making decisions.
+In order to say how good our system is,
+we want to say that overall, whenever you use the system,
+there's going to be some random parameter,
+there's going to be some value of the estimate.
+And we want to know what's the probability that these two will
+be different.
+We can calculate this overall probability of error
+by using the total probability theorem.
+And the conditional probabilities of error as
+follows.
+We condition on the value of X. For any possible value of X,
+we have a conditional probability of error.
+And then we take a weighted average
+of these conditional probabilities of error.
+There's also an alternative way of using the total probability
+theorem, which would be to first condition on Theta
+and calculate the conditional probability of error
+for a given choice of this unknown parameter.
+And both of these formulas can be used.
+Which one of the two is more convenient
+really depends on the specifics of the problem.
+Finally, I would like to make an important observation.
+We argued that for any particular choice
+of an observation, the MAP rule achieves the smallest
+possible probability of error.
+So under the MAP rule, this term is as small
+as possible for any given value of the random variable,
+capital X.
+Since each term of this sum is as small as possible
+under the MAP rule, it means that the overall sum will also
+be as small as possible.
+And this means is that the overall probability of error
+is also smallest under the MAP rule.
+In this sense, the MAP rule is the optimum way
+of coming up with estimates in the hypothesis-testing context,
+where we want to minimize the probability of error.
+
+
+
+
+
+
+
+# 8. Exercise: Discrete unknowns
+
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Discrete unknowns - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Discrete unknowns - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Discrete unknowns - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Discrete unknowns - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/8. Exercise Discrete unknowns - 5.png)
+
+
+
+
+
+
+
+
+
+# 9. Discrete parameter, continuous observation
+
+![](C:/Users/qp/Pictures/Screenshots/9. Discrete parameter, continuous observation - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/9. Discrete parameter, continuous observation - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/9. Discrete parameter, continuous observation - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/9. Discrete parameter, continuous observation - 5.png)
+[][*Image how those two approach help us doing the calculation +++++++++++++++++++++++++++++++++++++++++++++++++++++++++ *]
+![](C:/Users/qp/Pictures/Screenshots/9. Discrete parameter, continuous observation - 7.png)
+In the next variation that we consider,
+the random variable Theta is still discrete.
+So it might, for example, represent
+a number of alternative hypothesis.
+But now our observation is continuous.
+Of course, we do have a variation of the Bayes rule
+that's applicable to this situation.
+The only difference from the previous version of the Bayes
+rule is that now the PMF of X, the unconditional
+and the conditional one, is replaced by a PDF.
+Otherwise, everything remains the same.
+A standard example is the following.
+Here we're sending a signal that takes one of, let's say,
+three alternative values.
+And what we observe is the signal
+that was sent plus some noise.
+And the typical assumption here might
+be that the noise has zero mean and a certain variance,
+and is independent from the signal that was sent.
+This is an example that we more or less studied some time ago.
+Actually, at that time, we looked at an example
+where Theta could only take one out of two values,
+but the calculations and the methodology
+remains essentially the same as for the case of three values.
+So in principle, we do know at this point
+how to apply the Bayes rule in this situation
+to come up with a conditional PMF of theta.
+And the key to that calculation was that the term that we need,
+the conditional PDF of X, can be obtained from this equation
+as follows.
+If I tell you the value of Theta,
+then X is essentially the same as W plus a certain constant.
+Adding a constant just shifts the PDF of W
+by an amount equal to that constant.
+And, therefore, the conditional PDF of X
+is the shifted PDF of the random variable W. Using
+this particular fact, we can then apply the Bayes rule,
+carry out of the calculations, and suppose that in the end
+we came up with these results.
+That is we obtain the specific observation
+x and based on that observation, we
+calculate the conditional probabilities
+of the different choices of Theta.
+At this point, we may use the MAP rule
+and come up with an estimate which
+is the value of Theta, which is the more likely one.
+And then we can continue exactly as in the case
+of discrete measurements, of discrete observations,
+and talk about conditional probabilities of error
+and so on.
+Now, the fact that X is continuous
+really makes no difference, once we arrive at this picture.
+With the MAP rule we still choose the most likely value
+of theta, and this is our estimates.
+And we can calculate the probability
+of error, which with the MAP rule
+would be 0.4, exactly the same argument
+as for the case of discrete observations
+applies and shows that this conditional probability
+of error is smallest under the MAP rule.
+And then we can continue similarly
+and talk about the overall probability of error, which
+can be calculated using the total probability
+theorem in two ways.
+One way is to take the conditional probability
+of error for any given value of X
+and then average those conditional probabilities
+of errors over all the possible choices of X.
+Because X is now continuous, here
+we're going to have an integral.
+Alternatively, you can condition on the possible values
+of Theta, calculate conditional probabilities of error
+for any particular choice of theta,
+and then take a weighted average of them.
+In practice, this calculation sometimes
+turns out to be the simpler one.
+Finally, we can replicate the argument
+that we had in the discrete case.
+Since the MAP rule makes this term here as small as possible,
+it is less than or equal to the probability of error
+that you would get under any other estimate or estimator,
+then it follows that the integral will also
+be as small as possible.
+And therefore, the conclusion is that the overall probability
+of error is, again, the smallest possible
+when we use the MAP rule.
+And so the MAP rule remains the optimal way
+of choosing between alternative hypothesis,
+whether X is discrete or continuous.
+
+
+
+
+
+
+
+
+# 10. Exercise: Discrete unknown and continuous observation
+
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Discrete unknown and continuous observation - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Discrete unknown and continuous observation - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Discrete unknown and continuous observation - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/10. Exercise Discrete unknown and continuous observation - 4.png)
+
+
+
+
+
+
+
+
+
+# 11. Continuous parameter, continuous observation
+
+![](C:/Users/qp/Pictures/Screenshots/11. Continuous parameter, continuous observation - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/11. Continuous parameter, continuous observation - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/11. Continuous parameter, continuous observation - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/11. Continuous parameter, continuous observation - 4.png)
+[][*The main candidate for now is MAP rule *]
+![](C:/Users/qp/Pictures/Screenshots/11. Continuous parameter, continuous observation - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/11. Continuous parameter, continuous observation - 6.png)
+In the next variation we consider, all random variables
+are continuous.
+For this case, we do have a Bayes rule, once more.
+And we have worked [out] quite a few examples.
+So there's no point, again, in going
+through a detailed example.
+Let us just discuss some of the issues.
+One question is when do these models arise?
+One particular class of models that is very useful and very
+commonly used are so-called linear normal models.
+In these models, we, basically, combine
+various random variables in a linear function.
+And all the random variables of interest are now to be normal.
+For instance, we might have a signal, a noisy signal,
+call it Theta, which is now a continuous valued signal.
+We receive that signal, but corrupted
+by some noise, which is independent from what was sent.
+And we wish to recover, on the basis of the observation X,
+we wish to recover the value of Theta.
+And then there are versions of this problem that
+involve Theta vectors instead of single values.
+So that Theta consists of multiple components,
+and where we obtain many measurements X. We will,
+actually, see in the next lecture sequence,
+a quite detailed discussion of models of this type.
+And this will be one of our main examples
+within our study of inference.
+There will be another example that we will see a few times,
+and this involves estimating the parameter
+of a uniform distribution.
+So X is a random variable that's uniform over a certain range.
+But the range itself is random and unknown.
+And on the basis of observations X,
+we would like to make an estimation of what
+the true value of Theta is.
+This is an example that you will see
+in our collection of solved problems for this class.
+So what are the questions in this setting, we wish to come up with ways of estimating Theta, we form an estimator, and the main candidates for estimators at this points are, once more, **the maximum a posteriori probability** estimator, which looks at this conditional density and picks a value of theta that makes this conditional density as large as possible.  And then the alternative one is the **least mean squares** estimator, which just computes the expected value of Theta given X.  
+
+For any given estimator, we then want to characterize its performance.  In this case, a natural notion of performance is the distance between our estimate, or estimator, from the true value of Theta.  And commonly we use the squared distance and then take the average of that squared distance.  
+So in a conditional universe where we have already observed some data, we might be interested in this particular expectation, which is the [][mean squared error of this particular estimator], given that we obtain some particular data.
+Or we can average over all possible data points
+that we might obtain so that we look
+at the unconditional mean squared error, which
+is a measure of the overall performance of our estimator.
+We will be talking about these criteria
+and the mean squared error in a fair amount of detail
+in a subsequent lecture sequence.
+
+
+
+
+
+
+
+
+
+# 12. Exercise: Continuous unknown and observation
+
+![](C:/Users/qp/Pictures/Screenshots/12. Exercise Continuous unknown and observation - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/12. Exercise Continuous unknown and observation - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/12. Exercise Continuous unknown and observation - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/12. Exercise Continuous unknown and observation - 4.png)
+![](C:/Users/qp/Pictures/20221211_161955.jpg)
+
+
+
+
+
+
+
+
+
+# 13. Inferring the unknown bias of a coin and the Beta distribution
+
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 7.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 8.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 9.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 10.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 11.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 12.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 13.png)
+![](C:/Users/qp/Pictures/Screenshots/13. Inferring the unknown bias of a coin and the Beta distribution - 14.png)
+We will now go through an example that
+involves a continuous unknown parameter,
+the unknown bias of a coin and discrete observations,
+namely, the number of heads that are
+observed in a sequence of coin flips.
+This is an example that we will start in some detail now,
+and we will also revisit later on.
+And in the process, we will also have the opportunity
+to introduce a new class of probability distributions.
+This example is an extension of an example
+that we have already seen, when we first
+introduced the relevant version of the Bayes rule.
+We have a coin.
+It has a certain bias between 0 and 1, but the bias is unknown.
+And consistent with the Bayesian philosophy,
+we treat this unknown bias as a random variable,
+and we assign a prior probability distribution to it.
+We flip this coin n times independently,
+where n is some positive integer,
+and we record the number of heads that are obtained.
+On the basis of the value of this random variable,
+we would like to make inferences about Theta.
+Now to make some more concrete progress,
+let us make a specific assumption.
+Let us assume that the prior on Theta
+is uniform on the unit interval, in some sense reflecting
+complete ignorance about the true value of Theta.
+We observe the value of this random variable, some little k,
+we fix that value, and we're interested in the functional
+dependence on theta of this particular quantity,
+when k is given to us.
+How do we do this?
+We use the appropriate form of the Bayes rule, which
+in this setting is as follows.
+it is the usual form, but we have
+f's indicating densities whenever we're
+talking about the distribution of Theta,
+because Theta is continuous.
+And whenever we talk about the distribution of K, which
+is discrete, we use the symbol p,
+because we're dealing with probability mass functions.
+As always, the denominator term is such
+that the integral of the whole expression over theta
+is equal to 1.
+This is the necessary normalization property,
+and because of this, this denominator term
+has to be equal to the integral of the numerator
+over all theta, which is what we have here.
+So now let us move, and let us apply this formula.
+We first have the prior, which is equal to 1.
+Then we have the probability that K is equal to little k.
+This is the probability of obtaining exactly k heads,
+if I tell you the bias or the coin.
+But if I tell you the bias of the coin,
+we're dealing with the usual model of independent coin
+flips, and the probability of k heads
+is given by the binomial probabilities, which
+takes this form.
+And finally, we have the denominator term,
+which we do not need to evaluate at this point.
+Now, I said earlier that we're interested in the dependence
+on theta, which comes through these terms.
+On the other hand, the remaining terms
+do not involve any thetas, and so they
+can be lumped together in just a constant.
+And so we can write the answer that we
+have found in this more suggestive form.
+We have some normalizing constant,
+and here we keep separately the dependence on theta.
+Of course, this answer that we derived
+is valid for little theta belonging to the unit interval.
+Outside the unit interval, either the prior density
+or the posterior density of Theta would be equal to 0.
+This particular form of the posterior distribution
+for Theta is a certain type of density,
+and it shows up in various contexts.
+And for this reason, it has a name.
+It is called a Beta distribution with certain parameters,
+and the parameters reflect the exponents
+that we have up here in the two terms.
+Note that these parameters are the exponents augmented by 1.
+This is for historical reasons that do not concern us here.
+It is just a convention.
+The important thing is to be able to recognize what it takes
+for a distribution to be a Beta distribution.
+That this that the dependence on theta is of the form theta
+to some power times 1 minus theta to some other power.
+Any distribution of this form is called a Beta distribution.
+So now, let's continue this example
+by considering a different prior.
+Suppose that the prior is itself a Beta distribution
+of this form where alpha and beta are
+some non-negative numbers.
+What is the posterior in this case?
+We just go through the same calculation as before,
+but instead of using one in the place of the prior,
+we now use the prior that's given to us.
+The probability of k heads in the n tosses,
+when we know the bias, is exactly as before.
+It is given by the binomial probabilities.
+And finally, we need to divide by the denominator term, which
+is the normalizing constant.
+What do we observe here?
+The dependence on theta comes through these terms.
+The remaining terms do not involve theta,
+and they can all be absorbed in a constant.
+Let's call that constant d, and collect the remaining terms.
+We have theta to the power of alpha plus k,
+and then, 1 minus theta to the power of beta plus n minus k.
+And once more, this is the form of the posterior
+for thetas belonging to this range.
+The posterior is 0 outside this range.
+
+[][So what do we see?  We started with a prior that came from the Beta family of this form, and we came up with a posterior that is still a function of theta of this form, but with different values of the parameters alpha and beta.  Namely, alpha gets replaced by alpha plus k, beta gets replaced by beta plus n minus k.  So we see that if we start with a prior from the family of Beta distributions, the posterior will also be in that same family.  ]
+
+This is a beautiful property of Beta distributions that can be exploited in various ways.  One of which is that it actually allows for recursive ways of updating the posterior of Theta as we get more and more observations.
+
+https://courses.edx.org/assets/courseware/v1/50e83fd161607df26df9fb296bff5650/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_beta_plots.pdf
+
+https://bl.ocks.org/joost2076/raw/7b0bd5c566b3a349854e/
+
+
+
+
+
+
+
+
+
+# 14. Exercise: The posterior of a coin's bias
+
+![](C:/Users/qp/Pictures/Screenshots/14. Exercise The posterior of a coin's bias - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/14. Exercise The posterior of a coin's bias - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/14. Exercise The posterior of a coin's bias - 3.png)
+[][ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ]
+![](C:/Users/qp/Pictures/Screenshots/14. Exercise The posterior of a coin's bias - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/14. Exercise The posterior of a coin's bias - 5.png)
+[][ &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& ]
+![](C:/Users/qp/Pictures/Screenshots/14. Exercise The posterior of a coin's bias - 6.png)
+
+
+
+
+
+
+
+
+
+
+# 15. Inferring the unknown bias of a coin - point estimates
+
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 3.png)
+[][* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& *]
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 4.png)
+[][* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& *]
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 5.png)
+[][* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& *]
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 7.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 8.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 9.png)
+[][* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& *]
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 10.png)
+[][* &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& *]
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 11.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 12.png)
+![](C:/Users/qp/Pictures/Screenshots/15. Inferring the unknown bias of a coin - point estimates - 13.png)
+We will now continue with the problem
+of inferring the unknown bias of a certain coin
+for which we have a certain prior distribution
+and of which we observe the number of heads
+in n independent coin tosses.
+We have already seen that if we assume a uniform prior,
+the posterior takes this particular form, which
+comes from the family of Beta distributions.
+What we want to do now is to actually derive
+point estimates.
+That is, instead of just providing the posterior,
+we would like to select a specific estimate
+for the unknown bias.
+Let us look at the maximum a posteriori probability estimate.
+How can we find it?
+By definition, the MAP estimate is that value of theta
+that maximizes the posterior, the value of theta
+at which the posterior is largest.
+Now, instead of maximizing the posterior,
+it is more convenient in this example
+to maximize the logarithm of the posterior.
+And the logarithm is k times log theta,
+plus n minus k times the log of 1 minus theta.
+To carry out the maximization over theta,
+we form the derivative with respect to theta
+and set that derivative to 0.
+So the derivative of the first term is k over theta.
+And the derivative of the second term
+is n minus k over this quantity, 1 minus theta.
+But because of the minus here when we apply the chain rule,
+actually, this plus sign here is going to become a minus sign.
+And now we set this derivative to 0.
+We carry out the algebra, which is rather simple.
+And the end result that you will find
+is that the estimate is equal to k over n.
+Notice that this is lowercase k.
+We are told the specific value of heads
+that has been observed.
+So little k is a number, and our estimate, accordingly,
+is a number.
+This answer makes perfect sense.
+A very reasonable way of estimating
+the probability of heads of a certain coin
+is to look at the number of heads
+obtained and divide by the total number of trials.
+So we see that the MAP estimate turns out
+to be a quite natural one.
+How about the corresponding estimator?
+Recall the distinction that the estimator
+is a random variable that tells us what the estimate is going
+to be as a function of the random variable that
+is going to be observed.
+The estimator is uppercase K divided by little n.
+So it is a random variable whose value
+is determined by the value of the random variable capital
+K. If the random variable capital K happens
+to take on this specific value, little k, then
+our estimator, this random variable,
+will be taking this specific value, which is the estimate.
+And let us now compare with an alternative way
+of estimating Theta.
+We will consider estimating Theta
+by forming the conditional expectation of Theta, given
+the specific number of heads that we have observed.
+[][This is what we call the LMS or least mean squares estimate].  **To calculate this conditional expectation, all that we need to do is to form the integral of theta times the density of Theta**.  But since it's a conditional expectation, we need to take the conditional density of Theta.  And the integral ranges from 0 to 1, because this is the range of our random variable, Theta.  Now, what is this?  We have a formula for the posterior density.  So we need to just multiply this expression here by theta, and then integrate.  This term here is a constant.  So it can be pulled outside the integral.  And inside the integral, we are left with this term times theta, which changes the exponent of theta to k plus 1.  Then we have 1 minus theta to the power n minus k, d theta.  
+
+At this point, we need to do some calculations.  **What is d of n, k?  d of n, k is the normalizing constant of this PDF.  For this to be a PDF and to integrate to 1, d of n, k has to be equal to the integral of this expression from 0 to 1.**[][How could we come up with this conclusion??? Shouldn't we first take intergal over the constant d of n, k???  Think here, the d of n, k is anyway constant, but when we intergral of Beta expression over 0~1, it becomes d n, k * that constant, so... now you see it]  So we need to somehow be able to evaluate this integral.
+Here, we will be helped by the following very nice formula.
+This formula tells us that the integral
+of for such a function of theta from 0 to 1
+is equal to this very nice and simple expression.
+Of course, this formula is only valid
+when these factorials make sense.
+So we assume that alpha is non-negative
+and theta is non-negative.
+How is this formula derived?
+There's various algebraic or calculus style derivations.
+One possibility is to use integration by parts.
+And there are also other tricks for deriving it.
+It turns out that there is also a very clever
+probabilistic proof of this fact.
+But in any case, we will not derive it.
+We will just take it as a fact that comes to us from calculus.
+And now, let us apply this formula.
+d of n, k is equal to the integral of this expression,
+which is of this form, with alpha equal to k and beta
+equal to n minus k.
+So d of n, k takes the form alpha is k, beta is n minus k.
+And then in the denominator, we have
+the sum of the two indices plus 1.
+So it's going to be k plus n minus k.
+That gives us n.
+And then there's a plus 1.
+And how about this integral?
+Well, this integral is also of the form that we have up here.
+But now, we have alpha equal to k plus 1,
+beta is n minus k.
+And in the denominator, we have the sum of the indices plus 1.
+So when we add these indices, we get n plus 1.
+And then we get another factor of 1,
+which gives us an n plus 2.
+This looks formidable.
+But actually, there's a lot of simplifications.
+This term here cancels with that term.
+k plus 1 factorial divided by k factorial, what is it?
+It is just a factor of k plus 1.
+And what do we have here?
+This term is in the denominator of the denominator.
+So it can be moved up to the numerator.
+We have n plus 1 factorial divided by n plus 2 factorial.
+This is just n plus 2.
+And this is the final form of the answer.
+This is what the conditional expectation of theta is.
+So now, we can compare the two estimates that we have,
+the MAP estimate and the conditional expectation
+estimate.
+They're fairly similar, but not exactly the same.
+This means that the mean of a Beta distribution
+is not the same as the point at which the distribution is
+highest.
+On the other hand, if n is a very large number,
+this expression is going to be approximately equal to k over n
+when n is large.
+And so in the limit of large n, the two estimators
+will not be very different from each other.
+
+
+
+
+
+
+
+
+
+# 16. Exercise: Moments of the Beta distribution
+
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Moments of the Beta distribution - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Moments of the Beta distribution - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Moments of the Beta distribution - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/16. Exercise Moments of the Beta distribution - 4.png)
+
+
+
+
+
+
+
+
+
+# 17. Summary
+
+![](C:/Users/qp/Pictures/Screenshots/17. Summary Lec. 14 - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/17. Summary Lec. 14 - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/17. Summary Lec. 14 - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/17. Summary Lec. 14 - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/17. Summary Lec. 14 - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/17. Summary Lec. 14 - 6.png)
+In this lecture sequence, we introduced quite a few new concepts and went through a fair number of examples.  So for this reason, it is useful now to just take stock and summarize the key ideas and concepts.  The starting point in a Bayesian inference problem is the following.  **There's an unknown parameter, Theta, and we're given a prior distribution for that parameter**.  *We're also given a model for the observations, X, in terms of a distribution that depends on the unknown parameter, Theta*.  The inference problem is as follows.  We will be given the value of the random variable X.  And then we want to find the posterior distribution of Theta, that is, given this particular value of X, what is the conditional distribution of Theta?  In the case where Theta is discrete, this will be in terms of a PMF.  If Theta is continuous, this would be a PDF.  We find the posterior distribution by using an appropriate version of the Bayes rule.  And here we have four different combinations or four choices, depending on which variables are discrete or continuous.  This is a complete solution to the Bayesian inference problem-- a posterior distribution.  
+
+But if we want to come up with a single guess of what Theta is, then we use a so-called estimator.  What an estimator does is that it calculates a certain value as a function of the observed data.  So g describes the way that the data are processed.  Because X is random, the estimator itself will be a random variable.  But once we obtain a specific value of our random variable and we apply this particular estimator, then we get the realized value of the estimator.  So we apply g now to the lowercase x, and this gives us an estimate, which is actually a number.  
+
+[][We have seen two particular ways of constructing estimates or estimators].  One of them is the maximum a posteriori probability rule in which we choose an estimate that maximizes the posterior distribution.  So in the case where Theta is discrete, this finds the value of theta, which is the most likely one given our observation.  And similarly, in the continuous case, it finds a value of theta at which the conditional PDF of Theta would be largest.  Another estimator is the one that we call the LMS or least mean squares estimator, which calculates the conditional expectation of the unknown parameter, given the observations that we have obtained.  
+
+Finally, we may be interested in evaluating the performance of a given estimator.  *For hypotheses-testing problems* we're interested in the probability of error.  And we have the conditional probability of error.  Given the data that I have just observed and given that I'm using a specific estimator, what is the probability that I make a mistake?  And then there's the overall evaluation of the estimator--how well does it do on the average before I know what X is going to be?  And this is just the probability that I will be making an incorrect decision.  *For estimation problems*, on the other hand, we're interested in the distance between our estimates from the true value of Theta.  And this leads us to the following conditional mean squared error, given that we have already obtained an observation. And we come up with an estimator.  In particular, the value of the estimator at this time would be completely determined by the data that we obtained.  But Theta, the unknown parameter remains random.  And there's going to be a certain squared error.  We find the conditional expectation of this squared error in this particular situation, where we have obtained a specific value of the random variable, capital X. On the other hand, if we're looking at the estimator more generally, how well it does on the average, then we look at the unconditional mean squared error, and this gives us an overall performance evaluation.  How do we calculate these performance measures?  Here, we live in a conditional universe.  And in a Bayesian estimation problem at some point we do calculate the posterior distribution of Theta, given the measurements.  So these calculations involved here consist of just an integration or summation using the conditional distribution.  For example, here we would integrate this quantity using the conditional density of Theta, given the particular value that we have obtained.  If we want to now calculate the unconditional performance, then we would have to use the total probability or expectation theorem.  And in that case, we can average over all the possible values of X to find the overall error.  So all of the calculations involve tools and equations that we have seen and that we have used in the past, so it is just a matter of connecting those tools with the specific new concepts that we have introduced here.  
+
+
+
+
+
+
+
+
+
+
+
+## Lec. 15: Linear models with normal noise
+
+# 1. Lecture 15 overview and slides
+
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 15 overview and slides - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 15 overview and slides - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 15 overview and slides - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 15 overview and slides - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 15 overview and slides - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/1. Lecture 15 overview and slides - 6.png)
+In the previous lecture, we went through examples of inference involving some of the variations of the Bayes rule.  One case that we did not consider was the case where the unknown random variable and the observation are both continuous.  In this lecture, we will focus exclusively on an important model of this kind.  And because we consider only one specific setting, we will be able to start it in considerable detail.  
+
+*In the model that we consider, we start with some basic independent normal random variables*.  Some of them, the Theta j, are unknown, to be estimated.  And some of them, the Wi, represent noise.  Our observations, Xi, are linear functions of these basic random variables.  In particular, since linear functions of independent normal random variables are normal, the observations are themselves normal as well.  This is probably the most commonly used type of model in all of inference and statistics.  This is because it is a reasonable approximation in many situations.  Also, it has a very clean analytical structure and a very simple solution.  For example, it turns out that the posterior distribution of each Theta j is itself normal and that the MAP and LMS estimates coincide.  This is because the peak of a normal occurs at the mean.  
+
+Furthermore, these estimates are given by some simple linear functions of the observations.  We will go over these facts by moving through a sequence of progressively more complex versions.  We will start with just one unknown and one observation and then generalize.  And we will illustrate the formulation and the solution through a rather realistic example where we estimate the trajectory of an object from a few noisy measurements.  
+
+
+
+Printable transcript available here.
+https://courses.edx.org/assets/courseware/v1/f729ff7530e0724e14861835cf72a72e/asset-v1:MITx+6.431x+2T2022+type@asset+block/transcripts_L15-Overview.pdf
+
+Lecture slides: [clean] [annotated]
+https://courses.edx.org/assets/courseware/v1/73780eb6023b23df88ff18475255f11b/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L15-clean-slides.pdf
+https://courses.edx.org/assets/courseware/v1/61e5005a7c3429b4d4814bfe7c855020/asset-v1:MITx+6.431x+2T2022+type@asset+block/lectureslides_L15-annotated.pdf
+
+Some of the material in this lecture is covered in Example 8.3 on page 415 and page 421, and on pages 480-482 of the textbook.
+
+For a written summary of the trajectory estimation problem, see this document.
+https://courses.edx.org/assets/courseware/v1/21ddfd5247c2500011c50b549bdf705b/asset-v1:MITx+6.431x+2T2022+type@asset+block/estimation-tracking-post-6.041x.pdf
+
+
+
+
+
+
+
+
+
+
+# 2. Recognizing normal PDFs
+
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 7.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 8.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 9.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 10.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 11.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 12.png)
+![](C:/Users/qp/Pictures/Screenshots/2. Recognizing normal PDFs - 13.png)
+In this lecture sequence, we will do a lot
+with normal random variables.
+And for this reason, it is useful to start
+with a simple observation that will allow us
+later on to move much faster.
+Recall that a normal random variable with a certain mean
+and variance has a PDF of this particular form.
+What if somebody gives you a PDF of this form
+and asks you what it corresponds to?
+You can answer that this is exactly
+of this form provided that you make the identification that 3
+is equal to mu.
+So this is a normal PDF with a mean equal to 3
+and whose variance can also be found
+by matching this constant that appears here with the number 8.
+This constant here is in the denominator.
+So we have a term 1/2 sigma squared.
+This must be equal to 8.
+And from this, we can infer that the variance
+of this random variable is equal to 1/16.
+And if you also want to find out the value of this constant c,
+you check the formula for normal PDFs,
+the constant c is 1 over the standard deviation,
+which is 1/4 in our case.
+The square root of this number times the square root of 2 pi.
+Now suppose that somebody gives you a PDF of this form.
+It's a constant times a negative exponential
+of a quadratic function in x.
+We will argue that this PDF is also a normal PDF.
+And identify the parameters of that normal.
+First, let's start with a certain observation.
+A PDF must integrate to 1 so it cannot blow up as x goes
+to infinity, which means that this exponential needs to die
+out as x goes to infinity.
+And that will only happen if this coefficient alpha here
+is positive.
+So that we have e to the minus something positive and large
+which is going to die out.
+Therefore, we must have alpha being a positive constant.
+And let us assume from now on that this is the case.
+What we will do next is we will try
+to write this PDF in this form.
+And the trick that we're going to use is the following.
+We will focus on the term in the exponent, which
+we rewrite this way.
+We take out a factor of alpha.
+And then we will try to make this expression here
+appear like a square of this kind, like a perfect square.
+So what is involved is a certain method,
+a certain trick called completing the square.
+That is, we write this term here in the form x plus something
+squared.
+And then we may need some additional terms.
+What should that something be?
+We would like that something be such
+that when we expand this quadratic,
+we get this term and that term.
+Well we get an x squared and then
+there's going to be a cross term.
+What do we need here so that the cross term is equal to this?
+What we need is a term equal to beta over 2 alpha.
+Because in that case, the cross term
+is going to be 2 times x times beta divided by 2 alpha.
+The 2 in the beginning and that 2 cancel out,
+so we're left with x beta over alpha
+which is exactly what we got here.
+However, this quadratic is going to have an additional term
+which is going to be the square of this, which is not present
+here.
+So to keep the two sides equal, we need to subtract that term.
+And finally, we have the last term involving gamma.
+Therefore, the PDF of X is of the form.
+We have a certain constant from here.
+Then, we have the negative exponential of this term,
+e to the minus alpha x plus beta over 2 alpha squared.
+And then there's the negative exponential
+of the rest, which is going to be a term of the form
+e to the minus alpha times beta squared over 4 alpha squared
+plus gamma over alpha.
+Now this term here does not involve any x's.
+So it can be absorbed into the constant c.
+The dependence on x is only through this term.
+And now this term looks exactly like what we've got up here,
+provided that you make the following identifications.
+Mu has to be equal to what we have here,
+but here there's a minus sign, here there's no minus sign.
+And so mu is going to be the negative of what
+we have up here.
+It's minus beta over 2 alpha.
+And as for sigma squared, we match
+and say that 1/2 sigma squared must be equal to the constant
+that we have up here, which is alpha.
+And from this, we conclude that sigma squared is equal
+to 1/2 alpha.
+So we have concluded that a PDF of this type
+is indeed a normal PDF.
+It has a mean equal to that value.
+And a variance equal to that value.
+Actually, to figure out what the mean of this PDF is,
+we do not need to go through this whole exercise.
+Once we're convinced that this is a normal PDF,
+then we know that the mean is equal to the peak of the PDF.
+To find the peak, we want to maximize this over all
+x's, which is the same as minimizing this quadratic
+function over all x's.
+Where is this quadratic function minimized?
+To find that place, we can look at the exponent,
+take its derivative, and set it to 0.
+So setting the derivative of the exponent to 0
+gives us the equation 2 alpha x plus beta equal to 0.
+And from this, we solve for x.
+And we can tell that the peak of the distribution
+is going to be when x takes this particular value.
+This value must also be equal to the mean.
+So this is a very useful fact to know.
+And we will use it over and over.
+Negative exponential of a quadratic function of x
+is always a normal PDF.
+
+
+
+
+
+
+
+# 3. Exercise: Recognizing normal PDFs
+
+![](C:/Users/qp/Pictures/Screenshots/3. Exercise Recognizing normal PDFs - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Exercise Recognizing normal PDFs - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/3. Exercise Recognizing normal PDFs - 3.png)
+
+
+
+
+
+
+
+
+# 4. Normal unknown and additive noise
+
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 1.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 2.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 3.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 4.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 5.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 6.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 7.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 8.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 9.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 10.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 11.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 12.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 13.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 14.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 15.png)
+![](C:/Users/qp/Pictures/Screenshots/4. Normal unknown and additive noise - 16.png)
+As a preparation for more complex and more difficult models, we will start by looking at the simplest model that there is, that involves a linear relation and normal random variables.  The specifics of the model are as follows.  There's an unknown parameter modeled as a random variable, Theta, that we wish to estimate.  What we have in our hands is Theta plus some additive noise, W. And this sum is our observation, X. The assumptions that we make are that Theta and W are normal random variables.  And to keep the calculations simple, we assume that they're standard normal random variables.  Furthermore, we assume that Theta and W are independent of each other.  
+
+**According to the Bayesian program, inference about Theta is essentially the calculation of the posterior distribution of Theta if I tell you that the observation, capital X takes on a specific value little x**.  To calculate this posterior distribution, we invoke the appropriate form of the Bayes rule.  We have the prior of Theta.  It's a standard normal.  Now we need to figure out the conditional distribution of X given Theta.  What is it?  If I tell you that the random variable, capital Theta, takes on a specific value, little theta, then in that conditional universe, our observation is going to be that specific value of Theta, which is our little theta, plus the noise term, capital W. This is the relation that's holds in the conditional universe, where we are told the value of Theta.  Now W is independent of Theta.  So even though I have told you the value of Theta, the distribution of W does not change.  It is still a standard normal.  So X is a standard normal plus a constant theta.  What that does is that it changes the mean of the normal distribution, but it will still be a normal random variable.  So in this conditional universe, X is going to be a normal random variable with mean equal to theta, and with variance equal to the variance of W, which is equal to 1.  
+
+So now, we know what this distribution is,
+and we can move with the calculation of the posterior.
+So we have the denominator term, which I'm writing here.
+And then we have the density of Theta.
+Since it is a standard normal, it
+takes the form of a constant.
+We do not really care about the value of that constant.
+What we care really is the term on the exponent.
+And then we have the conditional density of X
+given Theta, which is a normal with these parameters.
+And therefore, it takes the form c e to the minus 1/2.
+It's a density in x.
+And so, up here, we have x minus the mean of that density.
+But the mean is equal to theta, squared.
+And this is the final form.
+Now what we notice here is that we have a few constant terms.
+Another term that depends on x, and then a quadratic in theta.
+So we can write all this as some function of x, and then
+e to the negative of some quadratic in theta.
+Now when we're doing inference, we are given the value of X.
+So let us fix a particular value of little x
+and concentrate on the dependence on theta.
+So with x being fixed, this is just a constant.
+And as a function of theta, it's e to the minus something
+quadratic in theta.
+And we recognize that this is a normal PDF.
+So we conclude that the posterior distribution
+of Theta, given our observation, is normal.
+Since it is normal, the expected value of this conditional PDF
+will be the same as the peak of that the PDF.
+And this would be our point estimate of Theta
+in particular.
+If we use either of the MAP-- Maximum A Posterior
+Probability-- or the least mean squares estimator,
+which is defined as the conditional expectation
+of Theta, given the observation that we have made.
+So this conditional expectation is just
+the mean of this posterior distribution.
+It is also the peak of that posterior distribution.
+So let us find what the peak is.
+To find the peak, we focus on the exponent term, which
+is ignoring the minus sign, the exponent term is this one.
+And to find the peak of the distribution,
+we need to find the place where this exponent term is smallest.
+To find out when this term is smallest,
+we take its derivative with respect to theta
+and set it equal to 0.
+The derivative of this term is theta.
+The derivative of this term is theta minus x.
+We set this to 0.
+And when we solve this equation, we find 2 theta equal to x.
+Therefore, theta is equal to x/2.
+And so, we conclude from here that the peak
+of the distribution occurs when theta is equal to x/2.
+And this is our estimate of theta.
+So our estimate takes into account
+that we believe that theta is 0 on the average.
+But also takes into account the observation that we have made,
+and comes up with a value that's in between our prior mean,
+which was 0, and the observation, which is little x.
+So this is what the estimates are.
+If we want to talk about estimators, which are now
+random variables, what would they be?
+The estimator is a random variable
+that takes this value whenever capital X takes
+the value of little x.
+Therefore, it's the random variable,
+which is equal to capital X/2.
+This is a relation between random variables.
+This is a corresponding relation between numbers
+if you're given a specific value for little x.
+How special is this example?
+It turns out that the same structure of the solution
+shows up even if we assume that Theta and W are
+independent normal random variables,
+but with some general means and variances.
+You should be able to verify on your own
+by repeating the calculations that we just carried out
+that the posterior distribution of Theta will still be normal.
+And since it is normal, the peak of the distribution
+is the same as the expected value.
+So the expected value, or least mean squares estimator,
+coincides with the maximum a-posteriori probability
+estimator.
+And finally, although this formula will not
+be exactly true, there will be a similar formula
+for the estimator, namely the estimator
+will turn out to be a linear function of the measurements.
+We will see that these conclusions are actually
+even more general than that.
+And this is what makes it very appealing
+to work with normal random variables and linear relations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
